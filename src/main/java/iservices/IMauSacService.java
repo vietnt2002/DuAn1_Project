@@ -6,7 +6,6 @@ package iservices;
 
 import irepositories.*;
 import java.util.List;
-import viewmodels.BaoHanhView;
 import viewmodels.MauSacView;
 
 /**
@@ -18,5 +17,4 @@ public interface IMauSacService {
     Integer them(MauSacView mauSacView);
     Integer sua(MauSacView mauSacView);
     Integer xoa(String ma);
-    MauSacView getIdByTen(String ten);
 }

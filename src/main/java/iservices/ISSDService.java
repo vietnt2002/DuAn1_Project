@@ -18,5 +18,4 @@ public interface ISSDService {
     Integer them(SSDView ssdView);
     Integer sua(SSDView ssdView);
     Integer xoa(String ma);
-    SSDView getIdByTen(String ten);
 }

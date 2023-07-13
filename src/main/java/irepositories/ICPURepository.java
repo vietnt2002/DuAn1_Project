@@ -16,5 +16,4 @@ public interface ICPURepository {
     Integer them(CPU cpu);
     Integer sua(CPU cpu);
     Integer xoa(String ma);
-    CPU getIdByTen(String ten);
 }

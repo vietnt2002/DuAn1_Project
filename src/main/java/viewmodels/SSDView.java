@@ -11,6 +11,7 @@ import java.sql.Date;
  * @author ADMIN
  */
 public class SSDView {
+
     private String id;
     private String ma;
     private String ten;
@@ -23,6 +24,14 @@ public class SSDView {
 
     public SSDView(String id, String ma, String ten, Date ngayTao, Date ngaySua, int trangThai) {
         this.id = id;
+        this.ma = ma;
+        this.ten = ten;
+        this.ngayTao = ngayTao;
+        this.ngaySua = ngaySua;
+        this.trangThai = trangThai;
+    }
+
+    public SSDView(String ma, String ten, Date ngayTao, Date ngaySua, int trangThai) {
         this.ma = ma;
         this.ten = ten;
         this.ngayTao = ngayTao;
@@ -82,5 +91,5 @@ public class SSDView {
     public String toString() {
         return "SSDView{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
-    
+
 }

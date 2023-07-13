@@ -18,5 +18,4 @@ public interface ICPUService {
     Integer them(CPUView cpuView);
     Integer sua(CPUView cpuView);
     Integer xoa(String ma);
-    CPUView getIdByTen(String ten);
 }

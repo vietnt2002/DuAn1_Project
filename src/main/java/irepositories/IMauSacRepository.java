@@ -17,5 +17,4 @@ public interface IMauSacRepository {
     Integer them(MauSac mauSac);
     Integer sua(MauSac mauSac);
     Integer xoa(String ma);
-    MauSac getIdByTen(String ten);
 }

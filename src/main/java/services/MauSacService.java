@@ -12,7 +12,6 @@ import viewmodels.MauSacView;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 /**
  *
  * @author ADMIN
@@ -26,7 +25,7 @@ public class MauSacService implements IMauSacService {
         List<MauSac> lst = reposytory.getAll();
         List<viewmodels.MauSacView> lst1 = new ArrayList<>();
         for (domainmodels.MauSac a : lst) {
-            lst1.add(new viewmodels.MauSacView(a.getId(), a.getMa(), 
+            lst1.add(new viewmodels.MauSacView(a.getId(), a.getMa(),
                     a.getTen(), a.getNgayTao(), a.getNgaySua(), a.getTrangThai()));
         }
         return lst1;
@@ -49,8 +48,4 @@ public class MauSacService implements IMauSacService {
         return reposytory.xoa(ma);
     }
 
-    @Override
-    public MauSacView getIdByTen(String ten) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

@@ -17,5 +17,4 @@ public interface ISSDRepository {
     Integer them(SSD ssd);
     Integer sua(SSD ssd);
     Integer xoa(String ma);
-    SSD getIdByTen(String ten);
 }
