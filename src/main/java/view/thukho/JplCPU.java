@@ -230,7 +230,7 @@ public class JplCPU extends javax.swing.JPanel {
 
         btnEdit.setBackground(new java.awt.Color(0, 153, 0));
         btnEdit.setForeground(new java.awt.Color(255, 255, 255));
-        btnEdit.setText("Xoá");
+        btnEdit.setText("Sửa");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
@@ -239,7 +239,7 @@ public class JplCPU extends javax.swing.JPanel {
 
         btnDelete.setBackground(new java.awt.Color(0, 153, 0));
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
-        btnDelete.setText("Sửa");
+        btnDelete.setText("Xóa");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
