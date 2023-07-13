@@ -6,12 +6,12 @@ import java.sql.Date;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 /**
  *
  * @author ADMIN
  */
 public class MauSacView {
+
     private String id;
     private String ma;
     private String ten;
@@ -24,6 +24,14 @@ public class MauSacView {
 
     public MauSacView(String id, String ma, String ten, Date ngayTao, Date ngaySua, int trangThai) {
         this.id = id;
+        this.ma = ma;
+        this.ten = ten;
+        this.ngayTao = ngayTao;
+        this.ngaySua = ngaySua;
+        this.trangThai = trangThai;
+    }
+
+    public MauSacView(String ma, String ten, Date ngayTao, Date ngaySua, int trangThai) {
         this.ma = ma;
         this.ten = ten;
         this.ngayTao = ngayTao;
@@ -83,5 +91,5 @@ public class MauSacView {
     public String toString() {
         return "MauSacView{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
-    
+
 }
