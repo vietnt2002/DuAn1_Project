@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 public class DBConnection {
     public static final String HOSTNAME = "localhost";
     public static final String PORT = "1433";
-    public static final String DBNAME = "FINALASS_FPOLYSHOP_FA22_SOF205__SOF2041";
+    public static final String DBNAME = "QuanLyCuaHangLaptop";
     public static final String USERNAME = "sa";
     public static final String PASSWORD = "123456";
 
