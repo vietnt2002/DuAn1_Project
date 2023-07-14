@@ -4,7 +4,6 @@
  */
 package irepositories;
 
-import domainmodels.CPU;
 import domainmodels.KhachHang;
 import java.util.List;
 
@@ -13,9 +12,25 @@ import java.util.List;
  * @author ADMIN
  */
 public interface IKhachHangRepository {
+
     List<KhachHang> getAll();
+
     Integer them(KhachHang khachHang);
+
     Integer sua(KhachHang khachHang);
+
     Integer xoa(String ma);
+
     KhachHang getIdByTen(String ten);
+
+    KhachHang checkTrungMa(String ma);
+
+    List<KhachHang> findTen(String ten1, String thanhPho1);
+
+    List<KhachHang> sapXepTenGiam();
+
+    List<KhachHang> sapXepTenTang();
+
+    List<String> gettenThanhPho();
+
 }

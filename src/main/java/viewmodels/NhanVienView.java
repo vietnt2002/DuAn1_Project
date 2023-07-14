@@ -4,13 +4,14 @@
  */
 package viewmodels;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
  * @author ADMIN
  */
 public class NhanVienView {
+
     private String id;
     private String idCV;
     private String ma;
@@ -27,6 +28,14 @@ public class NhanVienView {
     private int trangThai;
 
     public NhanVienView() {
+    }
+
+    public String getTrangThaiString() {
+        if (trangThai == 0) {
+            return "Đang làm việc";
+        } else {
+            return "Nghỉ";
+        }
     }
 
     public NhanVienView(String id, String idCV, String ma, String ten, String tenDem, String ho, String gioiTinh, Date ngaySinh, String diaChi, String sdt, String matKhau, Date ngayTao, Date ngaySua, int trangThai) {
@@ -162,5 +171,21 @@ public class NhanVienView {
     public String toString() {
         return "NhanVienView{" + "id=" + id + ", idCV=" + idCV + ", ma=" + ma + ", ten=" + ten + ", tenDem=" + tenDem + ", ho=" + ho + ", gioiTinh=" + gioiTinh + ", ngaySinh=" + ngaySinh + ", diaChi=" + diaChi + ", sdt=" + sdt + ", matKhau=" + matKhau + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
-    
+
+    public NhanVienView(String idCV, String ma, String ten, String tenDem, String ho, String gioiTinh, Date ngaySinh, String diaChi, String sdt, String matKhau, Date ngayTao, Date ngaySua, int trangThai) {
+        this.idCV = idCV;
+        this.ma = ma;
+        this.ten = ten;
+        this.tenDem = tenDem;
+        this.ho = ho;
+        this.gioiTinh = gioiTinh;
+        this.ngaySinh = ngaySinh;
+        this.diaChi = diaChi;
+        this.sdt = sdt;
+        this.matKhau = matKhau;
+        this.ngayTao = ngayTao;
+        this.ngaySua = ngaySua;
+        this.trangThai = trangThai;
+    }
+
 }

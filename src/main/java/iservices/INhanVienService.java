@@ -14,9 +14,18 @@ import viewmodels.NhanVienView;
  * @author ADMIN
  */
 public interface INhanVienService {
+
     List<NhanVienView> getAll();
+
     Integer them(NhanVienView nhanVienView);
+
     Integer sua(NhanVienView nhanVienView);
+
     Integer xoa(String ma);
+
     NhanVienView getIdByTen(String ten);
+
+    NhanVienView checkTrungMa(String ma);
+
+    List<String> getTenChucVu();
 }

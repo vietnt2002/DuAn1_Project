@@ -7,15 +7,18 @@ package utilities;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.text.SimpleDateFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import static utilities.DBConnection.getConnection;
 
 /**
  *
  * @author ADMIN
  */
 public class ULHelper {
+
     private static Connection con = null;
     private static PreparedStatement st = null;
     public static final String url = "jdbc:sqlserver://localhost:1433;"
@@ -37,8 +40,9 @@ public class ULHelper {
         }
         return connect;
     }
+
     public static boolean checknull(JTextField c, String mss) {
-        if (c.getText().equalsIgnoreCase("")) {
+        if (c.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, mss);
             c.requestFocus();
             return true;
@@ -46,7 +50,30 @@ public class ULHelper {
             return false;
         }
     }
-    
+
+    public static boolean CheckSDT(JTextField txt, String mess) {
+        String sdt = "0\\d{9}";
+        Matcher matcher = Pattern.compile(sdt).matcher(txt.getText());
+        if (matcher.matches()) {
+            return false;
+        }
+        JOptionPane.showMessageDialog(null, mess);
+        txt.requestFocus();
+        return true;
+    }
+
+    public static boolean checkNgay(JTextField txt, String mss) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            sdf.parse(txt.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, mss);
+            txt.requestFocus();
+            return true;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         getConnection();
     }
