@@ -24,11 +24,11 @@ public class SSDRepository implements ISSDRepository {
         try {
             List<SSD> lst = new ArrayList<>();
             Connection con = utilities.ULHelper.getConnection();
-            String lenh = "select id,ma,ten,ngayTao,ngaySua,trangThai from mausac";
+            String lenh = "select id,ma,ten,ngayTao,ngaySua,trangThai from SSD";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(lenh);
             while (rs.next()) {
-                lst.add(new SSD(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getDate(4), rs.getInt(5)));
+                lst.add(new SSD(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getDate(5), rs.getInt(6)));
             }
             return lst;
         } catch (Exception e) {
@@ -38,13 +38,16 @@ public class SSDRepository implements ISSDRepository {
     }
 
     @Override
-    public Integer them(SSD mauSac) {
+    public Integer them(SSD ssd) {
         try {
             Connection con = ULHelper.getConnection();
-            String lenh = "insert into SSD(Ma,Ten) values(?,?)";
+            String lenh = "insert into SSD(Ma,Ten,ngayTao,ngaySua,trangThai) values(?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(lenh);
-            st.setString(1, mauSac.getMa());
-            st.setString(2, mauSac.getTen());
+            st.setString(1, ssd.getMa());
+            st.setString(2, ssd.getTen());
+            st.setDate(3, ssd.getNgayTao());
+            st.setDate(4, ssd.getNgaySua());
+            st.setInt(5, ssd.getTrangThai());
             return st.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,13 +56,16 @@ public class SSDRepository implements ISSDRepository {
     }
 
     @Override
-    public Integer sua(SSD mauSac) {
+    public Integer sua(SSD ssd) {
         try {
             Connection con = ULHelper.getConnection();
-            String lenh = "update SSD set ten=? where ma=?";
+            String lenh = "update SSD set ten=?, ngayTao=?, ngaySua=?,trangThai=? where ma=?";
             PreparedStatement st = con.prepareStatement(lenh);
-            st.setString(2, mauSac.getMa());
-            st.setString(1, mauSac.getTen());
+            st.setString(5, ssd.getMa());
+            st.setString(1, ssd.getTen());
+            st.setDate(2, ssd.getNgayTao());
+            st.setDate(3, ssd.getNgaySua());
+            st.setInt(4, ssd.getTrangThai());
             return st.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,7 +77,7 @@ public class SSDRepository implements ISSDRepository {
     public Integer xoa(String ma) {
         try {
             Connection con = ULHelper.getConnection();
-            String lenh = "delete mausac where ma like '" + ma + "'";
+            String lenh = "delete SSD where ma like '" + ma + "'";
             PreparedStatement st = con.prepareStatement(lenh);
 
             return st.executeUpdate();

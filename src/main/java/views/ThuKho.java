@@ -7,6 +7,7 @@ package views;
 import iservices.ICPUService;
 import iservices.IDongSPService;
 import iservices.IRAMService;
+import iservices.ISSDService;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,10 +18,12 @@ import services.CPUService;
 import services.CheckTrungService;
 import services.DongSPService;
 import services.RAMService;
+import services.SSDService;
 import utilities.ULHelper;
 import viewmodels.CPUView;
 import viewmodels.DongSPView;
 import viewmodels.RAMView;
+import viewmodels.SSDView;
 
 /**
  *
@@ -36,10 +39,14 @@ public class ThuKho extends javax.swing.JFrame {
     List<RAMView> lstRAM = new ArrayList<>();
     private final IDongSPService svcDSP = new DongSPService() {
     };
+    List<SSDView> lstSSD = new ArrayList<>();
+    private final ISSDService svcSSD = new SSDService() {
+    };
     List<DongSPView> lstDSP = new ArrayList<>();
     DefaultTableModel modelCPU = new DefaultTableModel();
     DefaultTableModel modelDSP = new DefaultTableModel();
     DefaultTableModel modelRAM = new DefaultTableModel();
+    DefaultTableModel modelSSD = new DefaultTableModel();
     Date date = Date.valueOf(LocalDate.now());
     int index;
 
@@ -51,6 +58,7 @@ public class ThuKho extends javax.swing.JFrame {
         modelCPU = (DefaultTableModel) tblCPU.getModel();
         modelDSP = (DefaultTableModel) tblDSP.getModel();
         modelRAM = (DefaultTableModel) tblRAM.getModel();
+        modelSSD = (DefaultTableModel) tblSSD.getModel();
     }
 
     public void filltableCPU() {
@@ -87,6 +95,20 @@ public class ThuKho extends javax.swing.JFrame {
             lstDSP = svcDSP.getAll();
             for (DongSPView a : lstDSP) {
                 modelDSP.addRow(new Object[]{
+                    a.getMa(), a.getTen(), a.getNgayTao(), a.getNgaySua(), a.getStatus(a.getTrangThai())
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void filltableSSD() {
+        try {
+            modelSSD.setRowCount(0);
+            lstSSD = svcSSD.getAll();
+            for (SSDView a : lstSSD) {
+                modelSSD.addRow(new Object[]{
                     a.getMa(), a.getTen(), a.getNgayTao(), a.getNgaySua(), a.getStatus(a.getTrangThai())
                 });
             }
@@ -142,6 +164,22 @@ public class ThuKho extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    
+    public void showdetailSSD(int index) {
+        try {
+            txtMa3.setText(lstSSD.get(index).getMa());
+            txtTen3.setText(lstSSD.get(index).getTen());
+            if (lstSSD.get(index).getTrangThai() == 0) {
+                radCon3.setSelected(true);
+            } else {
+                if (lstSSD.get(index).getTrangThai() == 1) {
+                    radHet3.setSelected(true);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -155,6 +193,7 @@ public class ThuKho extends javax.swing.JFrame {
         btgCPU = new javax.swing.ButtonGroup();
         btgDSP = new javax.swing.ButtonGroup();
         btgRAM = new javax.swing.ButtonGroup();
+        btgSSD = new javax.swing.ButtonGroup();
         tabKho = new javax.swing.JTabbedPane();
         pnlCPU = new javax.swing.JPanel();
         pnlCPUInfo = new javax.swing.JPanel();
@@ -231,7 +270,32 @@ public class ThuKho extends javax.swing.JFrame {
         btnGiam2 = new javax.swing.JButton();
         cboTrangThai2 = new javax.swing.JComboBox<>();
         jLabel55 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        pnlSSD = new javax.swing.JPanel();
+        pnlSSDinfo = new javax.swing.JPanel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel56 = new javax.swing.JLabel();
+        radCon3 = new javax.swing.JRadioButton();
+        radHet3 = new javax.swing.JRadioButton();
+        pnlSSDbtn = new javax.swing.JPanel();
+        btnAdd3 = new javax.swing.JButton();
+        btnShow3 = new javax.swing.JButton();
+        btnEdit3 = new javax.swing.JButton();
+        btnDelete3 = new javax.swing.JButton();
+        btnHide3 = new javax.swing.JButton();
+        txtMa3 = new javax.swing.JTextField();
+        txtTen3 = new javax.swing.JTextField();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        tblSSD = new javax.swing.JTable();
+        pnlSSDsrc = new javax.swing.JPanel();
+        jLabel57 = new javax.swing.JLabel();
+        txtName3 = new javax.swing.JTextField();
+        jLabel58 = new javax.swing.JLabel();
+        btnTang3 = new javax.swing.JButton();
+        btnGiam3 = new javax.swing.JButton();
+        cboTrangThai3 = new javax.swing.JComboBox<>();
+        jLabel59 = new javax.swing.JLabel();
+        pnlThongKe = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -1036,6 +1100,262 @@ public class ThuKho extends javax.swing.JFrame {
 
         tabKho.addTab("RAM", pnlRAM);
 
+        pnlSSDinfo.setBackground(new java.awt.Color(255, 255, 255));
+        pnlSSDinfo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin SSD", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
+
+        jLabel35.setText("Mã");
+
+        jLabel36.setText("Tên");
+
+        jLabel56.setText("Trạng thái");
+
+        btgDSP.add(radCon3);
+        radCon3.setText("Còn hàng");
+        radCon3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radCon3ActionPerformed(evt);
+            }
+        });
+
+        btgDSP.add(radHet3);
+        radHet3.setText("Hết hàng");
+
+        btnAdd3.setBackground(new java.awt.Color(255, 51, 0));
+        btnAdd3.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdd3.setText("Thêm");
+        btnAdd3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdd3ActionPerformed(evt);
+            }
+        });
+
+        btnShow3.setBackground(new java.awt.Color(255, 51, 0));
+        btnShow3.setForeground(new java.awt.Color(255, 255, 255));
+        btnShow3.setText("Hiện");
+        btnShow3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShow3ActionPerformed(evt);
+            }
+        });
+
+        btnEdit3.setBackground(new java.awt.Color(255, 51, 0));
+        btnEdit3.setForeground(new java.awt.Color(255, 255, 255));
+        btnEdit3.setText("Sửa");
+        btnEdit3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEdit3ActionPerformed(evt);
+            }
+        });
+
+        btnDelete3.setBackground(new java.awt.Color(255, 51, 0));
+        btnDelete3.setForeground(new java.awt.Color(255, 255, 255));
+        btnDelete3.setText("Xóa");
+        btnDelete3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelete3ActionPerformed(evt);
+            }
+        });
+
+        btnHide3.setBackground(new java.awt.Color(255, 51, 0));
+        btnHide3.setForeground(new java.awt.Color(255, 255, 255));
+        btnHide3.setText("Ẩn");
+        btnHide3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHide3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlSSDbtnLayout = new javax.swing.GroupLayout(pnlSSDbtn);
+        pnlSSDbtn.setLayout(pnlSSDbtnLayout);
+        pnlSSDbtnLayout.setHorizontalGroup(
+            pnlSSDbtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSSDbtnLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(pnlSSDbtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnHide3)
+                    .addComponent(btnDelete3)
+                    .addComponent(btnEdit3)
+                    .addComponent(btnShow3)
+                    .addComponent(btnAdd3))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        pnlSSDbtnLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdd3, btnDelete3, btnEdit3, btnHide3, btnShow3});
+
+        pnlSSDbtnLayout.setVerticalGroup(
+            pnlSSDbtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSSDbtnLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnShow3)
+                .addGap(18, 18, 18)
+                .addComponent(btnHide3)
+                .addGap(18, 18, 18)
+                .addComponent(btnAdd3)
+                .addGap(18, 18, 18)
+                .addComponent(btnEdit3)
+                .addGap(18, 18, 18)
+                .addComponent(btnDelete3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pnlSSDbtnLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdd3, btnDelete3, btnEdit3, btnHide3, btnShow3});
+
+        txtTen3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTen3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlSSDinfoLayout = new javax.swing.GroupLayout(pnlSSDinfo);
+        pnlSSDinfo.setLayout(pnlSSDinfoLayout);
+        pnlSSDinfoLayout.setHorizontalGroup(
+            pnlSSDinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSSDinfoLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(pnlSSDinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel35)
+                    .addComponent(jLabel36)
+                    .addComponent(jLabel56))
+                .addGap(18, 18, 18)
+                .addGroup(pnlSSDinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtMa3, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTen3, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlSSDinfoLayout.createSequentialGroup()
+                        .addComponent(radCon3)
+                        .addGap(18, 18, 18)
+                        .addComponent(radHet3)))
+                .addGap(18, 18, 18)
+                .addComponent(pnlSSDbtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+
+        pnlSSDinfoLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel35, jLabel36, jLabel56, radCon3, radHet3});
+
+        pnlSSDinfoLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtMa3, txtTen3});
+
+        pnlSSDinfoLayout.setVerticalGroup(
+            pnlSSDinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSSDinfoLayout.createSequentialGroup()
+                .addGroup(pnlSSDinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlSSDinfoLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(pnlSSDinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel35)
+                            .addComponent(txtMa3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlSSDinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel36)
+                            .addComponent(txtTen3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlSSDinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel56)
+                            .addComponent(radCon3)
+                            .addComponent(radHet3)))
+                    .addGroup(pnlSSDinfoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pnlSSDbtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+
+        pnlSSDinfoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel35, jLabel36, jLabel56, radCon3, radHet3, txtMa3, txtTen3});
+
+        tblSSD.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Mã", "Tên", "Ngày tạo", "Ngày sửa", "Trạnng thái"
+            }
+        ));
+        tblSSD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSSDMouseClicked(evt);
+            }
+        });
+        jScrollPane8.setViewportView(tblSSD);
+
+        pnlSSDsrc.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel57.setText("Tra cứu tên:");
+
+        jLabel58.setText("Sắp xếp theo tên");
+
+        btnTang3.setText("Tăng");
+
+        btnGiam3.setText("Giảm");
+
+        jLabel59.setText("Trạng thái:");
+
+        javax.swing.GroupLayout pnlSSDsrcLayout = new javax.swing.GroupLayout(pnlSSDsrc);
+        pnlSSDsrc.setLayout(pnlSSDsrcLayout);
+        pnlSSDsrcLayout.setHorizontalGroup(
+            pnlSSDsrcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSSDsrcLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlSSDsrcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel58)
+                    .addComponent(jLabel57)
+                    .addComponent(jLabel59))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlSSDsrcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnlSSDsrcLayout.createSequentialGroup()
+                        .addComponent(btnTang3)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnGiam3))
+                    .addComponent(cboTrangThai3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtName3))
+                .addGap(110, 110, 110))
+        );
+        pnlSSDsrcLayout.setVerticalGroup(
+            pnlSSDsrcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSSDsrcLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(pnlSSDsrcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtName3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel57))
+                .addGap(18, 18, 18)
+                .addGroup(pnlSSDsrcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboTrangThai3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel59))
+                .addGap(18, 18, 18)
+                .addGroup(pnlSSDsrcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTang3)
+                    .addComponent(jLabel58)
+                    .addComponent(btnGiam3))
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout pnlSSDLayout = new javax.swing.GroupLayout(pnlSSD);
+        pnlSSD.setLayout(pnlSSDLayout);
+        pnlSSDLayout.setHorizontalGroup(
+            pnlSSDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSSDLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(pnlSSDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pnlSSDinfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlSSDLayout.createSequentialGroup()
+                        .addComponent(jScrollPane8)
+                        .addGap(18, 18, 18)
+                        .addComponent(pnlSSDsrc, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18))
+        );
+        pnlSSDLayout.setVerticalGroup(
+            pnlSSDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSSDLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlSSDinfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addGroup(pnlSSDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlSSDsrc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        tabKho.addTab("SSD", pnlSSD);
+
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Doanh thu theo tháng"));
         jPanel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
@@ -1225,17 +1545,17 @@ public class ThuKho extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlThongKeLayout = new javax.swing.GroupLayout(pnlThongKe);
+        pnlThongKe.setLayout(pnlThongKeLayout);
+        pnlThongKeLayout.setHorizontalGroup(
+            pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlThongKeLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(pnlThongKeLayout.createSequentialGroup()
+                        .addGroup(pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(pnlThongKeLayout.createSequentialGroup()
                                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1246,30 +1566,30 @@ public class ThuKho extends javax.swing.JFrame {
                         .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        pnlThongKeLayout.setVerticalGroup(
+            pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlThongKeLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlThongKeLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlThongKeLayout.createSequentialGroup()
+                                .addGroup(pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(34, 34, 34)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlThongKeLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        tabKho.addTab("Thống kê", jPanel3);
+        tabKho.addTab("Thống kê", pnlThongKe);
 
         jLabel5.setText("Họ và tên:");
 
@@ -1673,6 +1993,127 @@ public class ThuKho extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tblRAMMouseClicked
 
+    private void radCon3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radCon3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radCon3ActionPerformed
+
+    private void btnAdd3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd3ActionPerformed
+        // TODO add your handling code here:
+        try {
+            if (ULHelper.checknull(txtMa3, "Không được để mã trống!")) {
+                return;
+            } else {
+                int trungMa = CheckTrungService.checkTrung(txtMa3.getText(),
+                        "SSD", "ma");
+                if (trungMa != -1) {
+                    JOptionPane.showMessageDialog(this, "Mã đã tồn tại!");
+                    return;
+                }
+            }
+
+            if (ULHelper.checknull(txtTen3, "Không được để tên trống!")) {
+                return;
+            }
+            int stt = (radHet3.isSelected() ? 1 : 0);
+            SSDView ssd = new SSDView(txtMa3.getText(), txtTen3.getText(), date, date, stt);
+            int thongBao = svcSSD.them(ssd);
+            if (thongBao == 1) {
+                JOptionPane.showMessageDialog(this, "Thêm thành công!");
+                filltableSSD();
+                return;
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm thất bại!");
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnAdd3ActionPerformed
+
+    private void btnShow3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShow3ActionPerformed
+        // TODO add your handling code here:
+        try {
+            filltableSSD();
+            showdetailSSD(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnShow3ActionPerformed
+
+    private void btnEdit3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit3ActionPerformed
+        // TODO add your handling code here:
+        try {
+            if (ULHelper.checknull(txtMa3, "Không được để mã trống!")) {
+                return;
+            }
+
+            if (ULHelper.checknull(txtTen3, "Không được để tên trống!")) {
+                return;
+            }
+            lstSSD = svcSSD.getAll();
+
+            Date tao = lstSSD.get(index).getNgayTao();
+            int stt = (radHet3.isSelected() ? 1 : 0);
+            SSDView ssd = new SSDView(txtMa3.getText(), txtTen3.getText(), tao, date, stt);
+            int thongBao = svcSSD.sua(ssd);
+            if (thongBao == 1) {
+                JOptionPane.showMessageDialog(this, "Sửa thành công!");
+                filltableSSD();
+                return;
+            } else {
+                JOptionPane.showMessageDialog(this, "Sửa thất bại!");
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnEdit3ActionPerformed
+
+    private void btnDelete3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete3ActionPerformed
+        // TODO add your handling code here:
+        try {
+            String ma = txtMa3.getText();
+            int thongBao = svcSSD.xoa(ma);
+            if (thongBao == 1) {
+                JOptionPane.showMessageDialog(this, "Xóa thành công!");
+                filltableSSD();
+                showdetailSSD(0);
+                return;
+            } else {
+                JOptionPane.showMessageDialog(this, "Xóa thất bại!");
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnDelete3ActionPerformed
+
+    private void btnHide3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHide3ActionPerformed
+        // TODO add your handling code here:
+        try {
+            modelSSD.setRowCount(0);
+            txtMa3.setText("");
+            txtTen3.setText("");
+            radCon3.setSelected(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnHide3ActionPerformed
+
+    private void txtTen3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTen3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTen3ActionPerformed
+
+    private void tblSSDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSSDMouseClicked
+        // TODO add your handling code here:
+        try {
+            int index = tblSSD.getSelectedRow();
+            showdetailSSD(index);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_tblSSDMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1713,30 +2154,39 @@ public class ThuKho extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btgCPU;
     private javax.swing.ButtonGroup btgDSP;
     private javax.swing.ButtonGroup btgRAM;
+    private javax.swing.ButtonGroup btgSSD;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnAdd1;
     private javax.swing.JButton btnAdd2;
+    private javax.swing.JButton btnAdd3;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDelete1;
     private javax.swing.JButton btnDelete2;
+    private javax.swing.JButton btnDelete3;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnEdit1;
     private javax.swing.JButton btnEdit2;
+    private javax.swing.JButton btnEdit3;
     private javax.swing.JButton btnGiam;
     private javax.swing.JButton btnGiam1;
     private javax.swing.JButton btnGiam2;
+    private javax.swing.JButton btnGiam3;
     private javax.swing.JButton btnHide;
     private javax.swing.JButton btnHide1;
     private javax.swing.JButton btnHide2;
+    private javax.swing.JButton btnHide3;
     private javax.swing.JButton btnShow;
     private javax.swing.JButton btnShow1;
     private javax.swing.JButton btnShow2;
+    private javax.swing.JButton btnShow3;
     private javax.swing.JButton btnTang;
     private javax.swing.JButton btnTang1;
     private javax.swing.JButton btnTang2;
+    private javax.swing.JButton btnTang3;
     private javax.swing.JComboBox<String> cboTrangThai;
     private javax.swing.JComboBox<String> cboTrangThai1;
     private javax.swing.JComboBox<String> cboTrangThai2;
+    private javax.swing.JComboBox<String> cboTrangThai3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel27;
@@ -1746,6 +2196,8 @@ public class ThuKho extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
@@ -1760,12 +2212,15 @@ public class ThuKho extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -1775,6 +2230,7 @@ public class ThuKho extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField1;
@@ -1790,24 +2246,35 @@ public class ThuKho extends javax.swing.JFrame {
     private javax.swing.JPanel pnlRAMbtn;
     private javax.swing.JPanel pnlRAMinfo;
     private javax.swing.JPanel pnlRAMsrc;
+    private javax.swing.JPanel pnlSSD;
+    private javax.swing.JPanel pnlSSDbtn;
+    private javax.swing.JPanel pnlSSDinfo;
+    private javax.swing.JPanel pnlSSDsrc;
+    private javax.swing.JPanel pnlThongKe;
     private javax.swing.JRadioButton radCon;
     private javax.swing.JRadioButton radCon1;
     private javax.swing.JRadioButton radCon2;
+    private javax.swing.JRadioButton radCon3;
     private javax.swing.JRadioButton radHet;
     private javax.swing.JRadioButton radHet1;
     private javax.swing.JRadioButton radHet2;
+    private javax.swing.JRadioButton radHet3;
     private javax.swing.JTabbedPane tabKho;
     private javax.swing.JTable tblCPU;
     private javax.swing.JTable tblDSP;
     private javax.swing.JTable tblRAM;
+    private javax.swing.JTable tblSSD;
     private javax.swing.JTextField txtMa;
     private javax.swing.JTextField txtMa1;
     private javax.swing.JTextField txtMa2;
+    private javax.swing.JTextField txtMa3;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtName1;
     private javax.swing.JTextField txtName2;
+    private javax.swing.JTextField txtName3;
     private javax.swing.JTextField txtTen;
     private javax.swing.JTextField txtTen1;
     private javax.swing.JTextField txtTen2;
+    private javax.swing.JTextField txtTen3;
     // End of variables declaration//GEN-END:variables
 }

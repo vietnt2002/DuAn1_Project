@@ -87,6 +87,17 @@ public class SSDView {
         this.trangThai = trangThai;
     }
 
+    public String getStatus(int trangThai) {
+        switch (trangThai) {
+            case 0:
+                return "Còn hàng";
+            case 1:
+                return "Hết hàng";
+            default:
+                return "Không rõ";
+        }
+    }
+
     @Override
     public String toString() {
         return "SSDView{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
