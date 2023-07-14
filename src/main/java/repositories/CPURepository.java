@@ -24,11 +24,11 @@ public class CPURepository implements ICPURepository {
         try {
             List<CPU> lst = new ArrayList<>();
             Connection con = utilities.ULHelper.getConnection();
-            String lenh = "select id,ma,ten,ngayTao,ngaySua,trangThai from mausac";
+            String lenh = "select id,ma,ten,ngayTao,ngaySua,trangThai from CPU";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(lenh);
             while (rs.next()) {
-                lst.add(new CPU(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getDate(4), rs.getInt(5)));
+                lst.add(new CPU(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getDate(5), rs.getInt(6)));
             }
             return lst;
         } catch (Exception e) {
@@ -41,10 +41,13 @@ public class CPURepository implements ICPURepository {
     public Integer them(CPU cpu) {
         try {
             Connection con = ULHelper.getConnection();
-            String lenh = "insert into CPU(Ma,Ten) values(?,?)";
+            String lenh = "insert into CPU(Ma,Ten,ngayTao,ngaySua,trangThai) values(?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(lenh);
             st.setString(1, cpu.getMa());
             st.setString(2, cpu.getTen());
+            st.setDate(3, cpu.getNgayTao());
+            st.setDate(4, cpu.getNgaySua());
+            st.setInt(5, cpu.getTrangThai());
             return st.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,10 +59,13 @@ public class CPURepository implements ICPURepository {
     public Integer sua(CPU cpu) {
         try {
             Connection con = ULHelper.getConnection();
-            String lenh = "update CPU set ten=? where ma=?";
+            String lenh = "update CPU set ten=?, ngayTao=?, ngaySua=?,trangThai=? where ma=?";
             PreparedStatement st = con.prepareStatement(lenh);
-            st.setString(2, cpu.getMa());
+            st.setString(5, cpu.getMa());
             st.setString(1, cpu.getTen());
+            st.setDate(2, cpu.getNgayTao());
+            st.setDate(3, cpu.getNgaySua());
+            st.setInt(4, cpu.getTrangThai());
             return st.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,7 +77,7 @@ public class CPURepository implements ICPURepository {
     public Integer xoa(String ma) {
         try {
             Connection con = ULHelper.getConnection();
-            String lenh = "delete mausac where ma like '" + ma + "'";
+            String lenh = "delete CPU where ma like '" + ma + "'";
             PreparedStatement st = con.prepareStatement(lenh);
 
             return st.executeUpdate();

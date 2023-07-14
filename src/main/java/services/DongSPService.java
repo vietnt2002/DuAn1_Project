@@ -25,7 +25,7 @@ public class DongSPService implements IDongSPService {
         List<DongSP> lst = reposytory.getAll();
         List<viewmodels.DongSPView> lst1 = new ArrayList<>();
         for (domainmodels.DongSP a : lst) {
-            lst1.add(new viewmodels.DongSPView(a.getId(), a.getMa(), 
+            lst1.add(new viewmodels.DongSPView(a.getId(), a.getMa(),
                     a.getTen(), a.getNgayTao(), a.getNgaySua(), a.getTrangThai()));
         }
         return lst1;
@@ -48,8 +48,4 @@ public class DongSPService implements IDongSPService {
         return reposytory.xoa(ma);
     }
 
-    @Override
-    public DongSPView getIdByTen(String ten) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

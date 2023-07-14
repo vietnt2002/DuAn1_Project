@@ -18,5 +18,4 @@ public interface IDongSPService {
     Integer them(DongSPView dongSPView);
     Integer sua(DongSPView dongSPView);
     Integer xoa(String ma);
-    DongSPView getIdByTen(String ten);
 }

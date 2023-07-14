@@ -17,5 +17,4 @@ public interface IDongSPRepository {
     Integer them(DongSP dongSP);
     Integer sua(DongSP dongSP);
     Integer xoa(String ma);
-    DongSP getIdByTen(String ten);
 }

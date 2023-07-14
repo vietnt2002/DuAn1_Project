@@ -11,6 +11,7 @@ import java.sql.Date;
  * @author ADMIN
  */
 public class DongSPView {
+
     private String id;
     private String ma;
     private String ten;
@@ -86,9 +87,20 @@ public class DongSPView {
         this.trangThai = trangThai;
     }
 
+    public String getStatus(int trangThai) {
+        switch (trangThai) {
+            case 0:
+                return "Còn hàng";
+            case 1:
+                return "Hết hàng";
+            default:
+                return "Không rõ";
+        }
+    }
+
     @Override
     public String toString() {
         return "DongSPView{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
-    
+
 }
