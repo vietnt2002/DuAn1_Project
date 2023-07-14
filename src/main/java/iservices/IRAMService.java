@@ -18,5 +18,4 @@ public interface IRAMService {
     Integer them(RAMView ramView);
     Integer sua(RAMView ramView);
     Integer xoa(String ma);
-    RAMView getIdByTen(String ten);
 }

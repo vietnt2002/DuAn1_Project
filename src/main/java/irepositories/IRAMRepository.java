@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package irepositories;
-
-import domainmodels.CPU;
 import domainmodels.RAM;
 import java.util.List;
 
@@ -17,5 +15,4 @@ public interface IRAMRepository {
     Integer them(RAM ram);
     Integer sua(RAM ram);
     Integer xoa(String ma);
-    RAM getIdByTen(String ten);
 }

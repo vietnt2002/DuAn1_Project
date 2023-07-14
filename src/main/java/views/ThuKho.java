@@ -6,6 +6,7 @@ package views;
 
 import iservices.ICPUService;
 import iservices.IDongSPService;
+import iservices.IRAMService;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,9 +16,11 @@ import javax.swing.table.DefaultTableModel;
 import services.CPUService;
 import services.CheckTrungService;
 import services.DongSPService;
+import services.RAMService;
 import utilities.ULHelper;
 import viewmodels.CPUView;
 import viewmodels.DongSPView;
+import viewmodels.RAMView;
 
 /**
  *
@@ -28,11 +31,15 @@ public class ThuKho extends javax.swing.JFrame {
     private final ICPUService svcCPU = new CPUService() {
     };
     List<CPUView> lstCPU = new ArrayList<>();
+    private final IRAMService svcRAM = new RAMService() {
+    };
+    List<RAMView> lstRAM = new ArrayList<>();
     private final IDongSPService svcDSP = new DongSPService() {
     };
     List<DongSPView> lstDSP = new ArrayList<>();
     DefaultTableModel modelCPU = new DefaultTableModel();
     DefaultTableModel modelDSP = new DefaultTableModel();
+    DefaultTableModel modelRAM = new DefaultTableModel();
     Date date = Date.valueOf(LocalDate.now());
     int index;
 
@@ -43,6 +50,7 @@ public class ThuKho extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         modelCPU = (DefaultTableModel) tblCPU.getModel();
         modelDSP = (DefaultTableModel) tblDSP.getModel();
+        modelRAM = (DefaultTableModel) tblRAM.getModel();
     }
 
     public void filltableCPU() {
@@ -58,7 +66,21 @@ public class ThuKho extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
+
+    public void filltableRAM() {
+        try {
+            modelRAM.setRowCount(0);
+            lstRAM = svcRAM.getAll();
+            for (RAMView a : lstRAM) {
+                modelRAM.addRow(new Object[]{
+                    a.getMa(), a.getTen(), a.getNgayTao(), a.getNgaySua(), a.getStatus(a.getTrangThai())
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void filltableDSP() {
         try {
             modelDSP.setRowCount(0);
@@ -88,7 +110,7 @@ public class ThuKho extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
+
     public void showdetailDSP(int index) {
         try {
             txtMa1.setText(lstDSP.get(index).getMa());
@@ -98,6 +120,22 @@ public class ThuKho extends javax.swing.JFrame {
             } else {
                 if (lstDSP.get(index).getTrangThai() == 1) {
                     radHet1.setSelected(true);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showdetailRAM(int index) {
+        try {
+            txtMa2.setText(lstRAM.get(index).getMa());
+            txtTen2.setText(lstRAM.get(index).getTen());
+            if (lstRAM.get(index).getTrangThai() == 0) {
+                radCon2.setSelected(true);
+            } else {
+                if (lstRAM.get(index).getTrangThai() == 1) {
+                    radHet2.setSelected(true);
                 }
             }
         } catch (Exception e) {
@@ -116,6 +154,7 @@ public class ThuKho extends javax.swing.JFrame {
 
         btgCPU = new javax.swing.ButtonGroup();
         btgDSP = new javax.swing.ButtonGroup();
+        btgRAM = new javax.swing.ButtonGroup();
         tabKho = new javax.swing.JTabbedPane();
         pnlCPU = new javax.swing.JPanel();
         pnlCPUInfo = new javax.swing.JPanel();
@@ -167,6 +206,31 @@ public class ThuKho extends javax.swing.JFrame {
         btnGiam1 = new javax.swing.JButton();
         cboTrangThai1 = new javax.swing.JComboBox<>();
         jLabel51 = new javax.swing.JLabel();
+        pnlRAM = new javax.swing.JPanel();
+        pnlRAMinfo = new javax.swing.JPanel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        radCon2 = new javax.swing.JRadioButton();
+        radHet2 = new javax.swing.JRadioButton();
+        pnlRAMbtn = new javax.swing.JPanel();
+        btnAdd2 = new javax.swing.JButton();
+        btnShow2 = new javax.swing.JButton();
+        btnEdit2 = new javax.swing.JButton();
+        btnDelete2 = new javax.swing.JButton();
+        btnHide2 = new javax.swing.JButton();
+        txtMa2 = new javax.swing.JTextField();
+        txtTen2 = new javax.swing.JTextField();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tblRAM = new javax.swing.JTable();
+        pnlRAMsrc = new javax.swing.JPanel();
+        jLabel53 = new javax.swing.JLabel();
+        txtName2 = new javax.swing.JTextField();
+        jLabel54 = new javax.swing.JLabel();
+        btnTang2 = new javax.swing.JButton();
+        btnGiam2 = new javax.swing.JButton();
+        cboTrangThai2 = new javax.swing.JComboBox<>();
+        jLabel55 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -714,6 +778,264 @@ public class ThuKho extends javax.swing.JFrame {
 
         tabKho.addTab("Dòng SP", pnlDongSP);
 
+        pnlRAMinfo.setBackground(new java.awt.Color(255, 255, 255));
+        pnlRAMinfo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin RAM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
+
+        jLabel33.setText("Mã");
+
+        jLabel34.setText("Tên");
+
+        jLabel52.setText("Trạng thái");
+
+        btgDSP.add(radCon2);
+        radCon2.setText("Còn hàng");
+        radCon2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radCon2ActionPerformed(evt);
+            }
+        });
+
+        btgDSP.add(radHet2);
+        radHet2.setText("Hết hàng");
+
+        btnAdd2.setBackground(new java.awt.Color(255, 51, 0));
+        btnAdd2.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdd2.setText("Thêm");
+        btnAdd2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdd2ActionPerformed(evt);
+            }
+        });
+
+        btnShow2.setBackground(new java.awt.Color(255, 51, 0));
+        btnShow2.setForeground(new java.awt.Color(255, 255, 255));
+        btnShow2.setText("Hiện");
+        btnShow2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShow2ActionPerformed(evt);
+            }
+        });
+
+        btnEdit2.setBackground(new java.awt.Color(255, 51, 0));
+        btnEdit2.setForeground(new java.awt.Color(255, 255, 255));
+        btnEdit2.setText("Sửa");
+        btnEdit2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEdit2ActionPerformed(evt);
+            }
+        });
+
+        btnDelete2.setBackground(new java.awt.Color(255, 51, 0));
+        btnDelete2.setForeground(new java.awt.Color(255, 255, 255));
+        btnDelete2.setText("Xóa");
+        btnDelete2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelete2ActionPerformed(evt);
+            }
+        });
+
+        btnHide2.setBackground(new java.awt.Color(255, 51, 0));
+        btnHide2.setForeground(new java.awt.Color(255, 255, 255));
+        btnHide2.setText("Ẩn");
+        btnHide2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHide2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlRAMbtnLayout = new javax.swing.GroupLayout(pnlRAMbtn);
+        pnlRAMbtn.setLayout(pnlRAMbtnLayout);
+        pnlRAMbtnLayout.setHorizontalGroup(
+            pnlRAMbtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRAMbtnLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(pnlRAMbtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnHide2)
+                    .addComponent(btnDelete2)
+                    .addComponent(btnEdit2)
+                    .addComponent(btnShow2)
+                    .addComponent(btnAdd2))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        pnlRAMbtnLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdd2, btnDelete2, btnEdit2, btnHide2, btnShow2});
+
+        pnlRAMbtnLayout.setVerticalGroup(
+            pnlRAMbtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRAMbtnLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnShow2)
+                .addGap(18, 18, 18)
+                .addComponent(btnHide2)
+                .addGap(18, 18, 18)
+                .addComponent(btnAdd2)
+                .addGap(18, 18, 18)
+                .addComponent(btnEdit2)
+                .addGap(18, 18, 18)
+                .addComponent(btnDelete2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pnlRAMbtnLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdd2, btnDelete2, btnEdit2, btnHide2, btnShow2});
+
+        txtTen2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTen2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlRAMinfoLayout = new javax.swing.GroupLayout(pnlRAMinfo);
+        pnlRAMinfo.setLayout(pnlRAMinfoLayout);
+        pnlRAMinfoLayout.setHorizontalGroup(
+            pnlRAMinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRAMinfoLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(pnlRAMinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel33)
+                    .addComponent(jLabel34)
+                    .addComponent(jLabel52))
+                .addGap(18, 18, 18)
+                .addGroup(pnlRAMinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtMa2, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTen2, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlRAMinfoLayout.createSequentialGroup()
+                        .addComponent(radCon2)
+                        .addGap(18, 18, 18)
+                        .addComponent(radHet2)))
+                .addGap(18, 18, 18)
+                .addComponent(pnlRAMbtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+
+        pnlRAMinfoLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtMa2, txtTen2});
+
+        pnlRAMinfoLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel33, jLabel34, jLabel52, radCon2, radHet2});
+
+        pnlRAMinfoLayout.setVerticalGroup(
+            pnlRAMinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRAMinfoLayout.createSequentialGroup()
+                .addGroup(pnlRAMinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlRAMinfoLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(pnlRAMinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel33)
+                            .addComponent(txtMa2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlRAMinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel34)
+                            .addComponent(txtTen2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlRAMinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel52)
+                            .addComponent(radCon2)
+                            .addComponent(radHet2)))
+                    .addGroup(pnlRAMinfoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pnlRAMbtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+
+        pnlRAMinfoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtMa2, txtTen2});
+
+        pnlRAMinfoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel33, jLabel34, jLabel52, radCon2, radHet2});
+
+        tblRAM.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Mã", "Tên", "Ngày tạo", "Ngày sửa", "Trạnng thái"
+            }
+        ));
+        tblRAM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblRAMMouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(tblRAM);
+
+        pnlRAMsrc.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel53.setText("Tra cứu tên:");
+
+        jLabel54.setText("Sắp xếp theo tên");
+
+        btnTang2.setText("Tăng");
+
+        btnGiam2.setText("Giảm");
+
+        jLabel55.setText("Trạng thái:");
+
+        javax.swing.GroupLayout pnlRAMsrcLayout = new javax.swing.GroupLayout(pnlRAMsrc);
+        pnlRAMsrc.setLayout(pnlRAMsrcLayout);
+        pnlRAMsrcLayout.setHorizontalGroup(
+            pnlRAMsrcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRAMsrcLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlRAMsrcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel54)
+                    .addComponent(jLabel53)
+                    .addComponent(jLabel55))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlRAMsrcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnlRAMsrcLayout.createSequentialGroup()
+                        .addComponent(btnTang2)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnGiam2))
+                    .addComponent(cboTrangThai2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtName2))
+                .addGap(110, 110, 110))
+        );
+        pnlRAMsrcLayout.setVerticalGroup(
+            pnlRAMsrcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRAMsrcLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(pnlRAMsrcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel53))
+                .addGap(18, 18, 18)
+                .addGroup(pnlRAMsrcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboTrangThai2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel55))
+                .addGap(18, 18, 18)
+                .addGroup(pnlRAMsrcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTang2)
+                    .addComponent(jLabel54)
+                    .addComponent(btnGiam2))
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout pnlRAMLayout = new javax.swing.GroupLayout(pnlRAM);
+        pnlRAM.setLayout(pnlRAMLayout);
+        pnlRAMLayout.setHorizontalGroup(
+            pnlRAMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRAMLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(pnlRAMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pnlRAMinfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlRAMLayout.createSequentialGroup()
+                        .addComponent(jScrollPane7)
+                        .addGap(18, 18, 18)
+                        .addComponent(pnlRAMsrc, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18))
+        );
+        pnlRAMLayout.setVerticalGroup(
+            pnlRAMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRAMLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlRAMinfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addGroup(pnlRAMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlRAMsrc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        tabKho.addTab("RAM", pnlRAM);
+
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Doanh thu theo tháng"));
         jPanel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
@@ -987,29 +1309,29 @@ public class ThuKho extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         try {
-            if (ULHelper.checknull(txtMa, "mã trống")) {
+            if (ULHelper.checknull(txtMa, "Không được để mã trống!")) {
                 return;
             } else {
                 int trungMa = CheckTrungService.checkTrung(txtMa.getText(),
                         "cpu", "ma");
                 if (trungMa != -1) {
-                    JOptionPane.showMessageDialog(this, "mã trùng");
+                    JOptionPane.showMessageDialog(this, "Mã đã tồn tại!");
                     return;
                 }
             }
 
-            if (ULHelper.checknull(txtTen, "tên trống")) {
+            if (ULHelper.checknull(txtTen, "Không được để tên trống!")) {
                 return;
             }
             int stt = (radHet.isSelected() ? 1 : 0);
             CPUView cpu = new CPUView(txtMa.getText(), txtTen.getText(), date, date, stt);
             int thongBao = svcCPU.them(cpu);
             if (thongBao == 1) {
-                JOptionPane.showMessageDialog(this, "thêm ok");
+                JOptionPane.showMessageDialog(this, "Thêm thành công!");
                 filltableCPU();
                 return;
             } else {
-                JOptionPane.showMessageDialog(this, "thêm không ok");
+                JOptionPane.showMessageDialog(this, "Thêm thất bại!");
                 return;
             }
         } catch (Exception e) {
@@ -1031,12 +1353,12 @@ public class ThuKho extends javax.swing.JFrame {
             String ma = txtMa.getText();
             int thongBao = svcCPU.xoa(ma);
             if (thongBao == 1) {
-                JOptionPane.showMessageDialog(this, "xóa ok");
+                JOptionPane.showMessageDialog(this, "Xóa thành công!");
                 filltableCPU();
                 showdetailCPU(0);
                 return;
             } else {
-                JOptionPane.showMessageDialog(this, "xóa không ok");
+                JOptionPane.showMessageDialog(this, "Xóa thất bại!");
                 return;
             }
         } catch (Exception e) {
@@ -1061,11 +1383,11 @@ public class ThuKho extends javax.swing.JFrame {
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
         try {
-            if (ULHelper.checknull(txtMa, "mã trống")) {
+            if (ULHelper.checknull(txtMa, "Không được để mã trống!")) {
                 return;
             }
 
-            if (ULHelper.checknull(txtTen, "tên trống")) {
+            if (ULHelper.checknull(txtTen, "Không được để tên trống!")) {
                 return;
             }
             lstCPU = svcCPU.getAll();
@@ -1075,11 +1397,11 @@ public class ThuKho extends javax.swing.JFrame {
             CPUView cpu = new CPUView(txtMa.getText(), txtTen.getText(), tao, date, stt);
             int thongBao = svcCPU.sua(cpu);
             if (thongBao == 1) {
-                JOptionPane.showMessageDialog(this, "sửa ok");
+                JOptionPane.showMessageDialog(this, "Sửa thành công!");
                 filltableCPU();
                 return;
             } else {
-                JOptionPane.showMessageDialog(this, "sửa không ok");
+                JOptionPane.showMessageDialog(this, "Sửa thất bại!");
                 return;
             }
         } catch (Exception e) {
@@ -1116,29 +1438,29 @@ public class ThuKho extends javax.swing.JFrame {
     private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
         // TODO add your handling code here:
         try {
-            if (ULHelper.checknull(txtMa1, "mã trống")) {
+            if (ULHelper.checknull(txtMa1, "Không được để mã trống!")) {
                 return;
             } else {
                 int trungMa = CheckTrungService.checkTrung(txtMa1.getText(),
                         "dongsp", "ma");
                 if (trungMa != -1) {
-                    JOptionPane.showMessageDialog(this, "mã trùng");
+                    JOptionPane.showMessageDialog(this, "Mã đã tồn tại!");
                     return;
                 }
             }
 
-            if (ULHelper.checknull(txtTen1, "tên trống")) {
+            if (ULHelper.checknull(txtTen1, "Không được để tên trống!")) {
                 return;
             }
             int stt = (radHet1.isSelected() ? 1 : 0);
             DongSPView dsp = new DongSPView(txtMa1.getText(), txtTen1.getText(), date, date, stt);
             int thongBao = svcDSP.them(dsp);
             if (thongBao == 1) {
-                JOptionPane.showMessageDialog(this, "thêm ok");
+                JOptionPane.showMessageDialog(this, "Thêm thành công!");
                 filltableDSP();
                 return;
             } else {
-                JOptionPane.showMessageDialog(this, "thêm không ok");
+                JOptionPane.showMessageDialog(this, "Thêm thất bại!");
                 return;
             }
         } catch (Exception e) {
@@ -1159,11 +1481,11 @@ public class ThuKho extends javax.swing.JFrame {
     private void btnEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit1ActionPerformed
         // TODO add your handling code here:
         try {
-            if (ULHelper.checknull(txtMa1, "mã trống")) {
+            if (ULHelper.checknull(txtMa1, "Không được để mã trống!")) {
                 return;
             }
 
-            if (ULHelper.checknull(txtTen1, "tên trống")) {
+            if (ULHelper.checknull(txtTen1, "Không được để tên trống!")) {
                 return;
             }
             lstDSP = svcDSP.getAll();
@@ -1173,11 +1495,11 @@ public class ThuKho extends javax.swing.JFrame {
             DongSPView dsp = new DongSPView(txtMa1.getText(), txtTen1.getText(), tao, date, stt);
             int thongBao = svcDSP.sua(dsp);
             if (thongBao == 1) {
-                JOptionPane.showMessageDialog(this, "sửa ok");
+                JOptionPane.showMessageDialog(this, "Sửa thành công!");
                 filltableDSP();
                 return;
             } else {
-                JOptionPane.showMessageDialog(this, "sửa không ok");
+                JOptionPane.showMessageDialog(this, "Sửa thất bại!");
                 return;
             }
         } catch (Exception e) {
@@ -1191,12 +1513,12 @@ public class ThuKho extends javax.swing.JFrame {
             String ma = txtMa1.getText();
             int thongBao = svcDSP.xoa(ma);
             if (thongBao == 1) {
-                JOptionPane.showMessageDialog(this, "xóa ok");
+                JOptionPane.showMessageDialog(this, "Xóa thành công!");
                 filltableDSP();
                 showdetailDSP(0);
                 return;
             } else {
-                JOptionPane.showMessageDialog(this, "xóa không ok");
+                JOptionPane.showMessageDialog(this, "Xóa thất bại!");
                 return;
             }
         } catch (Exception e) {
@@ -1229,6 +1551,127 @@ public class ThuKho extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_tblDSPMouseClicked
+
+    private void radCon2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radCon2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radCon2ActionPerformed
+
+    private void btnAdd2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd2ActionPerformed
+        // TODO add your handling code here:
+        try {
+            if (ULHelper.checknull(txtMa2, "Không được để mã trống!")) {
+                return;
+            } else {
+                int trungMa = CheckTrungService.checkTrung(txtMa2.getText(),
+                        "RAM", "ma");
+                if (trungMa != -1) {
+                    JOptionPane.showMessageDialog(this, "Mã đã tồn tại!");
+                    return;
+                }
+            }
+
+            if (ULHelper.checknull(txtTen2, "Không được để tên trống!")) {
+                return;
+            }
+            int stt = (radHet2.isSelected() ? 1 : 0);
+            RAMView ram = new RAMView(txtMa2.getText(), txtTen2.getText(), date, date, stt);
+            int thongBao = svcRAM.them(ram);
+            if (thongBao == 1) {
+                JOptionPane.showMessageDialog(this, "Thêm thành công!");
+                filltableRAM();
+                return;
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm thất bại!");
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnAdd2ActionPerformed
+
+    private void btnShow2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShow2ActionPerformed
+        // TODO add your handling code here:
+        try {
+            filltableRAM();
+            showdetailRAM(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnShow2ActionPerformed
+
+    private void btnEdit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit2ActionPerformed
+        // TODO add your handling code here:
+        try {
+            if (ULHelper.checknull(txtMa2, "Không được để mã trống!")) {
+                return;
+            }
+
+            if (ULHelper.checknull(txtTen2, "Không được để tên trống!")) {
+                return;
+            }
+            lstRAM = svcRAM.getAll();
+
+            Date tao = lstRAM.get(index).getNgayTao();
+            int stt = (radHet2.isSelected() ? 1 : 0);
+            RAMView ram = new RAMView(txtMa2.getText(), txtTen2.getText(), tao, date, stt);
+            int thongBao = svcRAM.sua(ram);
+            if (thongBao == 1) {
+                JOptionPane.showMessageDialog(this, "Sửa thành công!");
+                filltableRAM();
+                return;
+            } else {
+                JOptionPane.showMessageDialog(this, "Sửa thất bại!");
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnEdit2ActionPerformed
+
+    private void btnDelete2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete2ActionPerformed
+        // TODO add your handling code here:
+        try {
+            String ma = txtMa2.getText();
+            int thongBao = svcRAM.xoa(ma);
+            if (thongBao == 1) {
+                JOptionPane.showMessageDialog(this, "Xóa thành công!");
+                filltableDSP();
+                showdetailDSP(0);
+                return;
+            } else {
+                JOptionPane.showMessageDialog(this, "Xóa thất bại!");
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnDelete2ActionPerformed
+
+    private void btnHide2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHide2ActionPerformed
+        // TODO add your handling code here:
+        try {
+            modelRAM.setRowCount(0);
+            txtMa2.setText("");
+            txtTen2.setText("");
+            radCon2.setSelected(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnHide2ActionPerformed
+
+    private void txtTen2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTen2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTen2ActionPerformed
+
+    private void tblRAMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRAMMouseClicked
+        // TODO add your handling code here:
+        try {
+            int index = tblRAM.getSelectedRow();
+            showdetailRAM(index);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_tblRAMMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1269,22 +1712,31 @@ public class ThuKho extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btgCPU;
     private javax.swing.ButtonGroup btgDSP;
+    private javax.swing.ButtonGroup btgRAM;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnAdd1;
+    private javax.swing.JButton btnAdd2;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDelete1;
+    private javax.swing.JButton btnDelete2;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnEdit1;
+    private javax.swing.JButton btnEdit2;
     private javax.swing.JButton btnGiam;
     private javax.swing.JButton btnGiam1;
+    private javax.swing.JButton btnGiam2;
     private javax.swing.JButton btnHide;
     private javax.swing.JButton btnHide1;
+    private javax.swing.JButton btnHide2;
     private javax.swing.JButton btnShow;
     private javax.swing.JButton btnShow1;
+    private javax.swing.JButton btnShow2;
     private javax.swing.JButton btnTang;
     private javax.swing.JButton btnTang1;
+    private javax.swing.JButton btnTang2;
     private javax.swing.JComboBox<String> cboTrangThai;
     private javax.swing.JComboBox<String> cboTrangThai1;
+    private javax.swing.JComboBox<String> cboTrangThai2;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel27;
@@ -1292,6 +1744,8 @@ public class ThuKho extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
@@ -1302,6 +1756,10 @@ public class ThuKho extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
@@ -1316,6 +1774,7 @@ public class ThuKho extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField1;
@@ -1327,18 +1786,28 @@ public class ThuKho extends javax.swing.JFrame {
     private javax.swing.JPanel pnlDSPsrc;
     private javax.swing.JPanel pnlDongInfo;
     private javax.swing.JPanel pnlDongSP;
+    private javax.swing.JPanel pnlRAM;
+    private javax.swing.JPanel pnlRAMbtn;
+    private javax.swing.JPanel pnlRAMinfo;
+    private javax.swing.JPanel pnlRAMsrc;
     private javax.swing.JRadioButton radCon;
     private javax.swing.JRadioButton radCon1;
+    private javax.swing.JRadioButton radCon2;
     private javax.swing.JRadioButton radHet;
     private javax.swing.JRadioButton radHet1;
+    private javax.swing.JRadioButton radHet2;
     private javax.swing.JTabbedPane tabKho;
     private javax.swing.JTable tblCPU;
     private javax.swing.JTable tblDSP;
+    private javax.swing.JTable tblRAM;
     private javax.swing.JTextField txtMa;
     private javax.swing.JTextField txtMa1;
+    private javax.swing.JTextField txtMa2;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtName1;
+    private javax.swing.JTextField txtName2;
     private javax.swing.JTextField txtTen;
     private javax.swing.JTextField txtTen1;
+    private javax.swing.JTextField txtTen2;
     // End of variables declaration//GEN-END:variables
 }
