@@ -26,7 +26,7 @@ public class MauSacRepository implements IMauSacRepository {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(lenh);
             while (rs.next()) {
-                lst.add(new MauSac(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getDate(4), rs.getInt(5)));
+                lst.add(new MauSac(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getDate(5), rs.getInt(6)));
             }
             return lst;
         } catch (Exception e) {
@@ -39,10 +39,13 @@ public class MauSacRepository implements IMauSacRepository {
     public Integer them(MauSac mauSac) {
         try {
             Connection con = ULHelper.getConnection();
-            String lenh = "insert into MauSac(Ma,Ten) values(?,?)";
+            String lenh = "insert into MauSac(Ma,Ten,ngayTao,ngaySua,trangThai) values(?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(lenh);
             st.setString(1, mauSac.getMa());
             st.setString(2, mauSac.getTen());
+            st.setDate(3, mauSac.getNgayTao());
+            st.setDate(4, mauSac.getNgaySua());
+            st.setInt(5, mauSac.getTrangThai());
             return st.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -54,10 +57,13 @@ public class MauSacRepository implements IMauSacRepository {
     public Integer sua(MauSac mauSac) {
         try {
             Connection con = ULHelper.getConnection();
-            String lenh = "update MauSac set ten=? where ma=?";
+            String lenh = "update MauSac set ten=?, ngayTao=?, ngaySua=?,trangThai=? where ma=?";
             PreparedStatement st = con.prepareStatement(lenh);
-            st.setString(2, mauSac.getMa());
+            st.setString(5, mauSac.getMa());
             st.setString(1, mauSac.getTen());
+            st.setDate(2, mauSac.getNgayTao());
+            st.setDate(3, mauSac.getNgaySua());
+            st.setInt(4, mauSac.getTrangThai());
             return st.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
