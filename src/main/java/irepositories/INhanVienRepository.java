@@ -13,9 +13,18 @@ import java.util.List;
  * @author ADMIN
  */
 public interface INhanVienRepository {
+
     List<NhanVien> getAll();
+
     Integer them(NhanVien nhanVien);
+
     Integer sua(NhanVien nhanVien);
+
     Integer xoa(String ma);
+
     NhanVien getIdByTen(String ten);
+
+    NhanVien checkTrungMa(String ma);
+
+    List<String> getChucVu();
 }
