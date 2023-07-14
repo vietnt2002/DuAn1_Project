@@ -18,5 +18,4 @@ public interface ISanPhamService {
     Integer them(SanPhamView sanPhamView);
     Integer sua(SanPhamView sanPhamView);
     Integer xoa(String ma);
-    SanPhamView getIdByTen(String ten);
 }

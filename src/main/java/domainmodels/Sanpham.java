@@ -11,6 +11,7 @@ import java.sql.Date;
  * @author ADMIN
  */
 public class Sanpham {
+
     private String id;
     private String ma;
     private String ten;
@@ -23,6 +24,14 @@ public class Sanpham {
 
     public Sanpham(String id, String ma, String ten, Date ngayTao, Date ngaySua, int trangThai) {
         this.id = id;
+        this.ma = ma;
+        this.ten = ten;
+        this.ngayTao = ngayTao;
+        this.ngaySua = ngaySua;
+        this.trangThai = trangThai;
+    }
+
+    public Sanpham(String ma, String ten, Date ngayTao, Date ngaySua, int trangThai) {
         this.ma = ma;
         this.ten = ten;
         this.ngayTao = ngayTao;
@@ -78,9 +87,20 @@ public class Sanpham {
         this.trangThai = trangThai;
     }
 
+    public String getStatus(int trangThai) {
+        switch (trangThai) {
+            case 0:
+                return "Còn hàng";
+            case 1:
+                return "Hết hàng";
+            default:
+                return "Không rõ";
+        }
+    }
+
     @Override
     public String toString() {
         return "SanPham{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
-    
+
 }
