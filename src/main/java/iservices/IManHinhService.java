@@ -4,19 +4,18 @@
  */
 package iservices;
 
+import domainmodels.ManHinh;
 import irepositories.*;
 import java.util.List;
-import viewmodels.BaoHanhView;
-import viewmodels.ManHinhView;
 
 /**
  *
  * @author ADMIN
  */
 public interface IManHinhService {
-    List<ManHinhView> getAll();
-    Integer them(ManHinhView manHinhView);
-    Integer sua(ManHinhView manHinhView);
+    List<ManHinh> getAll();
+    Integer them(ManHinh manHinh);
+    Integer sua(ManHinh manHinh);
     Integer xoa(String ma);
-    ManHinhView getIdByTen(String ten);
+    ManHinh getIdByTen(String ten);
 }

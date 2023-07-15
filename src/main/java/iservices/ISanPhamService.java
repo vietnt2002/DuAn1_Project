@@ -4,18 +4,17 @@
  */
 package iservices;
 
+import domainmodels.SanPham;
 import irepositories.*;
 import java.util.List;
-import viewmodels.BaoHanhView;
-import viewmodels.SanPhamView;
 
 /**
  *
  * @author ADMIN
  */
 public interface ISanPhamService {
-    List<SanPhamView> getAll();
-    Integer them(SanPhamView sanPhamView);
-    Integer sua(SanPhamView sanPhamView);
+    List<SanPham> getAll();
+    Integer them(SanPham sanPham);
+    Integer sua(SanPham sanPham);
     Integer xoa(String ma);
 }

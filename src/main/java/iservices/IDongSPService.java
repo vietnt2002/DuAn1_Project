@@ -4,18 +4,17 @@
  */
 package iservices;
 
+import domainmodels.DongSP;
 import irepositories.*;
 import java.util.List;
-import viewmodels.BaoHanhView;
-import viewmodels.DongSPView;
 
 /**
  *
  * @author ADMIN
  */
 public interface IDongSPService {
-    List<DongSPView> getAll();
-    Integer them(DongSPView dongSPView);
-    Integer sua(DongSPView dongSPView);
+    List<DongSP> getAll();
+    Integer them(DongSP dongSP);
+    Integer sua(DongSP dongSP);
     Integer xoa(String ma);
 }

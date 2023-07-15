@@ -10,7 +10,7 @@ import java.sql.Date;
  *
  * @author ADMIN
  */
-public class Sanpham {
+public class SanPham {
 
     private String id;
     private String ma;
@@ -19,10 +19,10 @@ public class Sanpham {
     private Date ngaySua;
     private int trangThai;
 
-    public Sanpham() {
+    public SanPham() {
     }
 
-    public Sanpham(String id, String ma, String ten, Date ngayTao, Date ngaySua, int trangThai) {
+    public SanPham(String id, String ma, String ten, Date ngayTao, Date ngaySua, int trangThai) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
@@ -31,7 +31,7 @@ public class Sanpham {
         this.trangThai = trangThai;
     }
 
-    public Sanpham(String ma, String ten, Date ngayTao, Date ngaySua, int trangThai) {
+    public SanPham(String ma, String ten, Date ngayTao, Date ngaySua, int trangThai) {
         this.ma = ma;
         this.ten = ten;
         this.ngayTao = ngayTao;

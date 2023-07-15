@@ -7,8 +7,6 @@ package iservices;
 import domainmodels.NhanVien;
 import irepositories.*;
 import java.util.List;
-import viewmodels.BaoHanhView;
-import viewmodels.NhanVienView;
 
 /**
  *
@@ -16,19 +14,19 @@ import viewmodels.NhanVienView;
  */
 public interface INhanVienService {
 
-    List<NhanVienView> getAll();
+    List<NhanVien> getAll();
 
     NhanVien getTaiKhoan(String username);
 
-    Integer them(NhanVienView nhanVienView);
+    Integer them(NhanVien nhanVien);
 
-    Integer sua(NhanVienView nhanVienView);
+    Integer sua(NhanVien nhanVien);
 
     Integer xoa(String ma);
 
-    NhanVienView getIdByTen(String ten);
+    NhanVien getIdByTen(String ten);
 
-    NhanVienView checkTrungMa(String ma);
+    NhanVien checkTrungMa(String ma);
 
     List<String> getTenChucVu();
 }

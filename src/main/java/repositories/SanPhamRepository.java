@@ -4,7 +4,7 @@
  */
 package repositories;
 
-import domainmodels.Sanpham;
+import domainmodels.SanPham;
 import irepositories.ISanPhamRepository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import utilities.DBConnection;
 import utilities.ULHelper;
 
 /**
@@ -20,15 +21,15 @@ import utilities.ULHelper;
  */
 public class SanPhamRepository implements ISanPhamRepository {
     @Override
-    public List<Sanpham> getAll() {
+    public List<SanPham> getAll() {
         try {
-            List<Sanpham> lst = new ArrayList<>();
-            Connection con = utilities.ULHelper.getConnection();
+            List<SanPham> lst = new ArrayList<>();
+            Connection con = DBConnection.getConnection();
             String lenh = "select id,ma,ten,ngayTao,ngaySua,trangThai from sanpham";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(lenh);
             while (rs.next()) {
-                lst.add(new Sanpham(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getDate(5), rs.getInt(6)));
+                lst.add(new SanPham(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getDate(5), rs.getInt(6)));
             }
             return lst;
         } catch (Exception e) {
@@ -38,9 +39,9 @@ public class SanPhamRepository implements ISanPhamRepository {
     }
 
     @Override
-    public Integer them(Sanpham sp) {
+    public Integer them(SanPham sp) {
         try {
-            Connection con = ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "insert into sanpham(Ma,Ten,ngayTao,ngaySua,trangThai) values(?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(lenh);
             st.setString(1, sp.getMa());
@@ -56,9 +57,9 @@ public class SanPhamRepository implements ISanPhamRepository {
     }
 
     @Override
-    public Integer sua(Sanpham sp) {
+    public Integer sua(SanPham sp) {
         try {
-            Connection con = ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "update sanpham set ten=?, ngayTao=?, ngaySua=?,trangThai=? where ma=?";
             PreparedStatement st = con.prepareStatement(lenh);
             st.setString(5, sp.getMa());
@@ -76,7 +77,7 @@ public class SanPhamRepository implements ISanPhamRepository {
     @Override
     public Integer xoa(String ma) {
         try {
-            Connection con = ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "delete sanpham where ma like '" + ma + "'";
             PreparedStatement st = con.prepareStatement(lenh);
 

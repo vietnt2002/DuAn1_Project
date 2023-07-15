@@ -5,6 +5,7 @@ import domainmodels.MauSac;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
+import utilities.DBConnection;
 import utilities.ULHelper;
 
 /*
@@ -21,7 +22,7 @@ public class MauSacRepository implements IMauSacRepository {
     public List<MauSac> getAll() {
         try {
             List<MauSac> lst = new ArrayList<>();
-            Connection con = utilities.ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "select id,ma,ten,ngayTao,ngaySua,trangThai from mausac";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(lenh);
@@ -38,7 +39,7 @@ public class MauSacRepository implements IMauSacRepository {
     @Override
     public Integer them(MauSac mauSac) {
         try {
-            Connection con = ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "insert into MauSac(Ma,Ten,ngayTao,ngaySua,trangThai) values(?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(lenh);
             st.setString(1, mauSac.getMa());
@@ -56,7 +57,7 @@ public class MauSacRepository implements IMauSacRepository {
     @Override
     public Integer sua(MauSac mauSac) {
         try {
-            Connection con = ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "update MauSac set ten=?, ngayTao=?, ngaySua=?,trangThai=? where ma=?";
             PreparedStatement st = con.prepareStatement(lenh);
             st.setString(5, mauSac.getMa());
@@ -74,7 +75,7 @@ public class MauSacRepository implements IMauSacRepository {
     @Override
     public Integer xoa(String ma) {
         try {
-            Connection con = ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "delete mausac where ma like '" + ma + "'";
             PreparedStatement st = con.prepareStatement(lenh);
 

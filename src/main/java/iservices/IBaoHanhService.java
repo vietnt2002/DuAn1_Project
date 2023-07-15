@@ -4,18 +4,18 @@
  */
 package iservices;
 
+import domainmodels.BaoHanh;
 import irepositories.*;
 import java.util.List;
-import viewmodels.BaoHanhView;
 
 /**
  *
  * @author ADMIN
  */
 public interface IBaoHanhService {
-    List<BaoHanhView> getAll();
-    Integer them(BaoHanhView baoHanhView);
-    Integer sua(BaoHanhView baoHanhView);
+    List<BaoHanh> getAll();
+    Integer them(BaoHanh baoHanh);
+    Integer sua(BaoHanh baoHanh);
     Integer xoa(String ma);
-    BaoHanhView getIdByTen(String ten);
+    BaoHanh getIdByTen(String ten);
 }

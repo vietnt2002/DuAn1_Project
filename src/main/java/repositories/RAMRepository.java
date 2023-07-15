@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import utilities.DBConnection;
 import utilities.ULHelper;
 
 /**
@@ -24,7 +25,7 @@ public class RAMRepository implements IRAMRepository {
     public List<RAM> getAll() {
         try {
             List<RAM> lst = new ArrayList<>();
-            Connection con = utilities.ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "select id,ma,ten,ngayTao,ngaySua,trangThai from RAM";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(lenh);
@@ -41,7 +42,7 @@ public class RAMRepository implements IRAMRepository {
     @Override
     public Integer them(RAM ram) {
         try {
-            Connection con = ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "insert into RAM(Ma,Ten,ngayTao,ngaySua,trangThai) values(?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(lenh);
             st.setString(1, ram.getMa());
@@ -59,7 +60,7 @@ public class RAMRepository implements IRAMRepository {
     @Override
     public Integer sua(RAM ram) {
         try {
-            Connection con = ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "update RAM set ten=?, ngayTao=?, ngaySua=?,trangThai=? where ma=?";
             PreparedStatement st = con.prepareStatement(lenh);
             st.setString(5, ram.getMa());
@@ -77,7 +78,7 @@ public class RAMRepository implements IRAMRepository {
     @Override
     public Integer xoa(String ma) {
         try {
-            Connection con = ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "delete RAM where ma like '" + ma + "'";
             PreparedStatement st = con.prepareStatement(lenh);
 

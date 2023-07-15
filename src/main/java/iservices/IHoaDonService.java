@@ -4,19 +4,18 @@
  */
 package iservices;
 
+import domainmodels.HoaDon;
 import irepositories.*;
 import java.util.List;
-import viewmodels.BaoHanhView;
-import viewmodels.HoaDonView;
 
 /**
  *
  * @author ADMIN
  */
 public interface IHoaDonService {
-    List<HoaDonView> getAll();
-    Integer them(HoaDonView hoaDonView);
-    Integer sua(HoaDonView hoaDonView);
+    List<HoaDon> getAll();
+    Integer them(HoaDon hoaDon);
+    Integer sua(HoaDon hoaDon);
     Integer xoa(String ma);
-    HoaDonView getIdByTen(String ten);
+    HoaDon getIdByTen(String ten);
 }

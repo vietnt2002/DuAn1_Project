@@ -39,10 +39,11 @@ public class KhachHangRepository implements IKhachHangRepository {
                 String diaChi = RS.getString("DiaChi");
                 String thanhPho = RS.getString("ThanhPho");
                 String quocGia = RS.getString("QuocGia");
+                int soLanMuaHang = RS.getInt("SoLanMuaHang");
                 Date ngayTao = RS.getDate("NgayTao");
                 Date ngaySua = RS.getDate("NgaySua");
                 Integer trangThai = RS.getInt("TrangThai");
-                KhachHang khachHang = new KhachHang(id, ma, ten, tenDem, ho, ngaySinh, sdt, diaChi, thanhPho, quocGia, ngayTao, ngaySua, trangThai);
+                KhachHang khachHang = new KhachHang(id, ma, ten, tenDem, ho, ngaySinh, sdt, diaChi, thanhPho, quocGia, soLanMuaHang, ngayTao, ngaySua, trangThai);
                 listKhachHang.add(khachHang);
             }
         } catch (Exception e) {
@@ -134,10 +135,11 @@ public class KhachHangRepository implements IKhachHangRepository {
                 String diaChi = RS.getString("DiaChi");
                 String thanhPho = RS.getString("ThanhPho");
                 String quocGia = RS.getString("QuocGia");
+                int soLanMuaHang = RS.getInt("SoLanMuaHang");
                 Date ngayTao = RS.getDate("NgayTao");
                 Date ngaySua = RS.getDate("NgaySua");
                 Integer trangThai = RS.getInt("TrangThai");
-                KhachHang khachHang = new KhachHang("", ma, ten, tenDem, ho, ngaySinh, sdt, diaChi, thanhPho, quocGia, ngayTao, ngaySua, trangThai);
+                KhachHang khachHang = new KhachHang("", ma, ten, tenDem, ho, ngaySinh, sdt, diaChi, thanhPho, quocGia, soLanMuaHang, ngayTao, ngaySua, trangThai);
                 listKhachHang.add(khachHang);
             }
             return listKhachHang;
@@ -162,10 +164,11 @@ public class KhachHangRepository implements IKhachHangRepository {
                 String diaChi = RS.getString("DiaChi");
                 String thanhPho = RS.getString("ThanhPho");
                 String quocGia = RS.getString("QuocGia");
+                int soLanMuaHang = RS.getInt("SoLanMuaHang");
                 Date ngayTao = RS.getDate("NgayTao");
                 Date ngaySua = RS.getDate("NgaySua");
                 Integer trangThai = RS.getInt("TrangThai");
-                KhachHang khachHang = new KhachHang(id, ma, ten, tenDem, ho, ngaySinh, sdt, diaChi, thanhPho, quocGia, ngayTao, ngaySua, trangThai);
+                KhachHang khachHang = new KhachHang(id, ma, ten, tenDem, ho, ngaySinh, sdt, diaChi, thanhPho, quocGia, soLanMuaHang, ngayTao, ngaySua, trangThai);
                 listKhachHang.add(khachHang);
             }
         } catch (Exception e) {
@@ -189,10 +192,11 @@ public class KhachHangRepository implements IKhachHangRepository {
                 String diaChi = RS.getString("DiaChi");
                 String thanhPho = RS.getString("ThanhPho");
                 String quocGia = RS.getString("QuocGia");
+                int soLanMuaHang = RS.getInt("SoLanMuaHang");
                 Date ngayTao = RS.getDate("NgayTao");
                 Date ngaySua = RS.getDate("NgaySua");
                 Integer trangThai = RS.getInt("TrangThai");
-                KhachHang khachHang = new KhachHang(id, ma, ten, tenDem, ho, ngaySinh, sdt, diaChi, thanhPho, quocGia, ngayTao, ngaySua, trangThai);
+                KhachHang khachHang = new KhachHang(id, ma, ten, tenDem, ho, ngaySinh, sdt, diaChi, thanhPho, quocGia, soLanMuaHang, ngayTao, ngaySua, trangThai);
                 listKhachHang.add(khachHang);
             }
         } catch (Exception e) {

@@ -21,6 +21,7 @@ public class KhachHang {
     private String diaChi;
     private String thanhPho;
     private String quocGia;
+    private int soLanMuaHang;
     private Date ngayTao;
     private Date ngaySua;
     private int trangThai;
@@ -28,7 +29,7 @@ public class KhachHang {
     public KhachHang() {
     }
 
-    public KhachHang(String id, String ma, String ten, String tenDem, String ho, Date ngaySinh, String sdt, String diaChi, String thanhPho, String quocGia, Date ngayTao, Date ngaySua, int trangThai) {
+    public KhachHang(String id, String ma, String ten, String tenDem, String ho, Date ngaySinh, String sdt, String diaChi, String thanhPho, String quocGia, int soLanMuaHang, Date ngayTao, Date ngaySua, int trangThai) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
@@ -39,6 +40,7 @@ public class KhachHang {
         this.diaChi = diaChi;
         this.thanhPho = thanhPho;
         this.quocGia = quocGia;
+        this.soLanMuaHang = soLanMuaHang;
         this.ngayTao = ngayTao;
         this.ngaySua = ngaySua;
         this.trangThai = trangThai;
@@ -124,6 +126,14 @@ public class KhachHang {
         this.quocGia = quocGia;
     }
 
+    public int getSoLanMuaHang() {
+        return soLanMuaHang;
+    }
+
+    public void setSoLanMuaHang(int soLanMuaHang) {
+        this.soLanMuaHang = soLanMuaHang;
+    }
+
     public Date getNgayTao() {
         return ngayTao;
     }
@@ -150,23 +160,7 @@ public class KhachHang {
 
     @Override
     public String toString() {
-        return "Khachhang{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", tenDem=" + tenDem + ", ho=" + ho + ", ngaySinh=" + ngaySinh + ", sdt=" + sdt + ", diaChi=" + diaChi + ", thanhPho=" + thanhPho + ", quocGia=" + quocGia + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+        return "KhachHang{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", tenDem=" + tenDem + ", ho=" + ho + ", ngaySinh=" + ngaySinh + ", sdt=" + sdt + ", diaChi=" + diaChi + ", thanhPho=" + thanhPho + ", quocGia=" + quocGia + ", soLanMuaHang=" + soLanMuaHang + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
 
-    public KhachHang(String ma, String ten, String tenDem, String ho, Date ngaySinh, String sdt, String diaChi, String thanhPho, String quocGia, Date ngayTao, Date ngaySua, int trangThai) {
-        this.ma = ma;
-        this.ten = ten;
-        this.tenDem = tenDem;
-        this.ho = ho;
-        this.ngaySinh = ngaySinh;
-        this.sdt = sdt;
-        this.diaChi = diaChi;
-        this.thanhPho = thanhPho;
-        this.quocGia = quocGia;
-        this.ngayTao = ngayTao;
-        this.ngaySua = ngaySua;
-        this.trangThai = trangThai;
-    }
-
-    
 }

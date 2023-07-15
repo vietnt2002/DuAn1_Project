@@ -4,18 +4,17 @@
  */
 package iservices;
 
+import domainmodels.SSD;
 import irepositories.*;
 import java.util.List;
-import viewmodels.BaoHanhView;
-import viewmodels.SSDView;
 
 /**
  *
  * @author ADMIN
  */
 public interface ISSDService {
-    List<SSDView> getAll();
-    Integer them(SSDView ssdView);
-    Integer sua(SSDView ssdView);
+    List<SSD> getAll();
+    Integer them(SSD ssd);
+    Integer sua(SSD ssd);
     Integer xoa(String ma);
 }

@@ -4,19 +4,18 @@
  */
 package iservices;
 
+import domainmodels.Imei;
 import irepositories.*;
 import java.util.List;
-import viewmodels.BaoHanhView;
-import viewmodels.ImeiView;
 
 /**
  *
  * @author ADMIN
  */
 public interface IImeiService {
-    List<ImeiView> getAll();
-    Integer them(ImeiView imeiView);
-    Integer sua(ImeiView imeiView);
+    List<Imei> getAll();
+    Integer them(Imei imei);
+    Integer sua(Imei imei);
     Integer xoa(String ma);
-    ImeiView getIdByTen(String ten);
+    Imei getIdByTen(String ten);
 }

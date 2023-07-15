@@ -4,19 +4,18 @@
  */
 package iservices;
 
+import domainmodels.ImeiDaBan;
 import irepositories.*;
 import java.util.List;
-import viewmodels.BaoHanhView;
-import viewmodels.ImeiDaBanView;
 
 /**
  *
  * @author ADMIN
  */
 public interface IImeiDaBanService {
-    List<ImeiDaBanView> getAll();
-    Integer them(ImeiDaBanView imeiDaBanView);
-    Integer sua(ImeiDaBanView imeiDaBanView);
+    List<ImeiDaBan> getAll();
+    Integer them(ImeiDaBan imeiDaBan);
+    Integer sua(ImeiDaBan imeiDaBan);
     Integer xoa(String ma);
-    ImeiDaBanView getIdByTen(String ten);
+    ImeiDaBan getIdByTen(String ten);
 }

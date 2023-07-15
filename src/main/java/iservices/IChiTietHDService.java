@@ -4,19 +4,18 @@
  */
 package iservices;
 
+import domainmodels.ChiTietHD;
 import irepositories.*;
 import java.util.List;
-import viewmodels.BaoHanhView;
-import viewmodels.ChiTietHDView;
 
 /**
  *
  * @author ADMIN
  */
 public interface IChiTietHDService {
-    List<ChiTietHDView> getAll();
-    Integer them(ChiTietHDView chiTietHDView);
-    Integer sua(ChiTietHDView chiTietHDView);
+    List<ChiTietHD> getAll();
+    Integer them(ChiTietHD chiTietHD);
+    Integer sua(ChiTietHD chiTietHD);
     Integer xoa(String ma);
-    ChiTietHDView getIdByTen(String ten);
+    ChiTietHD getIdByTen(String ten);
 }

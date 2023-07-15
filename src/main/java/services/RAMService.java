@@ -10,7 +10,6 @@ import iservices.IRAMService;
 import java.util.ArrayList;
 import java.util.List;
 import repositories.RAMRepository;
-import viewmodels.RAMView;
 
 /**
  *
@@ -20,26 +19,18 @@ public class RAMService implements IRAMService {
     private final IRAMRepository reposytory = new RAMRepository();
 
     @Override
-    public List<RAMView> getAll() {
-        List<RAM> lst = reposytory.getAll();
-        List<viewmodels.RAMView> lst1 = new ArrayList<>();
-        for (domainmodels.RAM a : lst) {
-            lst1.add(new viewmodels.RAMView(a.getId(), a.getMa(),
-                    a.getTen(), a.getNgayTao(), a.getNgaySua(), a.getTrangThai()));
-        }
-        return lst1;
+    public List<RAM> getAll() {
+        return reposytory.getAll();
     }
 
     @Override
-    public Integer them(RAMView ram) {
-        RAM ramS = new RAM(ram.getMa(), ram.getTen(), ram.getNgayTao(), ram.getNgaySua(), ram.getTrangThai());
-        return reposytory.them(ramS);
+    public Integer them(RAM ram) {
+        return reposytory.them(ram);
     }
 
     @Override
-    public Integer sua(RAMView ram) {
-        RAM ramS = new RAM(ram.getMa(), ram.getTen(), ram.getNgayTao(), ram.getNgaySua(), ram.getTrangThai());
-        return reposytory.sua(ramS);
+    public Integer sua(RAM ram) {
+        return reposytory.sua(ram);
     }
 
     @Override

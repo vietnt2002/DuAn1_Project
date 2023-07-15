@@ -4,19 +4,18 @@
  */
 package iservices;
 
+import domainmodels.NSX;
 import irepositories.*;
 import java.util.List;
-import viewmodels.BaoHanhView;
-import viewmodels.NSXView;
 
 /**
  *
  * @author ADMIN
  */
 public interface INSXService {
-    List<NSXView> getAll();
-    Integer them(NSXView nsxView);
-    Integer sua(NSXView nsxView);
+    List<NSX> getAll();
+    Integer them(NSX nsx);
+    Integer sua(NSX nsx);
     Integer xoa(String ma);
-    NSXView getIdByTen(String ten);
+    NSX getIdByTen(String ten);
 }

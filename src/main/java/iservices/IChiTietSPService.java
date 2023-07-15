@@ -4,19 +4,18 @@
  */
 package iservices;
 
+import domainmodels.ChiTietSP;
 import irepositories.*;
 import java.util.List;
-import viewmodels.BaoHanhView;
-import viewmodels.ChiTietSPView;
 
 /**
  *
  * @author ADMIN
  */
 public interface IChiTietSPService {
-    List<ChiTietSPView> getAll();
-    Integer them(ChiTietSPView chiTietSPView);
-    Integer sua(ChiTietSPView chiTietSPView);
+    List<ChiTietSP> getAll();
+    Integer them(ChiTietSP chiTietSP);
+    Integer sua(ChiTietSP chiTietSP);
     Integer xoa(String ma);
-    ChiTietSPView getIdByTen(String ten);
+    ChiTietSP getIdByTen(String ten);
 }

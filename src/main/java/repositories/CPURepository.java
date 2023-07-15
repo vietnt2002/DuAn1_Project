@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import utilities.DBConnection;
 import utilities.ULHelper;
 
 /**
@@ -23,7 +24,7 @@ public class CPURepository implements ICPURepository {
     public List<CPU> getAll() {
         try {
             List<CPU> lst = new ArrayList<>();
-            Connection con = utilities.ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "select id,ma,ten,ngayTao,ngaySua,trangThai from CPU";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(lenh);
@@ -40,7 +41,7 @@ public class CPURepository implements ICPURepository {
     @Override
     public Integer them(CPU cpu) {
         try {
-            Connection con = ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "insert into CPU(Ma,Ten,ngayTao,ngaySua,trangThai) values(?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(lenh);
             st.setString(1, cpu.getMa());
@@ -58,7 +59,7 @@ public class CPURepository implements ICPURepository {
     @Override
     public Integer sua(CPU cpu) {
         try {
-            Connection con = ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "update CPU set ten=?, ngayTao=?, ngaySua=?,trangThai=? where ma=?";
             PreparedStatement st = con.prepareStatement(lenh);
             st.setString(5, cpu.getMa());
@@ -76,7 +77,7 @@ public class CPURepository implements ICPURepository {
     @Override
     public Integer xoa(String ma) {
         try {
-            Connection con = ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "delete CPU where ma like '" + ma + "'";
             PreparedStatement st = con.prepareStatement(lenh);
 

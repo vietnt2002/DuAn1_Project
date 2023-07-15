@@ -5,7 +5,7 @@
 package irepositories;
 
 import domainmodels.CPU;
-import domainmodels.Sanpham;
+import domainmodels.SanPham;
 import java.util.List;
 
 /**
@@ -13,8 +13,8 @@ import java.util.List;
  * @author ADMIN
  */
 public interface ISanPhamRepository {
-    List<Sanpham> getAll();
-    Integer them(Sanpham sanPham);
-    Integer sua(Sanpham sanPham);
+    List<SanPham> getAll();
+    Integer them(SanPham sanPham);
+    Integer sua(SanPham sanPham);
     Integer xoa(String ma);
 }

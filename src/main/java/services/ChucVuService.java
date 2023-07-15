@@ -10,7 +10,6 @@ import iservices.IChucVuService;
 import java.util.ArrayList;
 import java.util.List;
 import repositories.ChucVuRepository;
-import viewmodels.ChucVuView;
 
 /**
  *
@@ -21,28 +20,17 @@ public class ChucVuService implements IChucVuService {
     private IChucVuRepository iChucVuRepo = new ChucVuRepository();
 
     @Override
-    public List<ChucVuView> getAll() {
-        List<ChucVuView> listChucVuView = new ArrayList<>();
-        List<ChucVu> listChucVu = iChucVuRepo.getAll();
-        for (ChucVu chucVu : listChucVu) {
-            ChucVuView chucVuView = new ChucVuView(chucVu.getId(),
-                    chucVu.getMa(),
-                    chucVu.getTen(),
-                    chucVu.getNgayTao(),
-                    chucVu.getNgaySua(),
-                    chucVu.getTrangThai());
-            listChucVuView.add(chucVuView);
-        }
-        return listChucVuView;
+    public List<ChucVu> getAll() {
+        return iChucVuRepo.getAll();
     }
 
     @Override
-    public Integer them(ChucVuView chucVuView) {
+    public Integer them(ChucVu chucVu) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Integer sua(ChucVuView chucVuView) {
+    public Integer sua(ChucVu chucVu) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -52,7 +40,7 @@ public class ChucVuService implements IChucVuService {
     }
 
     @Override
-    public ChucVuView getIdByTen(String ten) {
+    public ChucVu getIdByTen(String ten) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

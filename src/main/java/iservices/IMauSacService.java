@@ -4,17 +4,17 @@
  */
 package iservices;
 
+import domainmodels.MauSac;
 import irepositories.*;
 import java.util.List;
-import viewmodels.MauSacView;
 
 /**
  *
  * @author ADMIN
  */
 public interface IMauSacService {
-    List<MauSacView> getAll();
-    Integer them(MauSacView mauSacView);
-    Integer sua(MauSacView mauSacView);
+    List<MauSac> getAll();
+    Integer them(MauSac mauSac);
+    Integer sua(MauSac mauSac);
     Integer xoa(String ma);
 }

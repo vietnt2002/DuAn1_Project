@@ -10,7 +10,6 @@ import iservices.ICPUService;
 import java.util.ArrayList;
 import java.util.List;
 import repositories.CPURepository;
-import viewmodels.CPUView;
 
 /**
  *
@@ -21,26 +20,18 @@ public class CPUService implements ICPUService {
     private final ICPURepository reposytory = new CPURepository();
 
     @Override
-    public List<CPUView> getAll() {
-        List<CPU> lst = reposytory.getAll();
-        List<viewmodels.CPUView> lst1 = new ArrayList<>();
-        for (domainmodels.CPU a : lst) {
-            lst1.add(new viewmodels.CPUView(a.getId(), a.getMa(),
-                    a.getTen(), a.getNgayTao(), a.getNgaySua(), a.getTrangThai()));
-        }
-        return lst1;
+    public List<CPU> getAll() {
+        return reposytory.getAll();
     }
 
     @Override
-    public Integer them(CPUView cpu) {
-        CPU cpuS = new CPU(cpu.getMa(), cpu.getTen(), cpu.getNgayTao(), cpu.getNgaySua(), cpu.getTrangThai());
-        return reposytory.them(cpuS);
+    public Integer them(CPU cpu) {
+        return reposytory.them(cpu);
     }
 
     @Override
-    public Integer sua(CPUView cpu) {
-        CPU cpuS = new CPU(cpu.getMa(), cpu.getTen(), cpu.getNgayTao(), cpu.getNgaySua(), cpu.getTrangThai());
-        return reposytory.sua(cpuS);
+    public Integer sua(CPU cpu) {
+        return reposytory.sua(cpu);
     }
 
     @Override

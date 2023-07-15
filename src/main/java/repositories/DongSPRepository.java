@@ -9,6 +9,7 @@ import irepositories.IDongSPRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
+import utilities.DBConnection;
 import utilities.ULHelper;
 
 /**
@@ -21,7 +22,7 @@ public class DongSPRepository implements IDongSPRepository {
     public List<DongSP> getAll() {
         try {
             List<DongSP> lst = new ArrayList<>();
-            Connection con = utilities.ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "select id,ma,ten,ngayTao,ngaySua,trangThai from DongSP";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(lenh);
@@ -38,7 +39,7 @@ public class DongSPRepository implements IDongSPRepository {
     @Override
     public Integer them(DongSP dongSP) {
         try {
-            Connection con = ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "insert into DongSP(Ma,Ten,ngayTao,ngaySua,trangThai) values(?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(lenh);
             st.setString(1, dongSP.getMa());
@@ -56,7 +57,7 @@ public class DongSPRepository implements IDongSPRepository {
     @Override
     public Integer sua(DongSP dongSP) {
         try {
-            Connection con = ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "update DongSP set ten=?, ngayTao=?, ngaySua=?,trangThai=? where ma=?";
             PreparedStatement st = con.prepareStatement(lenh);
             st.setString(5, dongSP.getMa());
@@ -74,7 +75,7 @@ public class DongSPRepository implements IDongSPRepository {
     @Override
     public Integer xoa(String ma) {
         try {
-            Connection con = ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "delete DongSP where ma like '" + ma + "'";
             PreparedStatement st = con.prepareStatement(lenh);
 

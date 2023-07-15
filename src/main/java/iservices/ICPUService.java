@@ -4,18 +4,17 @@
  */
 package iservices;
 
+import domainmodels.CPU;
 import irepositories.*;
 import java.util.List;
-import viewmodels.BaoHanhView;
-import viewmodels.CPUView;
 
 /**
  *
  * @author ADMIN
  */
 public interface ICPUService {
-    List<CPUView> getAll();
-    Integer them(CPUView cpuView);
-    Integer sua(CPUView cpuView);
+    List<CPU> getAll();
+    Integer them(CPU cpuView);
+    Integer sua(CPU cpuView);
     Integer xoa(String ma);
 }

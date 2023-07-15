@@ -4,18 +4,17 @@
  */
 package iservices;
 
+import domainmodels.RAM;
 import irepositories.*;
 import java.util.List;
-import viewmodels.BaoHanhView;
-import viewmodels.RAMView;
 
 /**
  *
  * @author ADMIN
  */
 public interface IRAMService {
-    List<RAMView> getAll();
-    Integer them(RAMView ramView);
-    Integer sua(RAMView ramView);
+    List<RAM> getAll();
+    Integer them(RAM ram);
+    Integer sua(RAM ram);
     Integer xoa(String ma);
 }

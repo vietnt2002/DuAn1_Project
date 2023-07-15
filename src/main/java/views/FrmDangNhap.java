@@ -6,7 +6,9 @@ import iservices.INhanVienService;
 import java.util.List;
 import javax.swing.JOptionPane;
 import services.NhanVienService;
-import viewmodels.NhanVienView;
+import view.NhanVien.FrmNhanVien;
+import view.Quanly.FrmQuanLy;
+import view.ThuKho.FrmThuKho;
 
 /**
  *

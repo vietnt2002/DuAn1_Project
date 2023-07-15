@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import utilities.DBConnection;
 import utilities.ULHelper;
 
 /**
@@ -23,7 +24,7 @@ public class SSDRepository implements ISSDRepository {
     public List<SSD> getAll() {
         try {
             List<SSD> lst = new ArrayList<>();
-            Connection con = utilities.ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "select id,ma,ten,ngayTao,ngaySua,trangThai from SSD";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(lenh);
@@ -40,7 +41,7 @@ public class SSDRepository implements ISSDRepository {
     @Override
     public Integer them(SSD ssd) {
         try {
-            Connection con = ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "insert into SSD(Ma,Ten,ngayTao,ngaySua,trangThai) values(?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(lenh);
             st.setString(1, ssd.getMa());
@@ -58,7 +59,7 @@ public class SSDRepository implements ISSDRepository {
     @Override
     public Integer sua(SSD ssd) {
         try {
-            Connection con = ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "update SSD set ten=?, ngayTao=?, ngaySua=?,trangThai=? where ma=?";
             PreparedStatement st = con.prepareStatement(lenh);
             st.setString(5, ssd.getMa());
@@ -76,7 +77,7 @@ public class SSDRepository implements ISSDRepository {
     @Override
     public Integer xoa(String ma) {
         try {
-            Connection con = ULHelper.getConnection();
+            Connection con = DBConnection.getConnection();
             String lenh = "delete SSD where ma like '" + ma + "'";
             PreparedStatement st = con.prepareStatement(lenh);
 

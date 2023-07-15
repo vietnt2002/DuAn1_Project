@@ -10,7 +10,6 @@ import iservices.ISSDService;
 import java.util.ArrayList;
 import java.util.List;
 import repositories.SSDRepository;
-import viewmodels.SSDView;
 
 /**
  *
@@ -21,26 +20,18 @@ public class SSDService implements ISSDService {
     private final ISSDRepository reposytory = new SSDRepository();
 
     @Override
-    public List<SSDView> getAll() {
-        List<SSD> lst = reposytory.getAll();
-        List<viewmodels.SSDView> lst1 = new ArrayList<>();
-        for (domainmodels.SSD a : lst) {
-            lst1.add(new viewmodels.SSDView(a.getId(), a.getMa(),
-                    a.getTen(), a.getNgayTao(), a.getNgaySua(), a.getTrangThai()));
-        }
-        return lst1;
+    public List<SSD> getAll() {
+        return reposytory.getAll();
     }
 
     @Override
-    public Integer them(SSDView ssd) {
-        SSD ssdS = new SSD(ssd.getMa(), ssd.getTen(), ssd.getNgayTao(), ssd.getNgaySua(), ssd.getTrangThai());
-        return reposytory.them(ssdS);
+    public Integer them(SSD ssd) {
+        return reposytory.them(ssd);
     }
 
     @Override
-    public Integer sua(SSDView ssd) {
-        SSD ssdS = new SSD(ssd.getMa(), ssd.getTen(), ssd.getNgayTao(), ssd.getNgaySua(), ssd.getTrangThai());
-        return reposytory.sua(ssdS);
+    public Integer sua(SSD ssd) {
+        return reposytory.sua(ssd);
     }
 
     @Override

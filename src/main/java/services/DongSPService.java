@@ -10,7 +10,6 @@ import iservices.IDongSPService;
 import java.util.ArrayList;
 import java.util.List;
 import repositories.DongSPRepository;
-import viewmodels.DongSPView;
 
 /**
  *
@@ -21,26 +20,18 @@ public class DongSPService implements IDongSPService {
     private final IDongSPRepository reposytory = new DongSPRepository();
 
     @Override
-    public List<DongSPView> getAll() {
-        List<DongSP> lst = reposytory.getAll();
-        List<viewmodels.DongSPView> lst1 = new ArrayList<>();
-        for (domainmodels.DongSP a : lst) {
-            lst1.add(new viewmodels.DongSPView(a.getId(), a.getMa(),
-                    a.getTen(), a.getNgayTao(), a.getNgaySua(), a.getTrangThai()));
-        }
-        return lst1;
+    public List<DongSP> getAll() {
+        return reposytory.getAll();
     }
 
     @Override
-    public Integer them(DongSPView dong) {
-        DongSP dongS = new DongSP(dong.getMa(), dong.getTen(), dong.getNgayTao(), dong.getNgaySua(), dong.getTrangThai());
-        return reposytory.them(dongS);
+    public Integer them(DongSP dongSP) {
+        return reposytory.them(dongSP);
     }
 
     @Override
-    public Integer sua(DongSPView dong) {
-        DongSP dongS = new DongSP(dong.getMa(), dong.getTen(), dong.getNgayTao(), dong.getNgaySua(), dong.getTrangThai());
-        return reposytory.sua(dongS);
+    public Integer sua(DongSP dongSP) {
+        return reposytory.sua(dongSP);
     }
 
     @Override

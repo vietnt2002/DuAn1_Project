@@ -4,9 +4,8 @@
  */
 package iservices;
 
+import domainmodels.KhachHang;
 import java.util.List;
-
-import viewmodels.KhachHangView;
 
 /**
  *
@@ -14,23 +13,23 @@ import viewmodels.KhachHangView;
  */
 public interface IKhachHangService {
 
-    List<KhachHangView> getAll();
+    List<KhachHang> getAll();
 
-    Integer them(KhachHangView khachHangView);
+    Integer them(KhachHang khachHang);
 
-    Integer sua(KhachHangView khachHangView);
+    Integer sua(KhachHang khachHang);
 
     Integer xoa(String ma);
 
-    KhachHangView getIdByTen(String ten);
+    KhachHang getIdByTen(String ten);
 
-    KhachHangView checkTrungMa(String ma);
+    KhachHang checkTrungMa(String ma);
 
-    List<KhachHangView> sapXepTenGiam();
+    List<KhachHang> sapXepTenGiam();
 
-    List<KhachHangView> sapXepTenTang();
+    List<KhachHang> sapXepTenTang();
 
-    List<KhachHangView> findTen(String ten1, String thanhPho1);
+    List<KhachHang> findTen(String ten1, String thanhPho1);
 
     List<String> gettenThanhPho();
 }

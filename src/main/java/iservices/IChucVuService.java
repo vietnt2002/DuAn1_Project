@@ -4,19 +4,18 @@
  */
 package iservices;
 
+import domainmodels.ChucVu;
 import irepositories.*;
 import java.util.List;
-import viewmodels.BaoHanhView;
-import viewmodels.ChucVuView;
 
 /**
  *
  * @author ADMIN
  */
 public interface IChucVuService {
-    List<ChucVuView> getAll();
-    Integer them(ChucVuView chucVuView);
-    Integer sua(ChucVuView chucVuView);
+    List<ChucVu> getAll();
+    Integer them(ChucVu chucVu);
+    Integer sua(ChucVu chucVuView);
     Integer xoa(String ma);
-    ChucVuView getIdByTen(String ten);
+    ChucVu getIdByTen(String ten);
 }
