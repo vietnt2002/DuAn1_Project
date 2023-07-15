@@ -446,7 +446,7 @@ public class FrmThuKho extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tabKho.setBackground(new java.awt.Color(255, 255, 255));
+        tabKho.setBackground(new java.awt.Color(255, 153, 255));
         tabKho.setForeground(new java.awt.Color(51, 51, 51));
         tabKho.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         tabKho.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
