@@ -16,16 +16,20 @@ import utilities.ULHelper;
 import viewmodels.ChucVuView;
 import viewmodels.KhachHangView;
 import viewmodels.NhanVienView;
-
-public class QuanLy extends javax.swing.JFrame {
-
+/**
+ *
+ * @author ADMIN
+ */
+public class FrmQuanLy extends javax.swing.JFrame {
     private INhanVienService iNhanVienSV = new NhanVienService();
     private IKhachHangService iKhachHangService = new KhachHangService();
     private IChucVuService iChucVuSV = new ChucVuService();
     DefaultTableModel moDel = new DefaultTableModel();
     DefaultComboBoxModel comboxmodel = new DefaultComboBoxModel();
-
-    public QuanLy() {
+    /**
+     * Creates new form viewquanly_new
+     */
+    public FrmQuanLy() {
         initComponents();
         setTitle("Quản lý");
 
@@ -1576,14 +1580,18 @@ public class QuanLy extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(QuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(QuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(QuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(QuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -1592,7 +1600,7 @@ public class QuanLy extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new QuanLy().setVisible(true);
+//                new FrmQuanLy().setVisible(true);
             }
         });
     }

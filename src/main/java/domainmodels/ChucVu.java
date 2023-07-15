@@ -80,7 +80,7 @@ public class ChucVu {
 
     @Override
     public String toString() {
-        return "Chucvu{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+        return ten;
     }
     
 }

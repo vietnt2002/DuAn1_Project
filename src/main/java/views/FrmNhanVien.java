@@ -19,13 +19,14 @@ import viewmodels.KhachHangView;
  *
  * @author ADMIN
  */
-public class NhanVien extends javax.swing.JFrame {
+public class FrmNhanVien extends javax.swing.JFrame {
 
     private IKhachHangService iKhachHangService = new KhachHangService();
     DefaultTableModel moDel = new DefaultTableModel();
     DefaultComboBoxModel comboxmodel = new DefaultComboBoxModel();
 
-    public NhanVien() {
+    public FrmNhanVien() {
+
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Thủ kho");
@@ -1252,21 +1253,23 @@ public class NhanVien extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmNhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmNhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmNhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmNhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NhanVien().setVisible(true);
+//                new FrmNhanVien().setVisible(true);
             }
         });
     }

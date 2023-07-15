@@ -16,6 +16,8 @@ public interface INhanVienRepository {
 
     List<NhanVien> getAll();
 
+    NhanVien getTaiKhoan(String username);
+
     Integer them(NhanVien nhanVien);
 
     Integer sua(NhanVien nhanVien);

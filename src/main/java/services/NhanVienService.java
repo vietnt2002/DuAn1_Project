@@ -22,26 +22,17 @@ public class NhanVienService implements INhanVienService {
 
     @Override
     public List<NhanVienView> getAll() {
-        List<NhanVienView> listNhanVienView = new ArrayList<>();
-        List<domainmodels.NhanVien> listNhanVien = iNhanVienRepo.getAll();
-        for (domainmodels.NhanVien nhanVien : listNhanVien) {
-            NhanVienView nhanVienView = new NhanVienView(
-                    nhanVien.getIdCV(),
-                    nhanVien.getMa(),
-                    nhanVien.getTen(),
-                    nhanVien.getTenDem(),
-                    nhanVien.getHo(),
-                    nhanVien.getGioiTinh(),
-                    nhanVien.getNgaySinh(),
-                    nhanVien.getSdt(),
-                    nhanVien.getDiaChi(),
-                    nhanVien.getMatKhau(),
-                    nhanVien.getNgayTao(),
-                    nhanVien.getNgaySua(),
-                    nhanVien.getTrangThai());
-            listNhanVienView.add(nhanVienView);
+        List<NhanVienView> lstNhanVienView = new ArrayList<>();
+        List<NhanVien> lstNhanVien = iNhanVienRepo.getAll();
+        for (NhanVien nhanVien : lstNhanVien) {
+            lstNhanVienView.add(new NhanVienView(nhanVien.getId(), nhanVien.getIdCV(), nhanVien.getMa(), nhanVien.getTen(), nhanVien.getTenDem(), nhanVien.getHo(), nhanVien.getGioiTinh(), nhanVien.getNgaySinh(), nhanVien.getDiaChi(), nhanVien.getSdt(), nhanVien.getMatKhau(), nhanVien.getNgayTao(), nhanVien.getNgaySua(), nhanVien.getTrangThai()));
         }
-        return listNhanVienView;
+        return lstNhanVienView;
+    }
+
+    @Override
+    public NhanVien getTaiKhoan(String username) {
+        return iNhanVienRepo.getTaiKhoan(username);
     }
 
     @Override

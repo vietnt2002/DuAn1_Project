@@ -4,6 +4,7 @@
  */
 package iservices;
 
+import domainmodels.NhanVien;
 import irepositories.*;
 import java.util.List;
 import viewmodels.BaoHanhView;
@@ -16,6 +17,8 @@ import viewmodels.NhanVienView;
 public interface INhanVienService {
 
     List<NhanVienView> getAll();
+
+    NhanVien getTaiKhoan(String username);
 
     Integer them(NhanVienView nhanVienView);
 
