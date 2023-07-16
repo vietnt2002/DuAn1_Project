@@ -14,6 +14,7 @@ import java.util.List;
  */
 public interface IHoaDonRepository {
     List<HoaDon> getAll();
+    List<HoaDon> getAllByMa(String ma);
     Integer them(HoaDon hoaDon);
     Integer sua(HoaDon hoaDon);
     Integer xoa(String ma);

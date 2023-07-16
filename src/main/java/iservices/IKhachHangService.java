@@ -29,6 +29,9 @@ public interface IKhachHangService {
 
     List<KhachHang> sapXepTenTang();
 
+
     List<KhachHang> timTen(String timTen);
+
+    KhachHang getHoTenByMa(String ma);
 
 }

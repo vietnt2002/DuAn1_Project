@@ -176,6 +176,9 @@ public class JplSSD extends javax.swing.JPanel {
                     .addComponent(btnAdd3))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
+
+        pnlSSDbtnLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdd3, btnDelete3, btnEdit3, btnHide3, btnShow3});
+
         pnlSSDbtnLayout.setVerticalGroup(
             pnlSSDbtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSSDbtnLayout.createSequentialGroup()
@@ -191,6 +194,8 @@ public class JplSSD extends javax.swing.JPanel {
                 .addComponent(btnDelete3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        pnlSSDbtnLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdd3, btnDelete3, btnEdit3, btnHide3, btnShow3});
 
         txtTen3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

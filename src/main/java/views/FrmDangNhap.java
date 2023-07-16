@@ -6,6 +6,7 @@ import iservices.INhanVienService;
 import java.util.List;
 import javax.swing.JOptionPane;
 import services.NhanVienService;
+import utilities.UserInfo;
 import view.NhanVien.FrmNhanVien;
 import view.Quanly.FrmQuanLy;
 import view.ThuKho.FrmThuKho;
@@ -212,18 +213,21 @@ public class FrmDangNhap extends javax.swing.JFrame {
                 switch (lstTKNhanVien.getIdCV()) {
                     case "Quản lý":
                         lblMessPass.setText("");
+                        UserInfo.tenTK = txtUsername.getText();
                         JOptionPane.showMessageDialog(this, "Đăng nhập thành công tài khoản quản lý");
                         new FrmQuanLy().setVisible(true);
                         this.dispose();
                         break;
                     case "Thủ kho":
                         lblMessPass.setText("");
+                        UserInfo.tenTK = txtUsername.getText();
                         JOptionPane.showMessageDialog(this, "Đăng nhập thành công tài khoản thủ kho");
                         new FrmThuKho().setVisible(true);
                         this.dispose();
                         break;
                     case "Nhân viên":
                         lblMessPass.setText("");
+                        UserInfo.tenTK = txtUsername.getText();
                         JOptionPane.showMessageDialog(this, "Đăng nhập thành công tài khoản nhân viên bán hàng");
                         new FrmNhanVien().setVisible(true);
                         this.dispose();

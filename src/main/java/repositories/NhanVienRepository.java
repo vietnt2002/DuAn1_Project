@@ -348,10 +348,35 @@ public class NhanVienRepository implements INhanVienRepository {
             ps.close();
             connection.close();
             return lstNhanVien;
+            } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    public NhanVien getHoTenByMa(String ma) {
+        try {
+            NhanVien nhanVien = new NhanVien();
+            Connection connection = DBConnection.getConnection();
+            String sql = "SELECT Ho, TenDem, Ten FROM dbo.NhanVien WHERE Ma = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, ma);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                String ho = rs.getString("Ho");
+                String tenDem = rs.getString("TenDem");
+                String ten = rs.getString("Ten");
+                
+                nhanVien.setHo(ho);
+                nhanVien.setTenDem(tenDem);
+                nhanVien.setTen(ten);
+            }
+            return nhanVien;
+
         } catch (Exception e) {
             return null;
         }
     }
+
 
     @Override
     public List<NhanVien> sapXepTenTang() {
@@ -415,5 +440,4 @@ public class NhanVienRepository implements INhanVienRepository {
             return null;
         }
     }
-
 }

@@ -141,7 +141,7 @@ public class KhachHang {
 
     @Override
     public String toString() {
-        return "KhachHang{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", tenDem=" + tenDem + ", ho=" + ho + ", ngaySinh=" + ngaySinh + ", sdt=" + sdt + ", diaChi=" + diaChi + ", email=" + email + ", soLanMuaHang=" + soLanMuaHang + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + '}';
+        return ma;
     }
 
 }

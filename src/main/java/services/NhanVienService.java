@@ -73,4 +73,10 @@ public class NhanVienService implements INhanVienService {
     public List<NhanVien> sapXepTenTang() {
         return iNhanVienRepo.sapXepTenTang();
     }
+
+    @Override
+    public NhanVien getHoTenByMa(String ma) {
+        return iNhanVienRepo.getHoTenByMa(ma);
+    }
+    
 }

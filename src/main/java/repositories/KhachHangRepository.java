@@ -5,6 +5,7 @@
 package repositories;
 
 import domainmodels.KhachHang;
+import domainmodels.NhanVien;
 import irepositories.IKhachHangRepository;
 import java.sql.Connection;
 import java.sql.Date;
@@ -222,6 +223,29 @@ public class KhachHangRepository implements IKhachHangRepository {
         List<KhachHang> listkh = kh.timTen("u");
         for (KhachHang khachHang : listkh) {
             System.out.println(khachHang.toString());
+        }
+    }
+
+    public KhachHang getHoTenByMa(String ma) {
+        try {
+            KhachHang khachHang = new KhachHang();
+            Connection connection = DBConnection.getConnection();
+            String sql = "SELECT Ho, TenDem, Ten FROM dbo.KhachHang WHERE Ma = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, ma);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                String ho = rs.getString("Ho");
+                String tenDem = rs.getString("TenDem");
+                String ten = rs.getString("Ten");
+                
+                khachHang.setHo(ho);
+                khachHang.setTenDem(tenDem);
+                khachHang.setTen(ten);
+            }
+            return khachHang;
+        } catch (Exception e) {
+            return null;
         }
     }
 }

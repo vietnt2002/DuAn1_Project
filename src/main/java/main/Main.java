@@ -1,5 +1,7 @@
 package main;
 
+import view.NhanVien.FrmNhanVien;
+import view.Quanly.FrmQuanLy;
 import views.FrmDangNhap;
 
 
@@ -14,6 +16,7 @@ public class Main {
             @Override
             public void run() {
                 new FrmDangNhap().setVisible(true);
+//                new FrmNhanVien().setVisible(true);
             }
         });
     }

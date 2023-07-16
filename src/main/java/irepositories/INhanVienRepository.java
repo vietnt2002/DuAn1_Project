@@ -34,4 +34,6 @@ public interface INhanVienRepository {
     List<NhanVien> sapXepTenGiam();
 
     List<NhanVien> sapXepTenTang();
+    
+    NhanVien getHoTenByMa(String ma);
 }

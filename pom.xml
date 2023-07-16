@@ -53,7 +53,7 @@
             <version>12.3.1.jre11-preview</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>5.2.3</version>
@@ -69,10 +69,16 @@
             <artifactId>TimingFramework-0.55</artifactId>
             <version>SNAPSHOT</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>unknown.binary</groupId>
             <artifactId>AbsoluteLayout</artifactId>
             <version>SNAPSHOT</version>
+        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.netbeans.external/AbsoluteLayout -->
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>RELEASE180</version>
         </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>

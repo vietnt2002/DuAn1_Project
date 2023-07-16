@@ -12,6 +12,7 @@ import java.sql.Date;
  */
 public class HoaDon {
     private String id;
+    private String ma;
     private String idKH;
     private String idNV;
     private Date ngayThanhToan;
@@ -22,8 +23,9 @@ public class HoaDon {
     public HoaDon() {
     }
 
-    public HoaDon(String id, String idKH, String idNV, Date ngayThanhToan, Date ngayTao, Date ngaySua, int trangThai) {
+    public HoaDon(String id, String ma, String idKH, String idNV, Date ngayThanhToan, Date ngayTao, Date ngaySua, int trangThai) {
         this.id = id;
+        this.ma = ma;
         this.idKH = idKH;
         this.idNV = idNV;
         this.ngayThanhToan = ngayThanhToan;
@@ -38,6 +40,14 @@ public class HoaDon {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getMa() {
+        return ma;
+    }
+
+    public void setMa(String ma) {
+        this.ma = ma;
     }
 
     public String getIdKH() {
@@ -90,7 +100,8 @@ public class HoaDon {
 
     @Override
     public String toString() {
-        return "Hoadon{" + "id=" + id + ", idKH=" + idKH + ", idNV=" + idNV + ", ngayThanhToan=" + ngayThanhToan + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+        return "HoaDon{" + "id=" + id + ", ma=" + ma + ", idKH=" + idKH + ", idNV=" + idNV + ", ngayThanhToan=" + ngayThanhToan + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
+
     
 }

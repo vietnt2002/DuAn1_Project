@@ -4,10 +4,14 @@
  */
 package view.Quanly;
 
+import domainmodels.NhanVien;
+import iservices.INhanVienService;
 import java.awt.Color;
 import java.io.File;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import services.NhanVienService;
+import utilities.UserInfo;
 import view.ThuKho.JplNhapXuat;
 import views.FrmDangNhap;
 
@@ -19,6 +23,7 @@ public class FrmQuanLy extends javax.swing.JFrame {
 
     private JPanel panel;
     private String dir = null;
+    INhanVienService nhanVienService = new NhanVienService();
 
     public FrmQuanLy() {
         String path = "src\\main\\java\\icon\\";
@@ -32,6 +37,7 @@ public class FrmQuanLy extends javax.swing.JFrame {
 
         panel = new JplNhanVien();
         setPanel(panel);
+        LoadThongTinNhanVien();
     }
 
     public FrmQuanLy(JPanel panel) {
@@ -50,6 +56,12 @@ public class FrmQuanLy extends javax.swing.JFrame {
         jplContain.removeAll();
         jplContain.add(p);
         jplContain.updateUI();
+    }
+    
+    private void LoadThongTinNhanVien(){
+        NhanVien nhanVien = nhanVienService.getHoTenByMa(UserInfo.tenTK);
+        String hoTen = nhanVien.getHo() +" "+ nhanVien.getTenDem() +" "+ nhanVien.getTen();
+        lblHoTen.setText(hoTen);
     }
 
     /**
@@ -73,8 +85,8 @@ public class FrmQuanLy extends javax.swing.JFrame {
         jplThongKe = new javax.swing.JPanel();
         lblThongKe = new javax.swing.JLabel();
         lblDangXuat = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblHoTen = new javax.swing.JLabel();
+        lblVaiTro = new javax.swing.JLabel();
         jplXuatNhap = new javax.swing.JPanel();
         lblXuatNhap = new javax.swing.JLabel();
         jplContain = new javax.swing.JPanel();
@@ -179,9 +191,9 @@ public class FrmQuanLy extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Quản lý");
+        lblVaiTro.setText("Quản lý");
 
-        jplXuatNhap.setLayout(new java.awt.GridLayout());
+        jplXuatNhap.setLayout(new java.awt.GridLayout(1, 0));
 
         lblXuatNhap.setText("Quản lý xuất nhập");
         lblXuatNhap.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -212,8 +224,8 @@ public class FrmQuanLy extends javax.swing.JFrame {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(lblHoTen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblVaiTro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jplKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                             .addComponent(jplNhanvien, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                             .addComponent(jplThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
@@ -229,11 +241,11 @@ public class FrmQuanLy extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblHoTen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel5))
+                    .addComponent(lblVaiTro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jplNhanvien, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
@@ -247,7 +259,7 @@ public class FrmQuanLy extends javax.swing.JFrame {
                 .addGap(29, 29, 29))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel4, jLabel5});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel2, jLabel3, lblHoTen, lblVaiTro});
 
         jplContain.setLayout(new javax.swing.BoxLayout(jplContain, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -316,6 +328,7 @@ public class FrmQuanLy extends javax.swing.JFrame {
         if (hoi != JOptionPane.OK_OPTION) {
             return;
         } else {
+            UserInfo.tenTK = null;
             new FrmDangNhap().setVisible(true);
             this.dispose();
         }
@@ -384,8 +397,6 @@ public class FrmQuanLy extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jplContain;
@@ -394,9 +405,11 @@ public class FrmQuanLy extends javax.swing.JFrame {
     private javax.swing.JPanel jplThongKe;
     private javax.swing.JPanel jplXuatNhap;
     private javax.swing.JLabel lblDangXuat;
+    private javax.swing.JLabel lblHoTen;
     private javax.swing.JLabel lblKhachHang;
     private javax.swing.JLabel lblNhanVien;
     private javax.swing.JLabel lblThongKe;
+    private javax.swing.JLabel lblVaiTro;
     private javax.swing.JLabel lblXuatNhap;
     // End of variables declaration//GEN-END:variables
 }

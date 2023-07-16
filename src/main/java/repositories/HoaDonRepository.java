@@ -4,10 +4,146 @@
  */
 package repositories;
 
+import domainmodels.HoaDon;
+import domainmodels.KhachHang;
+import domainmodels.NhanVien;
+import irepositories.IHoaDonRepository;
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import utilities.DBConnection;
+
 /**
  *
  * @author ADMIN
  */
-public class HoaDonRepository {
+public class HoaDonRepository implements IHoaDonRepository{
+
+    @Override
+    public List<HoaDon> getAll() {
+        try {
+            List<HoaDon> lstHoaDon = new ArrayList<>();
+            Connection connection = DBConnection.getConnection();
+            String sql = "SELECT HD.Id AS 'Id', HD.Ma AS 'Ma', HD.IdKH AS 'IdKH', KH.Ma AS 'MaKH', NV.Id AS 'IdNV', NV.Ma AS 'MaNV', HD.NgayTao AS 'NgayTao', HD.NgaySua AS 'NgaySua', HD.NgayThanhToan AS 'NgayThanhToan', HD.TrangThai AS 'TrangThai' \n" +
+                        "FROM dbo.HoaDon HD JOIN dbo.KhachHang KH\n" +
+                        "ON KH.Id = HD.IdKH JOIN dbo.NhanVien NV\n" +
+                        "ON NV.Id = HD.IdNV";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                String id = rs.getString("Id");
+                String ma = rs.getString("Ma");
+                String idKH = rs.getString("IdKH");
+                String maKH = rs.getString("MaKH");
+                String idNV = rs.getString("IdNV");
+                String maNV = rs.getString("MaNV");
+                Date ngayTao = rs.getDate("NgayTao");
+                Date ngaySua = rs.getDate("NgaySua");
+                Date ngayThanhToan = rs.getDate("NgayThanhToan");
+                int trangThai = rs.getInt("TrangThai");
+                
+                KhachHang khachHang = new KhachHang();
+                khachHang.setId(idKH);
+                khachHang.setMa(maKH);
+                NhanVien nhanVien = new NhanVien();
+                nhanVien.setId(idNV);
+                nhanVien.setMa(maNV);
+                
+                HoaDon hoaDon = new HoaDon();
+                hoaDon.setId(id);
+                hoaDon.setMa(ma);
+                hoaDon.setIdKH(khachHang+"");
+                hoaDon.setIdNV(nhanVien+"");
+                hoaDon.setNgayTao(ngayTao);
+                hoaDon.setNgaySua(ngaySua);
+                hoaDon.setNgayThanhToan(ngayThanhToan);
+                hoaDon.setTrangThai(trangThai);
+                
+                lstHoaDon.add(hoaDon);
+            }
+            rs.close();
+            ps.close();
+            connection.close();
+            return lstHoaDon;
+        } catch (Exception e) {
+            return null;
+        }
+    }
     
+    @Override
+    public List<HoaDon> getAllByMa(String maNv) {
+        try {
+            List<HoaDon> lstHoaDon = new ArrayList<>();
+            Connection connection = DBConnection.getConnection();
+            String sql = "SELECT HD.Id AS 'Id', HD.Ma AS 'Ma', HD.IdKH AS 'IdKH', KH.Ma AS 'MaKH', NV.Id AS 'IdNV', NV.Ma AS 'MaNV', HD.NgayTao AS 'NgayTao', HD.NgaySua AS 'NgaySua', HD.NgayThanhToan AS 'NgayThanhToan', HD.TrangThai AS 'TrangThai' \n" +
+                        "FROM dbo.HoaDon HD JOIN dbo.KhachHang KH\n" +
+                        "ON KH.Id = HD.IdKH JOIN dbo.NhanVien NV\n" +
+                        "ON NV.Id = HD.IdNV\n" +
+                        "WHERE NV.Ma = ? AND HD.TrangThai = 0";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, maNv);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                String id = rs.getString("Id");
+                String ma = rs.getString("Ma");
+                String idKH = rs.getString("IdKH");
+                String maKH = rs.getString("MaKH");
+                String idNV = rs.getString("IdNV");
+                String maNV = rs.getString("MaNV");
+                Date ngayTao = rs.getDate("NgayTao");
+                Date ngaySua = rs.getDate("NgaySua");
+                Date ngayThanhToan = rs.getDate("NgayThanhToan");
+                int trangThai = rs.getInt("TrangThai");
+                
+                KhachHang khachHang = new KhachHang();
+                khachHang.setId(idKH);
+                khachHang.setMa(maKH);
+                NhanVien nhanVien = new NhanVien();
+                nhanVien.setId(idNV);
+                nhanVien.setMa(maNV);
+                
+                HoaDon hoaDon = new HoaDon();
+                hoaDon.setId(id);
+                hoaDon.setMa(ma);
+                hoaDon.setIdKH(khachHang+"");
+                hoaDon.setIdNV(nhanVien+"");
+                hoaDon.setNgayTao(ngayTao);
+                hoaDon.setNgaySua(ngaySua);
+                hoaDon.setNgayThanhToan(ngayThanhToan);
+                hoaDon.setTrangThai(trangThai);
+                
+                lstHoaDon.add(hoaDon);
+            }
+            rs.close();
+            ps.close();
+            connection.close();
+            return lstHoaDon;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public Integer them(HoaDon hoaDon) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Integer sua(HoaDon hoaDon) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Integer xoa(String ma) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public HoaDon getIdByTen(String ten) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

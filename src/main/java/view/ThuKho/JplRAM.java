@@ -178,6 +178,9 @@ public class JplRAM extends javax.swing.JPanel {
                     .addComponent(btnAdd2))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
+
+        pnlRAMbtnLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdd2, btnDelete2, btnEdit2, btnHide2, btnShow2});
+
         pnlRAMbtnLayout.setVerticalGroup(
             pnlRAMbtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlRAMbtnLayout.createSequentialGroup()
@@ -193,6 +196,8 @@ public class JplRAM extends javax.swing.JPanel {
                 .addComponent(btnDelete2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        pnlRAMbtnLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdd2, btnDelete2, btnEdit2, btnHide2, btnShow2});
 
         txtTen2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -175,6 +175,9 @@ public class JplMauSac extends javax.swing.JPanel {
                     .addComponent(btnAdd4))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
+
+        pnlMauSacbtnLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdd4, btnDelete4, btnEdit4, btnHide4, btnShow4});
+
         pnlMauSacbtnLayout.setVerticalGroup(
             pnlMauSacbtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMauSacbtnLayout.createSequentialGroup()
@@ -190,6 +193,8 @@ public class JplMauSac extends javax.swing.JPanel {
                 .addComponent(btnDelete4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        pnlMauSacbtnLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdd4, btnDelete4, btnEdit4, btnHide4, btnShow4});
 
         txtTen4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

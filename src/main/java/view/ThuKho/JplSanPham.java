@@ -174,6 +174,9 @@ public class JplSanPham extends javax.swing.JPanel {
                     .addComponent(btnAdd5))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
+
+        pnlSPbtnLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdd5, btnDelete5, btnEdit5, btnHide5, btnShow5});
+
         pnlSPbtnLayout.setVerticalGroup(
             pnlSPbtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSPbtnLayout.createSequentialGroup()
@@ -189,6 +192,8 @@ public class JplSanPham extends javax.swing.JPanel {
                 .addComponent(btnDelete5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        pnlSPbtnLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdd5, btnDelete5, btnEdit5, btnHide5, btnShow5});
 
         txtTen5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

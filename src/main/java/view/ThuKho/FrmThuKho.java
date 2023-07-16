@@ -4,10 +4,13 @@
  */
 package view.ThuKho;
 
+import iservices.INhanVienService;
 import java.awt.Color;
 import java.io.File;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import services.NhanVienService;
+import utilities.UserInfo;
 
 import views.FrmDangNhap;
 
@@ -19,6 +22,7 @@ public class FrmThuKho extends javax.swing.JFrame {
 
     private JPanel panel;
     private String dir = null;
+    INhanVienService nhanVienService = new NhanVienService();
 
     public FrmThuKho() {
         String path = "src\\main\\java\\icon\\";
@@ -51,6 +55,12 @@ public class FrmThuKho extends javax.swing.JFrame {
         jplContain.add(p);
         jplContain.updateUI();
     }
+    
+    private void LoadThongTinNhanVien(){
+        domainmodels.NhanVien nhanVien = nhanVienService.getHoTenByMa(utilities.UserInfo.tenTK);
+        String hoTen = nhanVien.getHo() +" "+ nhanVien.getTenDem() +" "+ nhanVien.getTen();
+        lblHoTen.setText(hoTen);
+    }
 
     private void setNhanVien() {
 
@@ -77,7 +87,7 @@ public class FrmThuKho extends javax.swing.JFrame {
         jplCPU = new javax.swing.JPanel();
         lblCPU = new javax.swing.JLabel();
         lblDangXuat = new javax.swing.JLabel();
-        lblNhanVien = new javax.swing.JLabel();
+        lblHoTen = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jplRAM = new javax.swing.JPanel();
         lblRAM = new javax.swing.JLabel();
@@ -321,7 +331,7 @@ public class FrmThuKho extends javax.swing.JFrame {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblHoTen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jplChiTietSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jplSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -344,7 +354,7 @@ public class FrmThuKho extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(lblNhanVien))
+                    .addComponent(lblHoTen))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -374,7 +384,7 @@ public class FrmThuKho extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel5, lblNhanVien});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel5, lblHoTen});
 
         jplContain.setLayout(new javax.swing.BoxLayout(jplContain, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -534,6 +544,7 @@ public class FrmThuKho extends javax.swing.JFrame {
         if (hoi != JOptionPane.OK_OPTION) {
             return;
         } else {
+            UserInfo.tenTK = null;
             new FrmDangNhap().setVisible(true);
             this.dispose();
         }
@@ -580,6 +591,62 @@ public class FrmThuKho extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -611,10 +678,10 @@ public class FrmThuKho extends javax.swing.JFrame {
     private javax.swing.JLabel lblChiTietSP;
     private javax.swing.JLabel lblDangXuat;
     private javax.swing.JLabel lblDongSP;
+    private javax.swing.JLabel lblHoTen;
     private javax.swing.JLabel lblManHinh;
     private javax.swing.JLabel lblMauSac;
     private javax.swing.JLabel lblNSX;
-    private javax.swing.JLabel lblNhanVien;
     private javax.swing.JLabel lblNhapXuat;
     private javax.swing.JLabel lblRAM;
     private javax.swing.JLabel lblSSD;

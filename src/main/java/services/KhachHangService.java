@@ -54,8 +54,6 @@ public class KhachHangService implements IKhachHangService {
         return ikhachHangRepo.sapXepTenTang();
     }
 
-
-
     @Override
     public KhachHang checkTrungMa(String ma) {
         return ikhachHangRepo.checkTrungMa(ma);
@@ -64,5 +62,13 @@ public class KhachHangService implements IKhachHangService {
     @Override
     public List<KhachHang> timTen(String timTen) {
        return ikhachHangRepo.timTen(timTen);
+
     }
+
+    @Override
+    public KhachHang getHoTenByMa(String ma) {
+        return ikhachHangRepo.getHoTenByMa(ma);
+    }
+    
 }
+

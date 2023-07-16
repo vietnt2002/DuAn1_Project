@@ -61,8 +61,8 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel4" max="32767" attributes="0"/>
-                                      <Component id="jLabel5" max="32767" attributes="0"/>
+                                      <Component id="lblHoTen" max="32767" attributes="0"/>
+                                      <Component id="lblVaiTro" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Component id="jplKhachHang" alignment="0" pref="188" max="32767" attributes="0"/>
@@ -85,12 +85,12 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel2" linkSize="1" max="32767" attributes="0"/>
-                      <Component id="jLabel4" linkSize="1" max="32767" attributes="0"/>
+                      <Component id="lblHoTen" linkSize="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel5" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblVaiTro" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jplNhanvien" min="-2" pref="43" max="-2" attributes="0"/>
@@ -248,9 +248,9 @@
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="lblDangXuat.setIcon(new javax.swing.ImageIcon(dir+&quot;\\thoat.png&quot;));"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="lblHoTen">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="lblVaiTro">
           <Properties>
             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd;"/>
           </Properties>

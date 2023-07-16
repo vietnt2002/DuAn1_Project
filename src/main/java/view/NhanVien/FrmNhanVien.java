@@ -4,10 +4,13 @@
  */
 package view.NhanVien;
 
+import iservices.INhanVienService;
 import java.awt.Color;
 import java.io.File;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import services.NhanVienService;
+import utilities.UserInfo;
 import views.FrmDangNhap;
 
 /**
@@ -18,6 +21,7 @@ public class FrmNhanVien extends javax.swing.JFrame {
 
     private JPanel panel;
     private String dir = null;
+    INhanVienService nhanVienService = new NhanVienService();
 
     public FrmNhanVien() {
         String path = "src\\main\\java\\icon\\";
@@ -31,6 +35,8 @@ public class FrmNhanVien extends javax.swing.JFrame {
 
         panel = new JplBanHang();
         setPanel(panel);
+        
+        LoadThongTinNhanVien();
     }
 
     public FrmNhanVien(JPanel panel) {
@@ -50,6 +56,12 @@ public class FrmNhanVien extends javax.swing.JFrame {
         jplContain.add(p);
         jplContain.updateUI();
     }
+    
+    private void LoadThongTinNhanVien(){
+        domainmodels.NhanVien nhanVien = nhanVienService.getHoTenByMa(utilities.UserInfo.tenTK);
+        String hoTen = nhanVien.getHo() +" "+ nhanVien.getTenDem() +" "+ nhanVien.getTen();
+        lblHoTen.setText(hoTen);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,7 +80,7 @@ public class FrmNhanVien extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblDangXuat = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblHoTen = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jplContain = new javax.swing.JPanel();
 
@@ -157,7 +169,7 @@ public class FrmNhanVien extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(lblHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jplBanHang, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(39, 39, 39))))
             .addComponent(lblDangXuat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -169,7 +181,7 @@ public class FrmNhanVien extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -181,7 +193,7 @@ public class FrmNhanVien extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel4, jLabel5});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel5, lblHoTen});
 
         jplContain.setLayout(new javax.swing.BoxLayout(jplContain, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -224,6 +236,7 @@ public class FrmNhanVien extends javax.swing.JFrame {
         if (hoi != JOptionPane.OK_OPTION) {
             return;
         } else {
+            UserInfo.tenTK = null;
             new FrmDangNhap().setVisible(true);
             this.dispose();
         }
@@ -283,7 +296,6 @@ public class FrmNhanVien extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
@@ -291,5 +303,6 @@ public class FrmNhanVien extends javax.swing.JFrame {
     private javax.swing.JPanel jplContain;
     private javax.swing.JLabel lblBanHang;
     private javax.swing.JLabel lblDangXuat;
+    private javax.swing.JLabel lblHoTen;
     // End of variables declaration//GEN-END:variables
 }

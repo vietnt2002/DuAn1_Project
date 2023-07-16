@@ -189,11 +189,11 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="btnHide3" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnDelete3" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnEdit3" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnShow3" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnAdd3" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnHide3" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnDelete3" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnEdit3" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnShow3" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnAdd3" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="23" max="32767" attributes="0"/>
                       </Group>
@@ -203,15 +203,15 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="btnShow3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnShow3" linkSize="2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnHide3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnHide3" linkSize="2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnAdd3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnAdd3" linkSize="2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnEdit3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnEdit3" linkSize="2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnDelete3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnDelete3" linkSize="2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>

@@ -31,4 +31,5 @@ public interface IKhachHangRepository {
     
     List<KhachHang> timTen(String timTen);
 
+    KhachHang getHoTenByMa(String ma);
 }

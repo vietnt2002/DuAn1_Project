@@ -171,7 +171,7 @@ public class NhanVien {
 
     @Override
     public String toString() {
-        return "NhanVien{" + "id=" + id + ", idCV=" + idCV + ", ma=" + ma + ", ten=" + ten + ", tenDem=" + tenDem + ", ho=" + ho + ", gioiTinh=" + gioiTinh + ", email=" + email + ", ngaySinh=" + ngaySinh + ", diaChi=" + diaChi + ", sdt=" + sdt + ", matKhau=" + matKhau + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+        return ma;
     }
 
 }
