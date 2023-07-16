@@ -29,4 +29,10 @@ public interface INhanVienService {
     NhanVien checkTrungMa(String ma);
 
     List<String> getTenChucVu();
+
+    List<NhanVien> timTen(String ten);
+
+    List<NhanVien> sapXepTenGiam();
+
+    List<NhanVien> sapXepTenTang();
 }

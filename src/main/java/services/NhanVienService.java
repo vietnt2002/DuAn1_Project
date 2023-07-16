@@ -58,4 +58,19 @@ public class NhanVienService implements INhanVienService {
     public NhanVien checkTrungMa(String ma) {
         return iNhanVienRepo.checkTrungMa(ma);
     }
+
+    @Override
+    public List<NhanVien> timTen(String ten) {
+        return iNhanVienRepo.timTen(ten);
+    }
+
+    @Override
+    public List<NhanVien> sapXepTenGiam() {
+        return iNhanVienRepo.sapXepTenGiam();
+    }
+
+    @Override
+    public List<NhanVien> sapXepTenTang() {
+        return iNhanVienRepo.sapXepTenTang();
+    }
 }

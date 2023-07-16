@@ -29,19 +29,18 @@ public class KhachHangRepository implements IKhachHangRepository {
         String sql = "Select * from KhachHang";
         try (PreparedStatement PS = con.prepareStatement(sql); ResultSet RS = PS.executeQuery()) {
             while (RS.next()) {
-                String id = RS.getString("Id");
-                String ma = RS.getString("Ma");
-                String ten = RS.getString("Ten");
-                String tenDem = RS.getString("TenDem");
-                String ho = RS.getString("Ho");
-                Date ngaySinh = RS.getDate("NgaySinh");
-                String sdt = RS.getString("Sdt");
-                String diaChi = RS.getString("DiaChi");
-                String email = RS.getString("Email");
-                int soLanMuaHang = RS.getInt("SoLanMuaHang");
-                Date ngayTao = RS.getDate("NgayTao");
-                Date ngaySua = RS.getDate("NgaySua");
-                KhachHang khachHang = new KhachHang(id, ma, ten, tenDem, ho, ngaySinh, sdt, diaChi, email, soLanMuaHang, ngayTao, ngaySua);
+                KhachHang khachHang = new KhachHang();
+                khachHang.setId(RS.getString("Id"));
+                khachHang.setMa(RS.getString("Ma"));
+                khachHang.setTen(RS.getString("Ten"));
+                khachHang.setTenDem(RS.getString("TenDem"));
+                khachHang.setHo(RS.getString("Ho"));
+                khachHang.setNgaySinh(RS.getDate("NgaySinh"));
+                khachHang.setSdt(RS.getString("Sdt"));
+                khachHang.setDiaChi(RS.getString("DiaChi"));
+                khachHang.setEmail(RS.getString("Email"));
+                khachHang.setNgayTao(RS.getDate("NgayTao"));
+                khachHang.setNgaySua(RS.getDate("NgaySua"));
                 listKhachHang.add(khachHang);
             }
         } catch (Exception e) {
@@ -110,7 +109,6 @@ public class KhachHangRepository implements IKhachHangRepository {
         return null;
     }
 
-  
     @Override
     public List<KhachHang> sapXepTenTang() {
         List<KhachHang> listKhachHang = new ArrayList<>();
@@ -129,7 +127,7 @@ public class KhachHangRepository implements IKhachHangRepository {
                 int soLanMuaHang = RS.getInt("SoLanMuaHang");
                 Date ngayTao = RS.getDate("NgayTao");
                 Date ngaySua = RS.getDate("NgaySua");
-           
+
                 KhachHang khachHang = new KhachHang(id, ma, ten, tenDem, ho, ngaySinh, sdt, diaChi, email, soLanMuaHang, ngayTao, ngaySua);
                 listKhachHang.add(khachHang);
             }
@@ -137,7 +135,6 @@ public class KhachHangRepository implements IKhachHangRepository {
         }
         return listKhachHang;
     }
-
 
     @Override
     public KhachHang checkTrungMa(String ma) {
@@ -156,7 +153,7 @@ public class KhachHangRepository implements IKhachHangRepository {
                 khachHang.setNgaySinh(RS.getDate("NgaySinh"));
                 khachHang.setSdt(RS.getString("Sdt"));
                 khachHang.setDiaChi(RS.getString("DiaChi"));
-                khachHang.setEmail(RS.getString("Email"));          
+                khachHang.setEmail(RS.getString("Email"));
                 khachHang.setNgayTao(RS.getDate("NgayTao"));
                 khachHang.setNgaySua(RS.getDate("NgaySua"));
                 return khachHang;
@@ -184,12 +181,47 @@ public class KhachHangRepository implements IKhachHangRepository {
                 int soLanMuaHang = RS.getInt("SoLanMuaHang");
                 Date ngayTao = RS.getDate("NgayTao");
                 Date ngaySua = RS.getDate("NgaySua");
-           
+
                 KhachHang khachHang = new KhachHang(id, ma, ten, tenDem, ho, ngaySinh, sdt, diaChi, email, soLanMuaHang, ngayTao, ngaySua);
                 listKhachHang.add(khachHang);
             }
         } catch (Exception e) {
         }
-        return listKhachHang;}
+        return listKhachHang;
+    }
 
+    @Override
+    public List<KhachHang> timTen(String timTen) {
+        List<KhachHang> listKhachHang = new ArrayList<>();
+        String sql = "Select * from KhachHang Where ten Like N'%" + timTen + "%'";
+        try {
+            PreparedStatement PS = con.prepareStatement(sql);     
+            ResultSet RS = PS.executeQuery();
+            while (RS.next()) {
+                KhachHang khachHang = new KhachHang();
+                khachHang.setId(RS.getString("Id"));
+                khachHang.setMa(RS.getString("Ma"));
+                khachHang.setTen(RS.getString("Ten"));
+                khachHang.setTenDem(RS.getString("TenDem"));
+                khachHang.setHo(RS.getString("Ho"));
+                khachHang.setNgaySinh(RS.getDate("NgaySinh"));
+                khachHang.setSdt(RS.getString("Sdt"));
+                khachHang.setDiaChi(RS.getString("DiaChi"));
+                khachHang.setEmail(RS.getString("Email"));
+                khachHang.setNgayTao(RS.getDate("NgayTao"));
+                khachHang.setNgaySua(RS.getDate("NgaySua"));
+                listKhachHang.add(khachHang);
+            }
+        } catch (Exception e) {
+        }
+        return listKhachHang;
+    }
+
+    public static void main(String[] args) {
+        KhachHangRepository kh = new KhachHangRepository();
+        List<KhachHang> listkh = kh.timTen("u");
+        for (KhachHang khachHang : listkh) {
+            System.out.println(khachHang.toString());
+        }
+    }
 }

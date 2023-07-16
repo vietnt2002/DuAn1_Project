@@ -4,7 +4,6 @@
  */
 package irepositories;
 
-import domainmodels.CPU;
 import domainmodels.NhanVien;
 import java.util.List;
 
@@ -29,4 +28,10 @@ public interface INhanVienRepository {
     NhanVien checkTrungMa(String ma);
 
     List<String> getChucVu();
+
+    List<NhanVien> timTen(String ten);
+
+    List<NhanVien> sapXepTenGiam();
+
+    List<NhanVien> sapXepTenTang();
 }

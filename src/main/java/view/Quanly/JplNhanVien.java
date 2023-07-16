@@ -18,36 +18,30 @@ import services.ChucVuService;
 import services.NhanVienService;
 
 public class JplNhanVien extends javax.swing.JPanel {
-    
+
     private INhanVienService iNhanVienSV = new NhanVienService();
     private IChucVuService iChucVuSV = new ChucVuService();
     DefaultTableModel moDel = new DefaultTableModel();
     DefaultComboBoxModel comboxmodel = new DefaultComboBoxModel();
-    
+
     public JplNhanVien() {
         initComponents();
         loadDataNhanVien(iNhanVienSV.getAll());
         loadCombox(iNhanVienSV.getTenChucVu());
-        
+
     }
-    
+
     private void loadCombox(List<String> list) {
         comboxmodel = (DefaultComboBoxModel) cboChucVu.getModel();
         for (String string : list) {
             comboxmodel.addElement(string);
         }
     }
-    
+
     private void loadDataNhanVien(List<NhanVien> listl) {
         moDel = (DefaultTableModel) tblNhanVien.getModel();
         moDel.setRowCount(0);
         for (NhanVien nhanVien : listl) {
-            String CV = null;
-            for (ChucVu ChucVuView : iChucVuSV.getAll()) {
-                if (ChucVuView.getId().equalsIgnoreCase(nhanVien.getIdCV())) {
-                    CV = ChucVuView.getTen();
-                }
-            }
             moDel.addRow(new Object[]{
                 nhanVien.getMa(),
                 nhanVien.getTen(),
@@ -55,9 +49,10 @@ public class JplNhanVien extends javax.swing.JPanel {
                 nhanVien.getHo(),
                 nhanVien.getGioiTinh(),
                 nhanVien.getNgaySinh(),
+                nhanVien.getEmail(),
                 nhanVien.getSdt(),
                 nhanVien.getDiaChi(),
-                CV,
+                nhanVien.getIdCV(),
                 nhanVien.getMatKhau(),
                 nhanVien.getNgayTao(),
                 nhanVien.getNgaySua(),
@@ -115,7 +110,7 @@ public class JplNhanVien extends javax.swing.JPanel {
         jButton15 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jPanel19 = new javax.swing.JPanel();
-        jTextField33 = new javax.swing.JTextField();
+        txtTimten = new javax.swing.JTextField();
         jLabel39 = new javax.swing.JLabel();
         jPanel20 = new javax.swing.JPanel();
         jComboBox3 = new javax.swing.JComboBox<>();
@@ -384,14 +379,30 @@ public class JplNhanVien extends javax.swing.JPanel {
 
         jButton15.setBackground(new java.awt.Color(255, 51, 51));
         jButton15.setForeground(new java.awt.Color(255, 255, 255));
-        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-sort-alpha-up-reversed-20.png"))); // NOI18N
+        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-sort-alpha-up-20.png"))); // NOI18N
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         jButton16.setBackground(new java.awt.Color(255, 51, 51));
         jButton16.setForeground(new java.awt.Color(255, 255, 255));
-        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-sort-alpha-up-20.png"))); // NOI18N
+        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-sort-alpha-up-reversed-20.png"))); // NOI18N
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
 
         jPanel19.setBackground(new java.awt.Color(255, 255, 255));
         jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tra cứu", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
+
+        txtTimten.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtTimtenCaretUpdate(evt);
+            }
+        });
 
         jLabel39.setText("Tên:");
 
@@ -403,7 +414,7 @@ public class JplNhanVien extends javax.swing.JPanel {
                 .addGap(17, 17, 17)
                 .addComponent(jLabel39)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTimten, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(154, Short.MAX_VALUE))
         );
         jPanel19Layout.setVerticalGroup(
@@ -411,7 +422,7 @@ public class JplNhanVien extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
                 .addContainerGap(9, Short.MAX_VALUE)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTimten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel39))
                 .addContainerGap())
         );
@@ -529,6 +540,7 @@ public class JplNhanVien extends javax.swing.JPanel {
                 String gTinh = (String) cboGioiTinh.getSelectedItem();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 Date ngaySinh = (Date) sdf.parse(txtNgaySinh.getText());
+                String email = txtEmail.getText();
                 String sdt = txtSDT.getText();
                 String diachi = txtDiaChi.getText();
                 String chucVu = iChucVuSV.getAll().get(cboChucVu.getSelectedIndex()).getId();
@@ -539,6 +551,7 @@ public class JplNhanVien extends javax.swing.JPanel {
                 } else {
                     trangThai = 1;
                 }
+
                 NhanVien nhanVien = new NhanVien();
                 nhanVien.setMa(ma);
                 nhanVien.setTen(ten);
@@ -548,6 +561,7 @@ public class JplNhanVien extends javax.swing.JPanel {
                 nhanVien.setNgaySinh(ngaySinh);
                 nhanVien.setSdt(sdt);
                 nhanVien.setDiaChi(diachi);
+                nhanVien.setEmail(email);
                 nhanVien.setIdCV(chucVu);
                 nhanVien.setMatKhau(matKhau);
                 nhanVien.setTrangThai(trangThai);
@@ -582,15 +596,21 @@ public class JplNhanVien extends javax.swing.JPanel {
         if (utilities.ULHelper.checknull(txtSDT, "Không được để trống !")) {
             return false;
         }
-        
+
         if (utilities.ULHelper.CheckSDT(txtSDT, "Nhập số điện thoại đúng định dạng !")) {
             return false;
         }
-        
+
         if (utilities.ULHelper.checknull(txtDiaChi, "Không được để trống !")) {
             return false;
         }
         if (utilities.ULHelper.checknull(txtMatKhau, "Không được để trống !")) {
+            return false;
+        }
+        if (utilities.ULHelper.checknull(txtEmail, "Không được để trống !")) {
+            return false;
+        }
+        if (utilities.ULHelper.checkEmail(txtEmail, "Nhập đúng định dạng !")) {
             return false;
         }
         return true;
@@ -607,6 +627,7 @@ public class JplNhanVien extends javax.swing.JPanel {
         txtNgaySinh.setText("");
         txtSDT.setText("");
         txtDiaChi.setText("");
+        txtEmail.setText("");
         txtMatKhau.setText("");
         cboChucVu.setSelectedIndex(0);
         rdoDangLam.setSelected(true);
@@ -624,6 +645,7 @@ public class JplNhanVien extends javax.swing.JPanel {
                 Date ngaySinh = (Date) sdf.parse(txtNgaySinh.getText());
                 String sdt = txtSDT.getText();
                 String diachi = txtDiaChi.getText();
+                String email = txtEmail.getText();
                 String chucVu = iChucVuSV.getAll().get(cboChucVu.getSelectedIndex()).getId();
                 String matKhau = txtMatKhau.getText();
                 int trangThai;
@@ -641,6 +663,7 @@ public class JplNhanVien extends javax.swing.JPanel {
                 nhanVien.setNgaySinh(ngaySinh);
                 nhanVien.setSdt(sdt);
                 nhanVien.setDiaChi(diachi);
+                nhanVien.setEmail(email);
                 nhanVien.setIdCV(chucVu);
                 nhanVien.setMatKhau(matKhau);
                 nhanVien.setTrangThai(trangThai);
@@ -680,16 +703,34 @@ public class JplNhanVien extends javax.swing.JPanel {
         txtHo.setText(tblNhanVien.getValueAt(index, 3).toString());
         cboGioiTinh.setSelectedItem(tblNhanVien.getValueAt(index, 4).toString());
         txtNgaySinh.setText(tblNhanVien.getValueAt(index, 5).toString());
-        txtSDT.setText(tblNhanVien.getValueAt(index, 6).toString());
-        txtDiaChi.setText(tblNhanVien.getValueAt(index, 7).toString());
-        cboChucVu.setSelectedItem(tblNhanVien.getValueAt(index, 8).toString());
-        txtMatKhau.setText(tblNhanVien.getValueAt(index, 9).toString());
+        txtEmail.setText(tblNhanVien.getValueAt(index, 6).toString());
+        txtSDT.setText(tblNhanVien.getValueAt(index, 7).toString());
+        txtDiaChi.setText(tblNhanVien.getValueAt(index, 8).toString());
+        cboChucVu.setSelectedItem(tblNhanVien.getValueAt(index, 9).toString());
+        txtMatKhau.setText(tblNhanVien.getValueAt(index, 10).toString());
         if (tblNhanVien.getValueAt(index, 12).equals("Đang làm việc")) {
             rdoDangLam.setSelected(true);
         } else {
             rdoDaNghi.setSelected(true);
         }
     }//GEN-LAST:event_tblNhanVienMouseClicked
+
+    private void txtTimtenCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimtenCaretUpdate
+        List<NhanVien> list = iNhanVienSV.timTen(txtTimten.getText().trim());
+        loadDataNhanVien(list);
+    }//GEN-LAST:event_txtTimtenCaretUpdate
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        List<NhanVien> list = iNhanVienSV.sapXepTenGiam();
+        loadDataNhanVien(list);
+        JOptionPane.showMessageDialog(this, "Sắp xếp theo tên a-z");
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        List<NhanVien> list = iNhanVienSV.sapXepTenTang();
+        loadDataNhanVien(list);
+        JOptionPane.showMessageDialog(this, "Sắp xếp theo tên z-a");
+    }//GEN-LAST:event_jButton16ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -727,7 +768,6 @@ public class JplNhanVien extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField33;
     private javax.swing.JRadioButton rdoDaNghi;
     private javax.swing.JRadioButton rdoDangLam;
     private javax.swing.JTable tblNhanVien;
@@ -740,5 +780,6 @@ public class JplNhanVien extends javax.swing.JPanel {
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTen;
     private javax.swing.JTextField txtTenDem;
+    private javax.swing.JTextField txtTimten;
     // End of variables declaration//GEN-END:variables
 }

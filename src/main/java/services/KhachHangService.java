@@ -60,4 +60,9 @@ public class KhachHangService implements IKhachHangService {
     public KhachHang checkTrungMa(String ma) {
         return ikhachHangRepo.checkTrungMa(ma);
     }
+
+    @Override
+    public List<KhachHang> timTen(String timTen) {
+       return ikhachHangRepo.timTen(timTen);
+    }
 }

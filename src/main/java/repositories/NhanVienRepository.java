@@ -226,4 +226,194 @@ public class NhanVienRepository implements INhanVienRepository {
         }
         return null;
     }
+
+    @Override
+    public List<NhanVien> timTen(String ten) {
+        try {
+            List<NhanVien> lstNhanVien = new ArrayList<>();
+            Connection connection = DBConnection.getConnection();
+            String sql = "SELECT NV.Id AS 'Id', CV.Id AS 'IdCV', CV.Ma AS 'MaCV', CV.Ten AS 'TenCV', NV.Ma AS 'Ma', NV.Ten AS 'Ten', NV.TenDem AS 'TenDem', NV.Ho AS 'Ho', NV.GioiTinh AS 'GioiTinh', \n"
+                    + "NV.NgaySinh AS 'NgaySinh', NV.Sdt AS 'Sdt', NV.DiaChi AS 'DiaChi',NV.Email AS 'Email', NV.MatKhau AS 'MatKhau', NV.NgayTao AS 'NgayTao', NV.NgaySua AS 'NgaySua', NV.TrangThai AS 'TrangThai' \n"
+                    + "FROM dbo.NhanVien NV JOIN dbo.ChucVu CV\n"
+                    + "ON CV.Id = NV.IdCV Where NV.Ten Like N'%" + ten + "%'";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String id = rs.getString("Id");
+                String idCV = rs.getString("IdCV");
+                String maCV = rs.getString("MaCV");
+                String tenCV = rs.getString("TenCV");
+                String ma = rs.getString("Ma");
+                String ten1 = rs.getString("Ten");
+                String tenDem = rs.getString("TenDem");
+                String ho = rs.getString("Ho");
+                String gioiTinh = rs.getString("GioiTinh");
+                Date ngaySinh = rs.getDate("NgaySinh");
+                String sdt = rs.getString("Sdt");
+                String diaChi = rs.getString("DiaChi");
+                String email = rs.getString("Email");
+                String matKhau = rs.getString("MatKhau");
+                Date ngayTao = rs.getDate("NgayTao");
+                Date ngaySua = rs.getDate("NgaySua");
+                int trangThai = rs.getInt("TrangThai");
+
+                ChucVu chucVu = new ChucVu();
+                chucVu.setId(idCV);
+                chucVu.setMa(maCV);
+                chucVu.setTen(tenCV);
+
+                NhanVien nhanVien = new NhanVien();
+                nhanVien.setId(id);
+                nhanVien.setMa(ma);
+                nhanVien.setTen(ten1);
+                nhanVien.setTenDem(tenDem);
+                nhanVien.setHo(ho);
+                nhanVien.setGioiTinh(gioiTinh);
+                nhanVien.setNgaySinh(ngaySinh);
+                nhanVien.setSdt(sdt);
+                nhanVien.setDiaChi(diaChi);
+                nhanVien.setEmail(email);
+                nhanVien.setMatKhau(matKhau);
+                nhanVien.setNgayTao(ngayTao);
+                nhanVien.setNgaySua(ngaySua);
+                nhanVien.setTrangThai(trangThai);
+                nhanVien.setIdCV(chucVu + "");
+
+                lstNhanVien.add(nhanVien);
+            }
+            rs.close();
+            ps.close();
+            connection.close();
+            return lstNhanVien;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public List<NhanVien> sapXepTenGiam() {
+        try {
+            List<NhanVien> lstNhanVien = new ArrayList<>();
+            Connection connection = DBConnection.getConnection();
+            String sql = "SELECT NV.Id AS 'Id', CV.Id AS 'IdCV', CV.Ma AS 'MaCV', CV.Ten AS 'TenCV', NV.Ma AS 'Ma', NV.Ten AS 'Ten', NV.TenDem AS 'TenDem', NV.Ho AS 'Ho', NV.GioiTinh AS 'GioiTinh', \n"
+                    + "NV.NgaySinh AS 'NgaySinh', NV.Sdt AS 'Sdt', NV.DiaChi AS 'DiaChi',NV.Email AS 'Email', NV.MatKhau AS 'MatKhau', NV.NgayTao AS 'NgayTao', NV.NgaySua AS 'NgaySua', NV.TrangThai AS 'TrangThai' \n"
+                    + "FROM dbo.NhanVien NV JOIN dbo.ChucVu CV\n"
+                    + "ON CV.Id = NV.IdCV Order by NV.Ten Desc";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String id = rs.getString("Id");
+                String idCV = rs.getString("IdCV");
+                String maCV = rs.getString("MaCV");
+                String tenCV = rs.getString("TenCV");
+                String ma = rs.getString("Ma");
+                String ten = rs.getString("Ten");
+                String tenDem = rs.getString("TenDem");
+                String ho = rs.getString("Ho");
+                String gioiTinh = rs.getString("GioiTinh");
+                Date ngaySinh = rs.getDate("NgaySinh");
+                String sdt = rs.getString("Sdt");
+                String diaChi = rs.getString("DiaChi");
+                String email = rs.getString("Email");
+                String matKhau = rs.getString("MatKhau");
+                Date ngayTao = rs.getDate("NgayTao");
+                Date ngaySua = rs.getDate("NgaySua");
+                int trangThai = rs.getInt("TrangThai");
+
+                ChucVu chucVu = new ChucVu();
+                chucVu.setId(idCV);
+                chucVu.setMa(maCV);
+                chucVu.setTen(tenCV);
+
+                NhanVien nhanVien = new NhanVien();
+                nhanVien.setId(id);
+                nhanVien.setMa(ma);
+                nhanVien.setTen(ten);
+                nhanVien.setTenDem(tenDem);
+                nhanVien.setHo(ho);
+                nhanVien.setGioiTinh(gioiTinh);
+                nhanVien.setNgaySinh(ngaySinh);
+                nhanVien.setSdt(sdt);
+                nhanVien.setDiaChi(diaChi);
+                nhanVien.setEmail(email);
+                nhanVien.setMatKhau(matKhau);
+                nhanVien.setNgayTao(ngayTao);
+                nhanVien.setNgaySua(ngaySua);
+                nhanVien.setTrangThai(trangThai);
+                nhanVien.setIdCV(chucVu + "");
+
+                lstNhanVien.add(nhanVien);
+            }
+            rs.close();
+            ps.close();
+            connection.close();
+            return lstNhanVien;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public List<NhanVien> sapXepTenTang() {
+        try {
+            List<NhanVien> lstNhanVien = new ArrayList<>();
+            Connection connection = DBConnection.getConnection();
+            String sql = "SELECT NV.Id AS 'Id', CV.Id AS 'IdCV', CV.Ma AS 'MaCV', CV.Ten AS 'TenCV', NV.Ma AS 'Ma', NV.Ten AS 'Ten', NV.TenDem AS 'TenDem', NV.Ho AS 'Ho', NV.GioiTinh AS 'GioiTinh', \n"
+                    + "NV.NgaySinh AS 'NgaySinh', NV.Sdt AS 'Sdt', NV.DiaChi AS 'DiaChi',NV.Email AS 'Email', NV.MatKhau AS 'MatKhau', NV.NgayTao AS 'NgayTao', NV.NgaySua AS 'NgaySua', NV.TrangThai AS 'TrangThai' \n"
+                    + "FROM dbo.NhanVien NV JOIN dbo.ChucVu CV\n"
+                    + "ON CV.Id = NV.IdCV Order by NV.Ten ASC";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String id = rs.getString("Id");
+                String idCV = rs.getString("IdCV");
+                String maCV = rs.getString("MaCV");
+                String tenCV = rs.getString("TenCV");
+                String ma = rs.getString("Ma");
+                String ten = rs.getString("Ten");
+                String tenDem = rs.getString("TenDem");
+                String ho = rs.getString("Ho");
+                String gioiTinh = rs.getString("GioiTinh");
+                Date ngaySinh = rs.getDate("NgaySinh");
+                String sdt = rs.getString("Sdt");
+                String diaChi = rs.getString("DiaChi");
+                String email = rs.getString("Email");
+                String matKhau = rs.getString("MatKhau");
+                Date ngayTao = rs.getDate("NgayTao");
+                Date ngaySua = rs.getDate("NgaySua");
+                int trangThai = rs.getInt("TrangThai");
+
+                ChucVu chucVu = new ChucVu();
+                chucVu.setId(idCV);
+                chucVu.setMa(maCV);
+                chucVu.setTen(tenCV);
+
+                NhanVien nhanVien = new NhanVien();
+                nhanVien.setId(id);
+                nhanVien.setMa(ma);
+                nhanVien.setTen(ten);
+                nhanVien.setTenDem(tenDem);
+                nhanVien.setHo(ho);
+                nhanVien.setGioiTinh(gioiTinh);
+                nhanVien.setNgaySinh(ngaySinh);
+                nhanVien.setSdt(sdt);
+                nhanVien.setDiaChi(diaChi);
+                nhanVien.setEmail(email);
+                nhanVien.setMatKhau(matKhau);
+                nhanVien.setNgayTao(ngayTao);
+                nhanVien.setNgaySua(ngaySua);
+                nhanVien.setTrangThai(trangThai);
+                nhanVien.setIdCV(chucVu + "");
+
+                lstNhanVien.add(nhanVien);
+            }
+            rs.close();
+            ps.close();
+            connection.close();
+            return lstNhanVien;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }

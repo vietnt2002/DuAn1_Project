@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.io.File;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 import views.FrmDangNhap;
 
 /**
@@ -20,11 +21,11 @@ public class FrmThuKho extends javax.swing.JFrame {
     private String dir = null;
 
     public FrmThuKho() {
-         String path = "src\\main\\java\\icon\\";
+        String path = "src\\main\\java\\icon\\";
         File file = new File(path);
         String absolutePath = file.getAbsolutePath();
         dir = absolutePath;
-        
+
         initComponents();
         setTitle("Thủ kho");
         setLocationRelativeTo(null);
@@ -51,6 +52,10 @@ public class FrmThuKho extends javax.swing.JFrame {
         jplContain.updateUI();
     }
 
+    private void setNhanVien() {
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,7 +77,7 @@ public class FrmThuKho extends javax.swing.JFrame {
         jplCPU = new javax.swing.JPanel();
         lblCPU = new javax.swing.JLabel();
         lblDangXuat = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblNhanVien = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jplRAM = new javax.swing.JPanel();
         lblRAM = new javax.swing.JLabel();
@@ -316,7 +321,7 @@ public class FrmThuKho extends javax.swing.JFrame {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jplChiTietSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jplSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -339,7 +344,7 @@ public class FrmThuKho extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel4))
+                    .addComponent(lblNhanVien))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -369,7 +374,7 @@ public class FrmThuKho extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel4, jLabel5});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel5, lblNhanVien});
 
         jplContain.setLayout(new javax.swing.BoxLayout(jplContain, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -588,7 +593,6 @@ public class FrmThuKho extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
@@ -610,6 +614,7 @@ public class FrmThuKho extends javax.swing.JFrame {
     private javax.swing.JLabel lblManHinh;
     private javax.swing.JLabel lblMauSac;
     private javax.swing.JLabel lblNSX;
+    private javax.swing.JLabel lblNhanVien;
     private javax.swing.JLabel lblNhapXuat;
     private javax.swing.JLabel lblRAM;
     private javax.swing.JLabel lblSSD;

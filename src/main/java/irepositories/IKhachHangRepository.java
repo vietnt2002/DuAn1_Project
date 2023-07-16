@@ -28,5 +28,7 @@ public interface IKhachHangRepository {
     List<KhachHang> sapXepTenGiam();
 
     List<KhachHang> sapXepTenTang();
+    
+    List<KhachHang> timTen(String timTen);
 
 }

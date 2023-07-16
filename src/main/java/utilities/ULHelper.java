@@ -74,6 +74,29 @@ public class ULHelper {
         return false;
     }
 
+    public static boolean checkEmail(JTextField txt, String mess) {
+        String email = "\\w+@\\w+(\\.\\w+){1,2}";
+        Matcher matcher = Pattern.compile(email).matcher(txt.getText());
+        if (matcher.matches()) {
+            return false;
+        }
+        JOptionPane.showMessageDialog(null, mess);
+        txt.requestFocus();
+        return true;
+    }
+
+    public static boolean checkSo(JTextField txt, String mss) {
+        try {
+            Integer.parseInt(txt.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(txt, mss);
+            txt.requestFocus();
+            return true;
+        }
+        return false;
+
+    }
+
     public static void main(String[] args) {
         getConnection();
     }
