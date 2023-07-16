@@ -61,8 +61,9 @@
                           <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                           <Component id="btnTangkh" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btnGiamkh" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
                   </Group>
@@ -79,12 +80,14 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel22" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jPanel21" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnTangkh" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnGiamkh" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Component id="btnGiamkh" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnTangkh" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -182,43 +185,41 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtNgaySinhkh" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel14" linkSize="3" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                                      <Component id="txtMakh" linkSize="3" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                                      <Component id="jLabel18" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel22" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtQuocGiakh" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel15" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtTenkh" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel17" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtHokh" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel16" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtTenDemkh" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel19" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtSdtkh" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel20" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtDiaChikh" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtThanhPhokh" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel21" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtNgaySinhkh" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="jLabel14" linkSize="3" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="txtMakh" linkSize="3" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="jLabel18" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jPanel9" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="jLabel22" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtQuocGiakh" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel15" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTenkh" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel17" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtHokh" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel16" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTenDemkh" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel19" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtSdtkh" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel20" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDiaChikh" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtThanhPhokh" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel21" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -573,7 +574,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="T&#x103;ng"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Icon/icons8-sort-alpha-up-reversed-20.png"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTangkhActionPerformed"/>
@@ -587,7 +590,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Gi&#x1ea3;m"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Icon/icons8-sort-alpha-up-20.png"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGiamkhActionPerformed"/>
