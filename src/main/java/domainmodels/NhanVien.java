@@ -11,6 +11,7 @@ import java.util.Date;
  * @author ADMIN
  */
 public class NhanVien {
+
     private String id;
     private String idCV;
     private String ma;
@@ -18,6 +19,7 @@ public class NhanVien {
     private String tenDem;
     private String ho;
     private String gioiTinh;
+    private String email;
     private Date ngaySinh;
     private String diaChi;
     private String sdt;
@@ -29,7 +31,7 @@ public class NhanVien {
     public NhanVien() {
     }
 
-    public NhanVien(String id, String idCV, String ma, String ten, String tenDem, String ho, String gioiTinh, Date ngaySinh, String diaChi, String sdt, String matKhau, Date ngayTao, Date ngaySua, int trangThai) {
+    public NhanVien(String id, String idCV, String ma, String ten, String tenDem, String ho, String gioiTinh, String email, Date ngaySinh, String diaChi, String sdt, String matKhau, Date ngayTao, Date ngaySua, int trangThai) {
         this.id = id;
         this.idCV = idCV;
         this.ma = ma;
@@ -37,6 +39,7 @@ public class NhanVien {
         this.tenDem = tenDem;
         this.ho = ho;
         this.gioiTinh = gioiTinh;
+        this.email = email;
         this.ngaySinh = ngaySinh;
         this.diaChi = diaChi;
         this.sdt = sdt;
@@ -102,6 +105,14 @@ public class NhanVien {
         this.gioiTinh = gioiTinh;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Date getNgaySinh() {
         return ngaySinh;
     }
@@ -160,23 +171,7 @@ public class NhanVien {
 
     @Override
     public String toString() {
-        return "Nhanvien{" + "id=" + id + ", idCV=" + idCV + ", ma=" + ma + ", ten=" + ten + ", tenDem=" + tenDem + ", ho=" + ho + ", gioiTinh=" + gioiTinh + ", ngaySinh=" + ngaySinh + ", diaChi=" + diaChi + ", sdt=" + sdt + ", matKhau=" + matKhau + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+        return "NhanVien{" + "id=" + id + ", idCV=" + idCV + ", ma=" + ma + ", ten=" + ten + ", tenDem=" + tenDem + ", ho=" + ho + ", gioiTinh=" + gioiTinh + ", email=" + email + ", ngaySinh=" + ngaySinh + ", diaChi=" + diaChi + ", sdt=" + sdt + ", matKhau=" + matKhau + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
 
-    public NhanVien(String idCV, String ma, String ten, String tenDem, String ho, String gioiTinh, Date ngaySinh, String diaChi, String sdt, String matKhau, Date ngayTao, Date ngaySua, int trangThai) {
-        this.idCV = idCV;
-        this.ma = ma;
-        this.ten = ten;
-        this.tenDem = tenDem;
-        this.ho = ho;
-        this.gioiTinh = gioiTinh;
-        this.ngaySinh = ngaySinh;
-        this.diaChi = diaChi;
-        this.sdt = sdt;
-        this.matKhau = matKhau;
-        this.ngayTao = ngayTao;
-        this.ngaySua = ngaySua;
-        this.trangThai = trangThai;
-    }
-    
 }

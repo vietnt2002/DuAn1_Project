@@ -11,6 +11,7 @@ import java.util.Date;
  * @author ADMIN
  */
 public class KhachHang {
+
     private String id;
     private String ma;
     private String ten;
@@ -19,17 +20,15 @@ public class KhachHang {
     private Date ngaySinh;
     private String sdt;
     private String diaChi;
-    private String thanhPho;
-    private String quocGia;
+    private String email;
     private int soLanMuaHang;
     private Date ngayTao;
     private Date ngaySua;
-    private int trangThai;
 
     public KhachHang() {
     }
 
-    public KhachHang(String id, String ma, String ten, String tenDem, String ho, Date ngaySinh, String sdt, String diaChi, String thanhPho, String quocGia, int soLanMuaHang, Date ngayTao, Date ngaySua, int trangThai) {
+    public KhachHang(String id, String ma, String ten, String tenDem, String ho, Date ngaySinh, String sdt, String diaChi, String email, int soLanMuaHang, Date ngayTao, Date ngaySua) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
@@ -38,12 +37,10 @@ public class KhachHang {
         this.ngaySinh = ngaySinh;
         this.sdt = sdt;
         this.diaChi = diaChi;
-        this.thanhPho = thanhPho;
-        this.quocGia = quocGia;
+        this.email = email;
         this.soLanMuaHang = soLanMuaHang;
         this.ngayTao = ngayTao;
         this.ngaySua = ngaySua;
-        this.trangThai = trangThai;
     }
 
     public String getId() {
@@ -110,20 +107,12 @@ public class KhachHang {
         this.diaChi = diaChi;
     }
 
-    public String getThanhPho() {
-        return thanhPho;
+    public String getEmail() {
+        return email;
     }
 
-    public void setThanhPho(String thanhPho) {
-        this.thanhPho = thanhPho;
-    }
-
-    public String getQuocGia() {
-        return quocGia;
-    }
-
-    public void setQuocGia(String quocGia) {
-        this.quocGia = quocGia;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getSoLanMuaHang() {
@@ -150,17 +139,9 @@ public class KhachHang {
         this.ngaySua = ngaySua;
     }
 
-    public int getTrangThai() {
-        return trangThai;
-    }
-
-    public void setTrangThai(int trangThai) {
-        this.trangThai = trangThai;
-    }
-
     @Override
     public String toString() {
-        return "KhachHang{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", tenDem=" + tenDem + ", ho=" + ho + ", ngaySinh=" + ngaySinh + ", sdt=" + sdt + ", diaChi=" + diaChi + ", thanhPho=" + thanhPho + ", quocGia=" + quocGia + ", soLanMuaHang=" + soLanMuaHang + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+        return "KhachHang{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", tenDem=" + tenDem + ", ho=" + ho + ", ngaySinh=" + ngaySinh + ", sdt=" + sdt + ", diaChi=" + diaChi + ", email=" + email + ", soLanMuaHang=" + soLanMuaHang + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + '}';
     }
 
 }

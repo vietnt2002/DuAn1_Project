@@ -25,12 +25,8 @@ public interface IKhachHangRepository {
 
     KhachHang checkTrungMa(String ma);
 
-    List<KhachHang> findTen(String ten1, String thanhPho1);
-
     List<KhachHang> sapXepTenGiam();
 
     List<KhachHang> sapXepTenTang();
-
-    List<String> gettenThanhPho();
 
 }

@@ -28,13 +28,13 @@ public class NhanVienRepository implements INhanVienRepository {
         try {
             List<NhanVien> lstNhanVien = new ArrayList<>();
             Connection connection = DBConnection.getConnection();
-            String sql = "SELECT NV.Id AS 'Id', CV.Id AS 'IdCV', CV.Ma AS 'MaCV', CV.Ten AS 'TenCV', NV.Ma AS 'Ma', NV.Ten AS 'Ten', NV.TenDem AS 'TenDem', NV.Ho AS 'Ho', NV.GioiTinh AS 'GioiTinh', \n" +
-                        "NV.NgaySinh AS 'NgaySinh', NV.Sdt AS 'Sdt', NV.DiaChi AS 'DiaChi', NV.MatKhau AS 'MatKhau', NV.NgayTao AS 'NgayTao', NV.NgaySua AS 'NgaySua', NV.TrangThai AS 'TrangThai' \n" +
-                        "FROM dbo.NhanVien NV JOIN dbo.ChucVu CV\n" +
-                        "ON CV.Id = NV.IdCV";
+            String sql = "SELECT NV.Id AS 'Id', CV.Id AS 'IdCV', CV.Ma AS 'MaCV', CV.Ten AS 'TenCV', NV.Ma AS 'Ma', NV.Ten AS 'Ten', NV.TenDem AS 'TenDem', NV.Ho AS 'Ho', NV.GioiTinh AS 'GioiTinh', \n"
+                    + "NV.NgaySinh AS 'NgaySinh', NV.Sdt AS 'Sdt', NV.DiaChi AS 'DiaChi',NV.Email AS 'Email', NV.MatKhau AS 'MatKhau', NV.NgayTao AS 'NgayTao', NV.NgaySua AS 'NgaySua', NV.TrangThai AS 'TrangThai' \n"
+                    + "FROM dbo.NhanVien NV JOIN dbo.ChucVu CV\n"
+                    + "ON CV.Id = NV.IdCV";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 String id = rs.getString("Id");
                 String idCV = rs.getString("IdCV");
                 String maCV = rs.getString("MaCV");
@@ -47,16 +47,17 @@ public class NhanVienRepository implements INhanVienRepository {
                 Date ngaySinh = rs.getDate("NgaySinh");
                 String sdt = rs.getString("Sdt");
                 String diaChi = rs.getString("DiaChi");
+                String email = rs.getString("Email");
                 String matKhau = rs.getString("MatKhau");
                 Date ngayTao = rs.getDate("NgayTao");
                 Date ngaySua = rs.getDate("NgaySua");
                 int trangThai = rs.getInt("TrangThai");
-                
+
                 ChucVu chucVu = new ChucVu();
                 chucVu.setId(idCV);
                 chucVu.setMa(maCV);
                 chucVu.setTen(tenCV);
-                
+
                 NhanVien nhanVien = new NhanVien();
                 nhanVien.setId(id);
                 nhanVien.setMa(ma);
@@ -67,12 +68,13 @@ public class NhanVienRepository implements INhanVienRepository {
                 nhanVien.setNgaySinh(ngaySinh);
                 nhanVien.setSdt(sdt);
                 nhanVien.setDiaChi(diaChi);
+                nhanVien.setEmail(email);
                 nhanVien.setMatKhau(matKhau);
                 nhanVien.setNgayTao(ngayTao);
                 nhanVien.setNgaySua(ngaySua);
                 nhanVien.setTrangThai(trangThai);
-                nhanVien.setIdCV(chucVu+"");
-                
+                nhanVien.setIdCV(chucVu + "");
+
                 lstNhanVien.add(nhanVien);
             }
             rs.close();
@@ -83,12 +85,12 @@ public class NhanVienRepository implements INhanVienRepository {
             return null;
         }
     }
-    
-        @Override
+
+    @Override
     public NhanVien getTaiKhoan(String username) {
         List<NhanVien> lstNhanVien = getAll();
         for (NhanVien nhanVien : lstNhanVien) {
-            if(nhanVien.getMa().equals(username)){
+            if (nhanVien.getMa().equals(username)) {
                 return nhanVien;
             }
         }
@@ -97,7 +99,7 @@ public class NhanVienRepository implements INhanVienRepository {
 
     @Override
     public Integer them(NhanVien nhanVien) {
-        String sql = "Insert into NhanVien (idCV,Ma,Ten,tenDem,Ho,GioiTinh,NgaySinh,Sdt,DiaChi,MatKhau,NgayTao,NgaySua,TrangThai) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "Insert into NhanVien (idCV,Ma,Ten,tenDem,Ho,GioiTinh,NgaySinh,Sdt,DiaChi,Email,MatKhau,NgayTao,NgaySua,TrangThai) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement PS = con.prepareStatement(sql);
             PS.setObject(1, nhanVien.getIdCV());
@@ -109,10 +111,11 @@ public class NhanVienRepository implements INhanVienRepository {
             PS.setObject(7, nhanVien.getNgaySinh());
             PS.setObject(8, nhanVien.getSdt());
             PS.setObject(9, nhanVien.getDiaChi());
-            PS.setObject(10, nhanVien.getMatKhau());
-            PS.setObject(11, nhanVien.getNgayTao());
-            PS.setObject(12, nhanVien.getNgaySua());
-            PS.setObject(13, nhanVien.getTrangThai());
+            PS.setObject(10, nhanVien.getEmail());
+            PS.setObject(11, nhanVien.getMatKhau());
+            PS.setObject(12, nhanVien.getNgayTao());
+            PS.setObject(13, nhanVien.getNgaySua());
+            PS.setObject(14, nhanVien.getTrangThai());
             PS.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -122,7 +125,7 @@ public class NhanVienRepository implements INhanVienRepository {
 
     @Override
     public Integer sua(NhanVien nhanVien) {
-        String sql = "Update NhanVien Set idCV =?,Ten=?,tenDem=?,Ho=?,GioiTinh=?,NgaySinh=?,Sdt=?,DiaChi=?,MatKhau=?,NgayTao=?,NgaySua=?,TrangThai=? Where ma = ?";
+        String sql = "Update NhanVien Set idCV =?,Ten=?,tenDem=?,Ho=?,GioiTinh=?,NgaySinh=?,Sdt=?,DiaChi=?,Email=?,MatKhau=?,NgayTao=?,NgaySua=?,TrangThai=? Where ma = ?";
         try {
             PreparedStatement PS = con.prepareStatement(sql);
             PS.setObject(1, nhanVien.getIdCV());
@@ -133,18 +136,19 @@ public class NhanVienRepository implements INhanVienRepository {
             PS.setObject(6, nhanVien.getNgaySinh());
             PS.setObject(7, nhanVien.getSdt());
             PS.setObject(8, nhanVien.getDiaChi());
-            PS.setObject(9, nhanVien.getMatKhau());
-            PS.setObject(10, nhanVien.getNgayTao());
-            PS.setObject(11, nhanVien.getNgaySua());
-            PS.setObject(12, nhanVien.getTrangThai());
-            PS.setObject(13, nhanVien.getMa());
+            PS.setObject(9, nhanVien.getEmail());
+            PS.setObject(10, nhanVien.getMatKhau());
+            PS.setObject(11, nhanVien.getNgayTao());
+            PS.setObject(12, nhanVien.getNgaySua());
+            PS.setObject(13, nhanVien.getTrangThai());
+            PS.setObject(14, nhanVien.getMa());
             PS.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-    
+
     @Override
     public Integer xoa(String ma) {
         String sql = "Delete from NhanVien Where ma = ?";
@@ -157,12 +161,12 @@ public class NhanVienRepository implements INhanVienRepository {
         }
         return null;
     }
-    
+
     @Override
     public NhanVien getIdByTen(String ten) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     @Override
     public List<String> getChucVu() {
         List<String> list = new ArrayList<>();
@@ -176,7 +180,7 @@ public class NhanVienRepository implements INhanVienRepository {
         }
         return list;
     }
-    
+
     @Override
     public NhanVien checkTrungMa(String ma) {
         String sql = "Select * from Nhanvien where ma = ?";
@@ -195,12 +199,27 @@ public class NhanVienRepository implements INhanVienRepository {
                 Date ngaySinh = RS.getDate("NgaySinh");
                 String sdt = RS.getString("Sdt");
                 String diaChi = RS.getString("DiaChi");
+                String email = RS.getString("Email");
                 String matKhau = RS.getString("MatKhau");
                 Date ngayTao = RS.getDate("NgayTao");
                 Date ngaySua = RS.getDate("NgaySua");
                 Integer trangThai = RS.getInt("TrangThai");
-                NhanVien nhanVien = new NhanVien(id, chucVu, ma1, ten, tenDem, ho, gTinh, ngaySinh, diaChi, sdt, matKhau, ngayTao, ngaySua, trangThai);
-
+                NhanVien nhanVien = new NhanVien();
+                nhanVien.setId(id);
+                nhanVien.setMa(ma);
+                nhanVien.setTen(ten);
+                nhanVien.setTenDem(tenDem);
+                nhanVien.setHo(ho);
+                nhanVien.setGioiTinh(gTinh);
+                nhanVien.setNgaySinh(ngaySinh);
+                nhanVien.setSdt(sdt);
+                nhanVien.setDiaChi(diaChi);
+                nhanVien.setEmail(email);
+                nhanVien.setMatKhau(matKhau);
+                nhanVien.setNgayTao(ngayTao);
+                nhanVien.setNgaySua(ngaySua);
+                nhanVien.setTrangThai(trangThai);
+                nhanVien.setIdCV(chucVu + "");
                 return nhanVien;
             }
         } catch (Exception e) {

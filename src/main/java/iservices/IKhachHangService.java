@@ -29,7 +29,7 @@ public interface IKhachHangService {
 
     List<KhachHang> sapXepTenTang();
 
-    List<KhachHang> findTen(String ten1, String thanhPho1);
+  
 
-    List<String> gettenThanhPho();
+ 
 }

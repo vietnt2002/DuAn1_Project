@@ -7,7 +7,6 @@ package services;
 import domainmodels.KhachHang;
 import irepositories.IKhachHangRepository;
 import iservices.IKhachHangService;
-import java.util.ArrayList;
 import java.util.List;
 import repositories.KhachHangRepository;
 /**
@@ -43,10 +42,7 @@ public class KhachHangService implements IKhachHangService {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public List<KhachHang> findTen(String ten1, String thanhPho1) {
-        return ikhachHangRepo.findTen(ten1, thanhPho1);
-    }
+ 
 
     @Override
     public List<KhachHang> sapXepTenGiam() {
@@ -58,10 +54,7 @@ public class KhachHangService implements IKhachHangService {
         return ikhachHangRepo.sapXepTenTang();
     }
 
-    @Override
-    public List<String> gettenThanhPho() {
-        return ikhachHangRepo.gettenThanhPho();
-    }
+
 
     @Override
     public KhachHang checkTrungMa(String ma) {

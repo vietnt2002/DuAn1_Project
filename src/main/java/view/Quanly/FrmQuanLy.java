@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.io.File;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import view.ThuKho.JplNhapXuat;
 import views.FrmDangNhap;
 
 /**
@@ -20,11 +21,11 @@ public class FrmQuanLy extends javax.swing.JFrame {
     private String dir = null;
 
     public FrmQuanLy() {
-         String path = "src\\main\\java\\icon\\";
+        String path = "src\\main\\java\\icon\\";
         File file = new File(path);
         String absolutePath = file.getAbsolutePath();
         dir = absolutePath;
-        
+
         initComponents();
         setTitle("Quản lý");
         setLocationRelativeTo(null);
@@ -74,6 +75,8 @@ public class FrmQuanLy extends javax.swing.JFrame {
         lblDangXuat = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jplXuatNhap = new javax.swing.JPanel();
+        lblXuatNhap = new javax.swing.JLabel();
         jplContain = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -178,6 +181,22 @@ public class FrmQuanLy extends javax.swing.JFrame {
 
         jLabel5.setText("Quản lý");
 
+        jplXuatNhap.setLayout(new java.awt.GridLayout());
+
+        lblXuatNhap.setText("Quản lý xuất nhập");
+        lblXuatNhap.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblXuatNhapMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblXuatNhapMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblXuatNhapMouseExited(evt);
+            }
+        });
+        jplXuatNhap.add(lblXuatNhap);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -195,10 +214,10 @@ public class FrmQuanLy extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jplKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jplNhanvien, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jplThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jplKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                            .addComponent(jplNhanvien, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                            .addComponent(jplThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                            .addComponent(jplXuatNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(39, 39, 39))
                     .addComponent(lblDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -221,7 +240,9 @@ public class FrmQuanLy extends javax.swing.JFrame {
                 .addComponent(jplKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(jplThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
+                .addComponent(jplXuatNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addComponent(lblDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
@@ -308,6 +329,19 @@ public class FrmQuanLy extends javax.swing.JFrame {
         lblDangXuat.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblDangXuatMouseExited
 
+    private void lblXuatNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblXuatNhapMouseClicked
+        panel = new JplNhapXuat();
+        setPanel(panel);
+    }//GEN-LAST:event_lblXuatNhapMouseClicked
+
+    private void lblXuatNhapMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblXuatNhapMouseEntered
+        setColor(jplXuatNhap);
+    }//GEN-LAST:event_lblXuatNhapMouseEntered
+
+    private void lblXuatNhapMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblXuatNhapMouseExited
+        resetColor(jplXuatNhap);
+    }//GEN-LAST:event_lblXuatNhapMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -358,9 +392,11 @@ public class FrmQuanLy extends javax.swing.JFrame {
     private javax.swing.JPanel jplKhachHang;
     private javax.swing.JPanel jplNhanvien;
     private javax.swing.JPanel jplThongKe;
+    private javax.swing.JPanel jplXuatNhap;
     private javax.swing.JLabel lblDangXuat;
     private javax.swing.JLabel lblKhachHang;
     private javax.swing.JLabel lblNhanVien;
     private javax.swing.JLabel lblThongKe;
+    private javax.swing.JLabel lblXuatNhap;
     // End of variables declaration//GEN-END:variables
 }

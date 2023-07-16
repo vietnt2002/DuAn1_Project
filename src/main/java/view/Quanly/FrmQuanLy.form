@@ -65,11 +65,10 @@
                                       <Component id="jLabel5" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jplKhachHang" alignment="1" min="-2" pref="188" max="-2" attributes="0"/>
-                                  <Component id="jplNhanvien" min="-2" pref="188" max="-2" attributes="0"/>
-                                  <Component id="jplThongKe" alignment="1" min="-2" pref="188" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jplKhachHang" alignment="0" pref="188" max="32767" attributes="0"/>
+                              <Component id="jplNhanvien" alignment="0" pref="188" max="32767" attributes="0"/>
+                              <Component id="jplThongKe" alignment="0" pref="188" max="32767" attributes="0"/>
+                              <Component id="jplXuatNhap" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
@@ -99,7 +98,9 @@
                   <Component id="jplKhachHang" min="-2" pref="43" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="jplThongKe" min="-2" pref="48" max="-2" attributes="0"/>
-                  <EmptySpace pref="201" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="jplXuatNhap" min="-2" pref="45" max="-2" attributes="0"/>
+                  <EmptySpace pref="124" max="32767" attributes="0"/>
                   <Component id="lblDangXuat" min="-2" pref="27" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
@@ -254,6 +255,25 @@
             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd;"/>
           </Properties>
         </Component>
+        <Container class="javax.swing.JPanel" name="jplXuatNhap">
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+            <Property name="columns" type="int" value="0"/>
+            <Property name="rows" type="int" value="1"/>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="lblXuatNhap">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; xu&#x1ea5;t nh&#x1ead;p"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblXuatNhapMouseClicked"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblXuatNhapMouseEntered"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblXuatNhapMouseExited"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jplContain">
