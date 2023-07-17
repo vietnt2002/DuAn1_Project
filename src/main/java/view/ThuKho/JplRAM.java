@@ -73,6 +73,7 @@ public class JplRAM extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btgRAM = new javax.swing.ButtonGroup();
         pnlRAM = new javax.swing.JPanel();
         pnlRAMinfo = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
@@ -491,6 +492,7 @@ public class JplRAM extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btgRAM;
     private javax.swing.JButton btnAdd2;
     private javax.swing.JButton btnDelete2;
     private javax.swing.JButton btnEdit2;

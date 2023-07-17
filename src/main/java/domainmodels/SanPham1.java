@@ -10,33 +10,30 @@ import java.sql.Date;
  *
  * @author ADMIN
  */
-public class NSX {
+public class SanPham1 {
 
     private String id;
     private String ma;
     private String ten;
-    private String quocGia;
     private Date ngayTao;
     private Date ngaySua;
     private int trangThai;
 
-    public NSX() {
+    public SanPham1() {
     }
 
-    public NSX(String id, String ma, String ten, String quocGia, Date ngayTao, Date ngaySua, int trangThai) {
+    public SanPham1(String id, String ma, String ten, Date ngayTao, Date ngaySua, int trangThai) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
-        this.quocGia = quocGia;
         this.ngayTao = ngayTao;
         this.ngaySua = ngaySua;
         this.trangThai = trangThai;
     }
 
-    public NSX(String ma, String ten, String quocGia, Date ngayTao, Date ngaySua, int trangThai) {
+    public SanPham1(String ma, String ten, Date ngayTao, Date ngaySua, int trangThai) {
         this.ma = ma;
         this.ten = ten;
-        this.quocGia = quocGia;
         this.ngayTao = ngayTao;
         this.ngaySua = ngaySua;
         this.trangThai = trangThai;
@@ -64,14 +61,6 @@ public class NSX {
 
     public void setTen(String ten) {
         this.ten = ten;
-    }
-
-    public String getQuocGia() {
-        return quocGia;
-    }
-
-    public void setQuocGia(String quocGia) {
-        this.quocGia = quocGia;
     }
 
     public Date getNgayTao() {
@@ -108,10 +97,10 @@ public class NSX {
                 return "Không rõ";
         }
     }
-    
+
     @Override
     public String toString() {
-        return "NSX{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", quocGia=" + quocGia + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+        return "SanPham{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
 
 }

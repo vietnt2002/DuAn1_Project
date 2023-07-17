@@ -17,5 +17,4 @@ public interface INSXRepository {
     Integer them(NSX nsx);
     Integer sua(NSX nsx);
     Integer xoa(String ma);
-    NSX getIdByTen(String ten);
 }

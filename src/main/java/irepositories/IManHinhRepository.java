@@ -17,5 +17,4 @@ public interface IManHinhRepository {
     Integer them(ManHinh manHinh);
     Integer sua(ManHinh manHinh);
     Integer xoa(String ma);
-    ManHinh getIdByTen(String ten);
 }

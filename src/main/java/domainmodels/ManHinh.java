@@ -11,19 +11,29 @@ import java.sql.Date;
  * @author ADMIN
  */
 public class ManHinh {
+
     private String id;
     private String ma;
     private String doPhanGiai;
     private double inch;
     private Date ngayTao;
-    private String ngaySua;
+    private Date ngaySua;
     private int trangThai;
 
     public ManHinh() {
     }
 
-    public ManHinh(String id, String ma, String doPhanGiai, double inch, Date ngayTao, String ngaySua, int trangThai) {
+    public ManHinh(String id, String ma, String doPhanGiai, double inch, Date ngayTao, Date ngaySua, int trangThai) {
         this.id = id;
+        this.ma = ma;
+        this.doPhanGiai = doPhanGiai;
+        this.inch = inch;
+        this.ngayTao = ngayTao;
+        this.ngaySua = ngaySua;
+        this.trangThai = trangThai;
+    }
+
+    public ManHinh(String ma, String doPhanGiai, double inch, Date ngayTao, Date ngaySua, int trangThai) {
         this.ma = ma;
         this.doPhanGiai = doPhanGiai;
         this.inch = inch;
@@ -72,11 +82,11 @@ public class ManHinh {
         this.ngayTao = ngayTao;
     }
 
-    public String getNgaySua() {
+    public Date getNgaySua() {
         return ngaySua;
     }
 
-    public void setNgaySua(String ngaySua) {
+    public void setNgaySua(Date ngaySua) {
         this.ngaySua = ngaySua;
     }
 
@@ -88,9 +98,20 @@ public class ManHinh {
         this.trangThai = trangThai;
     }
 
+    public String getStatus(int trangThai) {
+        switch (trangThai) {
+            case 0:
+                return "Còn hàng";
+            case 1:
+                return "Hết hàng";
+            default:
+                return "Không rõ";
+        }
+    }
+
     @Override
     public String toString() {
         return "Manhinh{" + "id=" + id + ", ma=" + ma + ", doPhanGiai=" + doPhanGiai + ", inch=" + inch + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
-    
+
 }

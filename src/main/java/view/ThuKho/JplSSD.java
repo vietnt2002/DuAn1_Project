@@ -71,6 +71,7 @@ public class JplSSD extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btgSSD = new javax.swing.ButtonGroup();
         pnlSSD = new javax.swing.JPanel();
         pnlSSDinfo = new javax.swing.JPanel();
         jLabel35 = new javax.swing.JLabel();
@@ -489,6 +490,7 @@ public class JplSSD extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btgSSD;
     private javax.swing.JButton btnAdd3;
     private javax.swing.JButton btnDelete3;
     private javax.swing.JButton btnEdit3;

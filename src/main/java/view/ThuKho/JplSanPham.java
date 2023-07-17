@@ -69,6 +69,7 @@ public class JplSanPham extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btgSP = new javax.swing.ButtonGroup();
         pnlSP = new javax.swing.JPanel();
         pnlSPInfo = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
@@ -487,6 +488,7 @@ public class JplSanPham extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btgSP;
     private javax.swing.JButton btnAdd5;
     private javax.swing.JButton btnDelete5;
     private javax.swing.JButton btnEdit5;

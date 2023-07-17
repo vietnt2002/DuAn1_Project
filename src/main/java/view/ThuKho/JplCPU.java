@@ -70,6 +70,7 @@ public class JplCPU extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btgCPU = new javax.swing.ButtonGroup();
         pnlCPU = new javax.swing.JPanel();
         pnlCPUInfo = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
@@ -486,6 +487,7 @@ public class JplCPU extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btgCPU;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;

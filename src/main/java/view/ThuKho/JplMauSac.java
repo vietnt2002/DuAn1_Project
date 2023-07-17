@@ -33,7 +33,8 @@ public class JplMauSac extends javax.swing.JPanel {
         initComponents();
         modelMauSac = (DefaultTableModel) tblMauSac.getModel();
     }
-  public void filltableMS() {
+
+    public void filltableMS() {
         try {
             modelMauSac.setRowCount(0);
             lstMS = svcMS.getAll();
@@ -46,6 +47,7 @@ public class JplMauSac extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
+
     public void showdetailMS(int index) {
         try {
             txtMa4.setText(lstMS.get(index).getMa());
@@ -61,6 +63,7 @@ public class JplMauSac extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,6 +73,7 @@ public class JplMauSac extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btgMS = new javax.swing.ButtonGroup();
         pnlMauSac = new javax.swing.JPanel();
         pnlMauSacinfo = new javax.swing.JPanel();
         jLabel37 = new javax.swing.JLabel();
@@ -488,6 +492,7 @@ public class JplMauSac extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btgMS;
     private javax.swing.JButton btnAdd4;
     private javax.swing.JButton btnDelete4;
     private javax.swing.JButton btnEdit4;

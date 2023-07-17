@@ -73,6 +73,7 @@ public class JplDongSP extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btgDSP = new javax.swing.ButtonGroup();
         pnlDongSP = new javax.swing.JPanel();
         pnlDongInfo = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
@@ -491,6 +492,7 @@ public class JplDongSP extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btgDSP;
     private javax.swing.JButton btnAdd1;
     private javax.swing.JButton btnDelete1;
     private javax.swing.JButton btnEdit1;
