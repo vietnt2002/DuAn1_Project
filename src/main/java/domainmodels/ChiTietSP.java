@@ -12,6 +12,7 @@ import java.sql.Date;
  * @author ADMIN
  */
 public class ChiTietSP {
+
     private String id;
     private String idSP;
     private String idNSX;
@@ -37,6 +38,27 @@ public class ChiTietSP {
 
     public ChiTietSP(String id, String idSP, String idNSX, String idMauSac, String idDongSP, String idCPU, String idRam, String idSSD, String idManHinh, String idChiTietHD, String idBH, double canNang, String moTa, int soLuongTon, BigDecimal giaNhap, BigDecimal giaBan, Date ngayTao, Date ngaySua, int trangThai) {
         this.id = id;
+        this.idSP = idSP;
+        this.idNSX = idNSX;
+        this.idMauSac = idMauSac;
+        this.idDongSP = idDongSP;
+        this.idCPU = idCPU;
+        this.idRam = idRam;
+        this.idSSD = idSSD;
+        this.idManHinh = idManHinh;
+        this.idChiTietHD = idChiTietHD;
+        this.idBH = idBH;
+        this.canNang = canNang;
+        this.moTa = moTa;
+        this.soLuongTon = soLuongTon;
+        this.giaNhap = giaNhap;
+        this.giaBan = giaBan;
+        this.ngayTao = ngayTao;
+        this.ngaySua = ngaySua;
+        this.trangThai = trangThai;
+    }
+
+    public ChiTietSP(String idSP, String idNSX, String idMauSac, String idDongSP, String idCPU, String idRam, String idSSD, String idManHinh, String idChiTietHD, String idBH, double canNang, String moTa, int soLuongTon, BigDecimal giaNhap, BigDecimal giaBan, Date ngayTao, Date ngaySua, int trangThai) {
         this.idSP = idSP;
         this.idNSX = idNSX;
         this.idMauSac = idMauSac;
@@ -209,9 +231,20 @@ public class ChiTietSP {
         this.trangThai = trangThai;
     }
 
+    public String getStatus(int trangThai) {
+        switch (trangThai) {
+            case 0:
+                return "Còn hàng";
+            case 1:
+                return "Hết hàng";
+            default:
+                return "Không rõ";
+        }
+    }
+
     @Override
     public String toString() {
         return "ChiTietSP{" + "id=" + id + ", idSP=" + idSP + ", idNSX=" + idNSX + ", idMauSac=" + idMauSac + ", idDongSP=" + idDongSP + ", idCPU=" + idCPU + ", idRam=" + idRam + ", idSSD=" + idSSD + ", idManHinh=" + idManHinh + ", idChiTietHD=" + idChiTietHD + ", idBH=" + idBH + ", canNang=" + canNang + ", moTa=" + moTa + ", soLuongTon=" + soLuongTon + ", giaNhap=" + giaNhap + ", giaBan=" + giaBan + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
-    
+
 }

@@ -7,6 +7,7 @@ package irepositories;
 import domainmodels.CPU;
 import domainmodels.ChiTietSP;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -14,8 +15,17 @@ import java.util.List;
  */
 public interface IChiTietSPRepository {
     List<ChiTietSP> getAll();
-    Integer them(ChiTietSP chiTietSP);
-    Integer sua(ChiTietSP chiTietSP);
+    Integer them(ChiTietSP sp);
+    Integer sua(ChiTietSP sp,String id);
     Integer xoa(String ma);
-    ChiTietSP getIdByTen(String ten);
+    Map<String, String> hashMapTenSp();
+    Map<String, String> hashMapNoiSx();
+    Map<String, String> hashMapMauSac();
+    Map<String, String> hashMapDongSp();
+    Map<String, String> hashMapManHinh();
+    Map<String, String> hashMapCPU();
+    Map<String, String> hashMapRAM();
+    Map<String, String> hashMapSSD();
+    Map<String, String> hashMapCTHD();
+    Map<String, String> hashMapBaoHanh();
 }

@@ -5,17 +5,34 @@
 package iservices;
 
 import domainmodels.ChiTietSP;
+import domainmodels.ChiTietSPView;
 import irepositories.*;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author ADMIN
  */
 public interface IChiTietSPService {
-    List<ChiTietSP> getAll();
-    Integer them(ChiTietSP chiTietSP);
-    Integer sua(ChiTietSP chiTietSP);
+    List<ChiTietSPView> getAll(Map<String, String> TenSp,
+         Map<String, String> NSX, Map<String, String> MauSac ,
+         Map<String, String> DongSp, Map<String, String> CPU, Map<String, String> RAM, Map<String, String> SSD, Map<String, String> ManHinh, Map<String, String> CTHD, Map<String, String> BaoHanh);
+    Integer them(ChiTietSPView sp, Map<String, String> TenSp,
+         Map<String, String> NSX, Map<String, String> MauSac ,
+         Map<String, String> DongSp, Map<String, String> CPU, Map<String, String> RAM, Map<String, String> SSD, Map<String, String> ManHinh, Map<String, String> CTHD, Map<String, String> BaoHanh);
+    Integer sua(ChiTietSPView sp,Map<String, String> TenSp,
+         Map<String, String> NSX, Map<String, String> MauSac ,
+         Map<String, String> DongSp, Map<String, String> CPU, Map<String, String> RAM, Map<String, String> SSD, Map<String, String> ManHinh, Map<String, String> CTHD, Map<String, String> BaoHanh, String id);
     Integer xoa(String ma);
-    ChiTietSP getIdByTen(String ten);
+    Map<String, String> hashMapTenSp();
+    Map<String, String> hashMapNoiSx();
+    Map<String, String> hashMapMauSac();
+    Map<String, String> hashMapDongSp();
+    Map<String, String> hashMapManHinh();
+    Map<String, String> hashMapCPU();
+    Map<String, String> hashMapRAM();
+    Map<String, String> hashMapSSD();
+    Map<String, String> hashMapCTHD();
+    Map<String, String> hashMapBaoHanh();
 }

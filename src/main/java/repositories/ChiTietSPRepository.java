@@ -4,7 +4,6 @@
  */
 package repositories;
 
-import domainmodels.ChiTietSP;
 import irepositories.IChiTietSPRepository;
 import java.math.BigDecimal;
 import java.util.List;
@@ -13,6 +12,36 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import utilities.DBConnection;
+import irepositories.IDongSPRepository;
+import irepositories.IManHinhRepository;
+import irepositories.IMauSacRepository;
+import irepositories.ICPURepository;
+import irepositories.IRAMRepository;
+import irepositories.INSXRepository;
+import irepositories.ISSDRepository;
+import irepositories.ISanPhamRepository;
+import irepositories.IChiTietHDRepository;
+import irepositories.IBaoHanhRepository;
+import domainmodels.ChiTietSP;
+import domainmodels.DongSP;
+import domainmodels.ManHinh;
+import domainmodels.MauSac;
+import domainmodels.CPU;
+import domainmodels.RAM;
+import domainmodels.NSX;
+import domainmodels.SSD;
+import domainmodels.SanPham;
+import domainmodels.ChiTietHD;
+import domainmodels.BaoHanh;
+import java.math.BigDecimal;
+import java.util.List;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+import utilities.ULHelper;
 
 /**
  *
@@ -20,71 +49,295 @@ import utilities.DBConnection;
  */
 public class ChiTietSPRepository implements IChiTietSPRepository {
 
+    private final IDongSPRepository RepositoryDongSp = new DongSPRepository();
+    private final IMauSacRepository RepositoryMau = new MauSacRepository();
+    private final IManHinhRepository RepositoryMH = new ManHinhRepository();
+    private final ICPURepository RepositoryCPU = new CPURepository();
+    private final IRAMRepository RepositoryRAM = new RAMRepository();
+    private final ISSDRepository RepositorySSD = new SSDRepository();
+    private final INSXRepository RepositoryNoiSx = new NSXRepository();
+    private final IChiTietHDRepository RepositoryCTHD = (IChiTietHDRepository) new ChiTietHDRepository();
+    private final IBaoHanhRepository RepositoryBH = (IBaoHanhRepository) new BaoHanhRepository();
+    private final ISanPhamRepository RepositoryTenSp = new SanPhamRepository();
+    private final Connection con = DBConnection.getConnection();
+
     @Override
     public List<ChiTietSP> getAll() {
         try {
-            List<ChiTietSP> lstChiTietSP = new ArrayList<>();
-            Connection connection = DBConnection.getConnection();
-            String sql = "SELECT I.IMei AS 'IMei', SP.Id AS 'IdSP', SP.Ten AS 'TenSP', MS.Id AS 'IdMauSac', MS.Ten AS 'MauSac', RAM.Id AS 'IdRAM', RAM.Ten AS 'RAM', SSD.Id AS 'IdSSD', SSD.Ten AS 'SSD', CPU.Id AS 'IdCPU', CPU.Ten AS 'CPU', MH.Id AS 'IdMH', MH.DoPhanGiai AS 'DoPhanGiai', MH.Inch AS 'Inch', CTSP.GiaBan AS 'GiaBan', BH.Id AS 'IdBH', BH.SoThangBH AS 'BaoHanh', I.TrangThai AS 'TrangThai'\n" +
-                        "FROM dbo.ChiTietSP CTSP JOIN dbo.IMei I\n" +
-                        "ON I.IdChiTietSP = CTSP.Id JOIN dbo.SanPham SP\n" +
-                        "ON SP.Id = CTSP.IdSP JOIN dbo.RAM \n" +
-                        "ON RAM.Id = CTSP.IdRAM JOIN dbo.SSD\n" +
-                        "ON SSD.Id = CTSP.IdSSD JOIN dbo.MauSac MS\n" +
-                        "ON MS.Id = CTSP.IdMauSac JOIN dbo.CPU\n" +
-                        "ON CPU.Id = CTSP.IdCPU JOIN dbo.ManHinh MH\n" +
-                        "ON MH.Id = CTSP.IdManHinh JOIN dbo.BaoHanh BH\n" +
-                        "ON BH.Id = CTSP.IdBH\n" +
-                        "WHERE I.TrangThai = 0";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            List<ChiTietSP> lst = new ArrayList<>();
+            String lenh = "select id,IdSP,IdNsx,IdMauSac,IdDongSP,idCPU,idRam,idSSD,idManHinh,idChiTietHD,idBH,"
+                    + "canNang,moTa,SoLuongTon,GiaNhap,GiaBan,ngayTao,ngaySua,trangThai from ChiTietSP";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(lenh);
             while (rs.next()) {
-                String imei = rs.getString("IMei");
-                String idSP = rs.getString("IdSP");
-                String tenSP = rs.getString("TenSP");
-                String idMauSac = rs.getString("IdMauSac");
-                String tenMauSac = rs.getString("MauSac");
-                String idRAM = rs.getString("IdRAM");
-                String tenRAM = rs.getString("RAM");
-                String idSSD = rs.getString("IdSSD");
-                String tenSSD = rs.getString("SSD");
-                String idCPU = rs.getString("IdCPU");
-                String tenCPU = rs.getString("CPU");
-                String idMH = rs.getString("IdMH");
-                String doPhanGiai = rs.getString("DoPhanGiai");
-                float inch = rs.getFloat("Inch");
-                BigDecimal giaBan = rs.getBigDecimal("GiaBan");
-                String idBH = rs.getString("IdBBH");
-                int soThangBH = rs.getInt("BaoHanh");
-                int trangThai = rs.getInt("TrangThai");
+                lst.add(new ChiTietSP(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getDouble(12), rs.getString(13), rs.getInt(14), rs.getBigDecimal(15), rs.getBigDecimal(16), rs.getDate(17), rs.getDate(18), rs.getInt(19)));
             }
-            rs.close();
-            ps.close();
-            connection.close();
-            return lstChiTietSP;
+            return lst;
         } catch (Exception e) {
-            return null;
         }
+        return null;
     }
 
     @Override
-    public Integer them(ChiTietSP chiTietSP) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Integer them(ChiTietSP sp) {
+        try {
+            String lenh = "insert into ChiTietSP(IdSP,IdNsx,IdMauSac,IdDongSP,idCPU,idRam,idSSD,idManHinh,idChiTietHD,idBH,"
+                    + "canNang,moTa,SoLuongTon,GiaNhap,GiaBan,ngayTao,ngaySua,trangThai) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement st = con.prepareStatement(lenh);
+            if (sp.getIdSP().equalsIgnoreCase("null")) {
+                st.setString(1, null);
+            } else {
+                st.setString(1, sp.getIdSP());
+            }
+            if (sp.getIdNSX().equalsIgnoreCase("null")) {
+                st.setString(2, null);
+            } else {
+                st.setString(2, sp.getIdNSX());
+            }
+            if (sp.getIdMauSac().equalsIgnoreCase("null")) {
+                st.setString(3, null);
+            } else {
+                st.setString(3, sp.getIdMauSac());
+            }
+            if (sp.getIdDongSP().equalsIgnoreCase("null")) {
+                st.setString(4, null);
+            } else {
+                st.setString(4, sp.getIdDongSP());
+            }
+            if (sp.getIdCPU().equalsIgnoreCase("null")) {
+                st.setString(5, null);
+            } else {
+                st.setString(5, sp.getIdCPU());
+            }
+            if (sp.getIdRam().equalsIgnoreCase("null")) {
+                st.setString(6, null);
+            } else {
+                st.setString(6, sp.getIdRam());
+            }
+            if (sp.getIdSSD().equalsIgnoreCase("null")) {
+                st.setString(7, null);
+            } else {
+                st.setString(7, sp.getIdSSD());
+            }
+            if (sp.getIdManHinh().equalsIgnoreCase("null")) {
+                st.setString(8, null);
+            } else {
+                st.setString(8, sp.getIdManHinh());
+            }
+            if (sp.getIdChiTietHD().equalsIgnoreCase("null")) {
+                st.setString(9, null);
+            } else {
+                st.setString(9, sp.getIdChiTietHD());
+            }
+            if (sp.getIdBH().equalsIgnoreCase("null")) {
+                st.setString(10, null);
+            } else {
+                st.setString(10, sp.getIdBH());
+            }
+            st.setDouble(11, sp.getCanNang());
+            st.setString(12, sp.getMoTa());
+            st.setInt(13, sp.getSoLuongTon());
+            st.setBigDecimal(14, sp.getGiaNhap());
+            st.setBigDecimal(15, sp.getGiaBan());
+            st.setDate(16, sp.getNgayTao());
+            st.setDate(17, sp.getNgaySua());
+            st.setInt(18, sp.getTrangThai());
+
+            return st.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 
     @Override
-    public Integer sua(ChiTietSP chiTietSP) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Integer sua(ChiTietSP sp, String id) {
+        try {
+            java.util.UUID idCt = UUID.fromString(id);
+            String lenh = "update ChiTietSP set IdSP=?,IdNsx=?,IdMauSac=?,IdDongSP=?,idCPU=?,idRam=?,idSSD=?,idManHinh=?,idChiTietHD=?,idBH=?,"
+                    + "NamBH=?,MoTa=?,SoLuongTon=?,GiaNhap=?,GiaBan=?,ngayTao=?,ngaySua=?,trangThai=? where id=?";
+            PreparedStatement st = con.prepareStatement(lenh);
+            if (sp.getIdSP().equalsIgnoreCase("null")) {
+                st.setString(1, null);
+            } else {
+                st.setString(1, sp.getIdSP());
+            }
+            if (sp.getIdNSX().equalsIgnoreCase("null")) {
+                st.setString(2, null);
+            } else {
+                st.setString(2, sp.getIdNSX());
+            }
+            if (sp.getIdMauSac().equalsIgnoreCase("null")) {
+                st.setString(3, null);
+            } else {
+                st.setString(3, sp.getIdMauSac());
+            }
+            if (sp.getIdDongSP().equalsIgnoreCase("null")) {
+                st.setString(4, null);
+            } else {
+                st.setString(4, sp.getIdDongSP());
+            }
+            if (sp.getIdCPU().equalsIgnoreCase("null")) {
+                st.setString(5, null);
+            } else {
+                st.setString(5, sp.getIdCPU());
+            }
+            if (sp.getIdRam().equalsIgnoreCase("null")) {
+                st.setString(6, null);
+            } else {
+                st.setString(6, sp.getIdRam());
+            }
+            if (sp.getIdSSD().equalsIgnoreCase("null")) {
+                st.setString(7, null);
+            } else {
+                st.setString(7, sp.getIdSSD());
+            }
+            if (sp.getIdManHinh().equalsIgnoreCase("null")) {
+                st.setString(8, null);
+            } else {
+                st.setString(8, sp.getIdManHinh());
+            }
+            if (sp.getIdChiTietHD().equalsIgnoreCase("null")) {
+                st.setString(9, null);
+            } else {
+                st.setString(9, sp.getIdChiTietHD());
+            }
+            if (sp.getIdBH().equalsIgnoreCase("null")) {
+                st.setString(10, null);
+            } else {
+                st.setString(10, sp.getIdBH());
+            }
+            st.setDouble(11, sp.getCanNang());
+            st.setString(12, sp.getMoTa());
+            st.setInt(13, sp.getSoLuongTon());
+            st.setBigDecimal(14, sp.getGiaNhap());
+            st.setBigDecimal(15, sp.getGiaBan());
+            st.setDate(16, sp.getNgayTao());
+            st.setDate(17, sp.getNgaySua());
+            st.setInt(18, sp.getTrangThai());
+            st.setObject(19, idCt);
+
+            return st.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 
     @Override
     public Integer xoa(String ma) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            java.util.UUID id = UUID.fromString(ma);
+            String lenh = "delete from chitietsp where id =?";
+            PreparedStatement st = con.prepareStatement(lenh);
+            st.setObject(1, id);
+            return st.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
+
     }
 
     @Override
-    public ChiTietSP getIdByTen(String ten) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Map<String, String> hashMapTenSp() {
+        Map<String, String> tenSp = new HashMap<>();
+        List<SanPham> lst = RepositoryTenSp.getAll();
+        for (SanPham a : lst) {
+            tenSp.put(a.getId(), a.getTen());
+        }
+        return tenSp;
+    }
+
+    @Override
+    public Map<String, String> hashMapNoiSx() {
+        Map<String, String> noiSx = new HashMap<>();
+        List<NSX> lst = RepositoryNoiSx.getAll();
+        for (NSX a : lst) {
+            noiSx.put(a.getId(), a.getTen());
+        }
+        return noiSx;
+    }
+
+    @Override
+    public Map<String, String> hashMapMauSac() {
+        Map<String, String> mauSac = new HashMap<>();
+        List<MauSac> lst = RepositoryMau.getAll();
+        for (MauSac a : lst) {
+            mauSac.put(a.getId(), a.getTen());
+        }
+        return mauSac;
+    }
+
+    @Override
+    public Map<String, String> hashMapDongSp() {
+
+        Map<String, String> dongSp = new HashMap<>();
+        List<DongSP> lst = RepositoryDongSp.getAll();
+        for (DongSP a : lst) {
+            dongSp.put(a.getId(), a.getTen());
+        }
+        return dongSp;
+    }
+
+    @Override
+    public Map<String, String> hashMapManHinh() {
+        Map<String, String> manhinh = new HashMap<>();
+        List<ManHinh> lst = RepositoryMH.getAll();
+        for (ManHinh a : lst) {
+            manhinh.put(a.getId(), a.getDoPhanGiai());
+        }
+        return manhinh;
+    }
+
+    @Override
+    public Map<String, String> hashMapCPU() {
+        Map<String, String> cpu = new HashMap<>();
+        List<CPU> lst = RepositoryCPU.getAll();
+        for (CPU a : lst) {
+            cpu.put(a.getId(), a.getTen());
+        }
+        return cpu;
+    }
+
+    @Override
+    public Map<String, String> hashMapRAM() {
+        Map<String, String> ram = new HashMap<>();
+        List<RAM> lst = RepositoryRAM.getAll();
+        for (RAM a : lst) {
+            ram.put(a.getId(), a.getTen());
+        }
+        return ram;
+    }
+
+    @Override
+    public Map<String, String> hashMapSSD() {
+        Map<String, String> ssd = new HashMap<>();
+        List<SSD> lst = RepositorySSD.getAll();
+        for (SSD a : lst) {
+            ssd.put(a.getId(), a.getTen());
+        }
+        return ssd;
+    }
+
+    @Override
+    public Map<String, String> hashMapCTHD() {
+        Map<String, String> cthd = new HashMap<>();
+        List<ChiTietHD> lst = RepositoryCTHD.getAll();
+        for (ChiTietHD a : lst) {
+            cthd.put(a.getIdHD(), a.getIdHD());
+        }
+        return cthd;
+    }
+
+    @Override
+    public Map<String, String> hashMapBaoHanh() {
+        Map<String, String> baohanh = new HashMap<>();
+        List<BaoHanh> lst = RepositoryBH.getAll();
+        for (BaoHanh a : lst) {
+            baohanh.put(a.getId(), a.getMa());
+        }
+        return baohanh;
     }
 
 }
