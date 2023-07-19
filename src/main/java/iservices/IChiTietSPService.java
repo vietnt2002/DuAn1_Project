@@ -15,6 +15,14 @@ import java.util.Map;
  * @author ADMIN
  */
 public interface IChiTietSPService {
+    List<ChiTietSP> getAllCTSP();
+    List<ChiTietSP> getAllByDongSP(String tenDongSP);
+    Integer themCTSP(ChiTietSP chiTietSP);
+    Integer suaCTSP(ChiTietSP chiTietSP);
+    Integer xoaCTSP(String ma);
+    
+    
+    ChiTietSP getIdByMa(String ma);
     List<ChiTietSPView> getAll(Map<String, String> TenSp,
          Map<String, String> NSX, Map<String, String> MauSac ,
          Map<String, String> DongSp, Map<String, String> CPU, Map<String, String> RAM, Map<String, String> SSD, Map<String, String> ManHinh, Map<String, String> BaoHanh);

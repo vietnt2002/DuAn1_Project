@@ -24,7 +24,7 @@ public class KhachHangService implements IKhachHangService {
 
     @Override
     public Integer them(KhachHang khachHang) {
-        return ikhachHangRepo.them(khachHang);
+            return ikhachHangRepo.them(khachHang);
     }
 
     @Override
@@ -38,11 +38,14 @@ public class KhachHangService implements IKhachHangService {
     }
 
     @Override
-    public KhachHang getIdByTen(String ten) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String getIdBySDT(String sdt) {
+        return ikhachHangRepo.getIdBySDT(sdt);
     }
-
- 
+    
+    @Override
+    public String getIdByMa(String ma) {
+        return ikhachHangRepo.getIdByMa(ma);
+    }
 
     @Override
     public List<KhachHang> sapXepTenGiam() {
@@ -69,6 +72,11 @@ public class KhachHangService implements IKhachHangService {
     public KhachHang getHoTenByMa(String ma) {
         return ikhachHangRepo.getHoTenByMa(ma);
     }
-    
+
+    @Override
+    public KhachHang getThongTinBySdtOrEmail(String sdtOrEmail) {
+        return ikhachHangRepo.getThongTinBySdtOrEmail(sdtOrEmail);
+    }
+
 }
 

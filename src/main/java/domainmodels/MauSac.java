@@ -100,7 +100,7 @@ public class MauSac {
 
     @Override
     public String toString() {
-        return "Mausac{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+        return ten;
     }
 
 }

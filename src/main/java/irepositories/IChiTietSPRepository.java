@@ -15,9 +15,13 @@ import java.util.Map;
  */
 public interface IChiTietSPRepository {
     List<ChiTietSP> getAll();
-    Integer them(ChiTietSP sp);
-    Integer sua(ChiTietSP sp,String id);
+    List<ChiTietSP> getAllByDongSP(String tenDongSP);
+    Integer them(ChiTietSP chiTietSP);
+    Integer suaCTSP(ChiTietSP chiTietSP);
     Integer xoa(String ma);
+    ChiTietSP getIdByMa(String ma);
+    
+    Integer sua(ChiTietSP sp,String id);
     Map<String, String> hashMapTenSp();
     Map<String, String> hashMapNoiSx();
     Map<String, String> hashMapMauSac();

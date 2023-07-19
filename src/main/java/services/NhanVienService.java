@@ -45,8 +45,8 @@ public class NhanVienService implements INhanVienService {
     }
 
     @Override
-    public NhanVien getIdByTen(String ten) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String getIdByTen(String ma) {
+        return iNhanVienRepo.getIdByTen(ma);
     }
 
     @Override

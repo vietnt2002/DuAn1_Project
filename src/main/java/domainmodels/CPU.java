@@ -99,7 +99,7 @@ public class CPU {
 
     @Override
     public String toString() {
-        return "CPU{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+        return ten;
     }
     
 }

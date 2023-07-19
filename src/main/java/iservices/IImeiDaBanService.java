@@ -17,5 +17,6 @@ public interface IImeiDaBanService {
     Integer them(ImeiDaBan imeiDaBan);
     Integer sua(ImeiDaBan imeiDaBan);
     Integer xoa(String ma);
-    ImeiDaBan getIdByTen(String ten);
+    Integer xoaAll(String idChiTietHD);
+    ImeiDaBan getIdByMa(String ma);
 }

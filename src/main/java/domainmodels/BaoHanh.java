@@ -100,7 +100,7 @@ public class BaoHanh {
 
     @Override
     public String toString() {
-        return "BaoHanh{" + "id=" + id + ", ma=" + ma + ", soThangBH=" + soThangBH + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+        return soThangBH+"";
     }
 
 }

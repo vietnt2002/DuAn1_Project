@@ -29,7 +29,7 @@ public class HoaDonService implements IHoaDonService{
     
     @Override
     public Integer them(HoaDon hoaDon) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return hoaDonRepo.them(hoaDon);
     }
 
     @Override
@@ -43,8 +43,8 @@ public class HoaDonService implements IHoaDonService{
     }
 
     @Override
-    public HoaDon getIdByTen(String ten) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String getIdByMa(String ma) {
+        return hoaDonRepo.getIdByMa(ma);
     }
   
 }

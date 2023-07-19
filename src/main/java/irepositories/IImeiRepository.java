@@ -14,8 +14,9 @@ import java.util.List;
  */
 public interface IImeiRepository {
     List<Imei> getAll();
+    List<Imei> getAllByIdCtsp(String idCtsp);
     Integer them(Imei imei);
     Integer sua(Imei imei);
     Integer xoa(String ma);
-    Imei getIdByTen(String ten);
+    Imei getIdByIMei(String imei);
 }

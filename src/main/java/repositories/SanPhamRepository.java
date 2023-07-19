@@ -4,6 +4,7 @@
  */
 package repositories;
 
+import domainmodels.KhachHang;
 import domainmodels.SanPham;
 import irepositories.ISanPhamRepository;
 import java.sql.Connection;
@@ -85,5 +86,25 @@ public class SanPhamRepository implements ISanPhamRepository {
         } catch (Exception e) {
         }
         return -1;
+    }
+
+    @Override
+    public String getIdByMa(String ma) {
+        try {
+            String idSP = null;
+            SanPham sanPham = new SanPham();
+            Connection connection = DBConnection.getConnection();
+            String sql = "SELECT Id FROM dbo.SanPham WHERE Ma = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, ma);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                idSP = rs.getString("Id");
+                sanPham.setId(idSP);
+            }
+            return idSP;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

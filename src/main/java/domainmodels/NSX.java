@@ -111,7 +111,7 @@ public class NSX {
     
     @Override
     public String toString() {
-        return "NSX{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", quocGia=" + quocGia + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+        return ten + " "+ quocGia;
     }
 
 }

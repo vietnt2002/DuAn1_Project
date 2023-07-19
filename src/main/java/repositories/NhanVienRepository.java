@@ -163,8 +163,23 @@ public class NhanVienRepository implements INhanVienRepository {
     }
 
     @Override
-    public NhanVien getIdByTen(String ten) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String getIdByTen(String ma) {
+        try {
+            String idNV = null;
+            NhanVien nhanVien = new NhanVien();
+            Connection connection = DBConnection.getConnection();
+            String sql = "SELECT Id FROM dbo.NhanVien WHERE Ma = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, ma);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                idNV = rs.getString("Id");
+                nhanVien.setId(idNV);
+            }
+            return idNV;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override

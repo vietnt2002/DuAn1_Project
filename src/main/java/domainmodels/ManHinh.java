@@ -5,6 +5,7 @@
 package domainmodels;
 
 import java.sql.Date;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -111,7 +112,9 @@ public class ManHinh {
 
     @Override
     public String toString() {
-        return "Manhinh{" + "id=" + id + ", ma=" + ma + ", doPhanGiai=" + doPhanGiai + ", inch=" + inch + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+        DecimalFormat dmf = new DecimalFormat("#.#");
+        String inchfm = dmf.format(inch);
+        return inchfm+" Inch "+doPhanGiai;
     }
 
 }

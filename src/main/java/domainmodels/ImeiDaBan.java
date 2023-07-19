@@ -13,7 +13,7 @@ import java.sql.Date;
 public class ImeiDaBan {
     private String id;
     private String imei;
-    private String idChiTietSP;
+    private String idChiTietHD;
     private Date ngayBan;
     private Date ngayTao;
     private Date ngaySua;
@@ -22,10 +22,10 @@ public class ImeiDaBan {
     public ImeiDaBan() {
     }
 
-    public ImeiDaBan(String id, String imei, String idChiTietSP, Date ngayBan, Date ngayTao, Date ngaySua, int trangThai) {
+    public ImeiDaBan(String id, String imei, String idChiTietHD, Date ngayBan, Date ngayTao, Date ngaySua, int trangThai) {
         this.id = id;
         this.imei = imei;
-        this.idChiTietSP = idChiTietSP;
+        this.idChiTietHD = idChiTietHD;
         this.ngayBan = ngayBan;
         this.ngayTao = ngayTao;
         this.ngaySua = ngaySua;
@@ -48,12 +48,12 @@ public class ImeiDaBan {
         this.imei = imei;
     }
 
-    public String getIdChiTietSP() {
-        return idChiTietSP;
+    public String getIdChiTietHD() {
+        return idChiTietHD;
     }
 
-    public void setIdChiTietSP(String idChiTietSP) {
-        this.idChiTietSP = idChiTietSP;
+    public void setIdChiTietHD(String idChiTietHD) {
+        this.idChiTietHD = idChiTietHD;
     }
 
     public Date getNgayBan() {
@@ -90,7 +90,7 @@ public class ImeiDaBan {
 
     @Override
     public String toString() {
-        return "ImeiDaBan{" + "id=" + id + ", imei=" + imei + ", idChiTietSP=" + idChiTietSP + ", ngayBan=" + ngayBan + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+        return "ImeiDaBan{" + "id=" + id + ", imei=" + imei + ", idChiTietHD=" + idChiTietHD + ", ngayBan=" + ngayBan + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
-    
+
 }

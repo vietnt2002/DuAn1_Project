@@ -51,7 +51,8 @@ public class KhachHangRepository implements IKhachHangRepository {
 
     @Override
     public Integer them(KhachHang khachHang) {
-        String sql = "Insert into KhachHang (Ma,Ten,tenDem,Ho,NgaySinh,Sdt,DiaChi,Email,NgayTao,NgaySua) values (?,?,?,?,?,?,?,?,?,?)";
+        Integer result = 0;
+        String sql = "Insert into KhachHang (Ma,Ten,tenDem,Ho,NgaySinh,Sdt,DiaChi,Email) values (?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement PS = con.prepareStatement(sql);
             PS.setObject(1, khachHang.getMa());
@@ -62,13 +63,13 @@ public class KhachHangRepository implements IKhachHangRepository {
             PS.setObject(6, khachHang.getSdt());
             PS.setObject(7, khachHang.getDiaChi());
             PS.setObject(8, khachHang.getEmail());
-            PS.setObject(9, khachHang.getNgayTao());
-            PS.setObject(10, khachHang.getNgaySua());
-            PS.executeUpdate();
+            result = PS.executeUpdate();
+
+            return result;
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 
     @Override
@@ -105,9 +106,43 @@ public class KhachHangRepository implements IKhachHangRepository {
     }
 
     @Override
-    public KhachHang getIdByTen(String ten) {
-        String sql = "Select Ten from KhachHang Where Ma = ?";
-        return null;
+    public String getIdBySDT(String sdt) {
+        try {
+            String idKH = null;
+            KhachHang khachHang = new KhachHang();
+            Connection connection = DBConnection.getConnection();
+            String sql = "SELECT Id FROM dbo.KhachHang WHERE Sdt = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, sdt);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                idKH = rs.getString("Id");
+                khachHang.setId(idKH);
+            }
+            return idKH;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    @Override
+    public String getIdByMa(String ma) {
+        try {
+            String idKH = null;
+            KhachHang khachHang = new KhachHang();
+            Connection connection = DBConnection.getConnection();
+            String sql = "SELECT Id FROM dbo.KhachHang WHERE Ma = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, ma);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                idKH = rs.getString("Id");
+                khachHang.setId(idKH);
+            }
+            return idKH;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override
@@ -196,7 +231,7 @@ public class KhachHangRepository implements IKhachHangRepository {
         List<KhachHang> listKhachHang = new ArrayList<>();
         String sql = "Select * from KhachHang Where ten Like N'%" + timTen + "%'";
         try {
-            PreparedStatement PS = con.prepareStatement(sql);     
+            PreparedStatement PS = con.prepareStatement(sql);
             ResultSet RS = PS.executeQuery();
             while (RS.next()) {
                 KhachHang khachHang = new KhachHang();
@@ -234,11 +269,11 @@ public class KhachHangRepository implements IKhachHangRepository {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, ma);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 String ho = rs.getString("Ho");
                 String tenDem = rs.getString("TenDem");
                 String ten = rs.getString("Ten");
-                
+
                 khachHang.setHo(ho);
                 khachHang.setTenDem(tenDem);
                 khachHang.setTen(ten);
@@ -248,4 +283,35 @@ public class KhachHangRepository implements IKhachHangRepository {
             return null;
         }
     }
+
+    @Override
+    public KhachHang getThongTinBySdtOrEmail(String sdtOrEmail) {
+        try {
+            KhachHang khachHang = new KhachHang();
+            Connection connection = DBConnection.getConnection();
+            String sql = "SELECT Ho, TenDem, Ten, Email, Sdt FROM dbo.KhachHang WHERE Sdt = ? OR Email = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, sdtOrEmail);
+            ps.setString(2, sdtOrEmail);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String ho = rs.getString("Ho");
+                String tenDem = rs.getString("TenDem");
+                String ten = rs.getString("Ten");
+                String email = rs.getString("Email");
+                String sdt = rs.getString("Sdt");
+
+                khachHang.setHo(ho);
+                khachHang.setTenDem(tenDem);
+                khachHang.setTen(ten);
+                khachHang.setEmail(email);
+                khachHang.setSdt(sdt);
+
+            }
+            return khachHang;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }

@@ -14,8 +14,11 @@ import java.util.List;
  */
 public interface IChiTietHDRepository {
     List<ChiTietHD> getAll();
+    List<ChiTietHD> getAllByIdHD(String idHD);
     Integer them(ChiTietHD chiTietHD);
     Integer sua(ChiTietHD chiTietHD);
-    Integer xoa(String ma);
-    ChiTietHD getIdByTen(String ten);
+    Integer xoa(String idCtsp, String idHD);
+    String getIdByIdHD(String idHD);
+    Integer themSoLuong(ChiTietHD chiTietHD);
+    Integer botSoLuong(ChiTietHD chiTietHD);
 }

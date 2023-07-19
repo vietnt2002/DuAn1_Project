@@ -30,7 +30,9 @@ public class HoaDonRepository implements IHoaDonRepository{
             String sql = "SELECT HD.Id AS 'Id', HD.Ma AS 'Ma', HD.IdKH AS 'IdKH', KH.Ma AS 'MaKH', NV.Id AS 'IdNV', NV.Ma AS 'MaNV', HD.NgayTao AS 'NgayTao', HD.NgaySua AS 'NgaySua', HD.NgayThanhToan AS 'NgayThanhToan', HD.TrangThai AS 'TrangThai' \n" +
                         "FROM dbo.HoaDon HD JOIN dbo.KhachHang KH\n" +
                         "ON KH.Id = HD.IdKH JOIN dbo.NhanVien NV\n" +
-                        "ON NV.Id = HD.IdNV";
+                        "ON NV.Id = HD.IdNV\n" +
+                        "WHERE HD.TrangThai = 0\n" +
+                        "ORDER BY HD.Ma DESC";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -82,7 +84,8 @@ public class HoaDonRepository implements IHoaDonRepository{
                         "FROM dbo.HoaDon HD JOIN dbo.KhachHang KH\n" +
                         "ON KH.Id = HD.IdKH JOIN dbo.NhanVien NV\n" +
                         "ON NV.Id = HD.IdNV\n" +
-                        "WHERE NV.Ma = ? AND HD.TrangThai = 0";
+                        "WHERE NV.Ma = ? AND HD.TrangThai = 0\n"+
+                        "ORDER BY HD.Ma DESC";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, maNv);
             ResultSet rs = ps.executeQuery();
@@ -128,7 +131,21 @@ public class HoaDonRepository implements IHoaDonRepository{
 
     @Override
     public Integer them(HoaDon hoaDon) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Integer result = 0;
+            Connection connection = DBConnection.getConnection();
+            String sql = "INSERT INTO dbo.HoaDon (IdKH, IdNV) VALUES (?, ?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, hoaDon.getIdKH());
+            ps.setString(2, hoaDon.getIdNV());
+            
+            result = ps.executeUpdate();
+            ps.close();
+            connection.close();
+            return result;
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     @Override
@@ -142,8 +159,23 @@ public class HoaDonRepository implements IHoaDonRepository{
     }
 
     @Override
-    public HoaDon getIdByTen(String ten) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String getIdByMa(String ma) {
+        try {
+            String idHD = null;
+            HoaDon hoaDon = new HoaDon();
+            Connection connection = DBConnection.getConnection();
+            String sql = "SELECT Id FROM dbo.HoaDon WHERE Ma = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, ma);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                idHD = rs.getString("Id");
+                hoaDon.setId(idHD);
+            }
+            return idHD;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 }

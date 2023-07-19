@@ -100,7 +100,7 @@ public class RAM {
 
     @Override
     public String toString() {
-        return "RAM{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+        return ten;
     }
 
 }

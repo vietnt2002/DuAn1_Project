@@ -21,7 +21,9 @@ public interface IKhachHangService {
 
     Integer xoa(String ma);
 
-    KhachHang getIdByTen(String ten);
+    String getIdBySDT(String sdt);
+    
+    String getIdByMa(String ma);
 
     KhachHang checkTrungMa(String ma);
 
@@ -34,4 +36,5 @@ public interface IKhachHangService {
 
     KhachHang getHoTenByMa(String ma);
 
+    KhachHang getThongTinBySdtOrEmail(String sdt);
 }

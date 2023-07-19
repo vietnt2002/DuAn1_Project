@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -14,6 +14,7 @@ import java.sql.Date;
 public class ChiTietSP {
 
     private String id;
+    private String ma;
     private String idSP;
     private String idNSX;
     private String idMauSac;
@@ -35,8 +36,9 @@ public class ChiTietSP {
     public ChiTietSP() {
     }
 
-    public ChiTietSP(String id, String idSP, String idNSX, String idMauSac, String idDongSP, String idCPU, String idRam, String idSSD, String idManHinh, String idBH, double canNang, String moTa, int soLuongTon, BigDecimal giaNhap, BigDecimal giaBan, Date ngayTao, Date ngaySua, int trangThai) {
+    public ChiTietSP(String id, String ma, String idSP, String idNSX, String idMauSac, String idDongSP, String idCPU, String idRam, String idSSD, String idManHinh, String idChiTietHD, String idBH, double canNang, String moTa, int soLuongTon, BigDecimal giaNhap, BigDecimal giaBan, Date ngayTao, Date ngaySua, int trangThai) {
         this.id = id;
+        this.ma = ma;
         this.idSP = idSP;
         this.idNSX = idNSX;
         this.idMauSac = idMauSac;
@@ -82,6 +84,14 @@ public class ChiTietSP {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getMa() {
+        return ma;
+    }
+
+    public void setMa(String ma) {
+        this.ma = ma;
     }
 
     public String getIdSP() {
@@ -219,18 +229,18 @@ public class ChiTietSP {
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
- 
+
+    @Override
+    public String toString() {
+        return id;
+    }
+    
     public String getStatus(int trangThai) {
         return switch (trangThai) {
             case 0 -> "Còn hàng";
             case 1 -> "Hết hàng";
             default -> "Không rõ";
         };
-    }
-    
-    @Override
-    public String toString() {
-        return "ChiTietSP{" + "id=" + id + ", idSP=" + idSP + ", idNSX=" + idNSX + ", idMauSac=" + idMauSac + ", idDongSP=" + idDongSP + ", idCPU=" + idCPU + ", idRam=" + idRam + ", idSSD=" + idSSD + ", idManHinh=" + idManHinh + ", idBH=" + idBH + ", canNang=" + canNang + ", moTa=" + moTa + ", soLuongTon=" + soLuongTon + ", giaNhap=" + giaNhap + ", giaBan=" + giaBan + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
 
 }

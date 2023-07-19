@@ -13,7 +13,7 @@ import java.sql.Date;
 public class Imei {
     private String id;
     private String imei;
-    private String idChiTietSP;
+    private ChiTietSP idChiTietSP;
     private Date ngayTao;
     private Date ngaySua;
     private int trangThai;
@@ -21,7 +21,7 @@ public class Imei {
     public Imei() {
     }
 
-    public Imei(String id, String imei, String idChiTietSP, Date ngayTao, Date ngaySua, int trangThai) {
+    public Imei(String id, String imei, ChiTietSP idChiTietSP, Date ngayTao, Date ngaySua, int trangThai) {
         this.id = id;
         this.imei = imei;
         this.idChiTietSP = idChiTietSP;
@@ -46,11 +46,11 @@ public class Imei {
         this.imei = imei;
     }
 
-    public String getIdChiTietSP() {
+    public ChiTietSP getIdChiTietSP() {
         return idChiTietSP;
     }
 
-    public void setIdChiTietSP(String idChiTietSP) {
+    public void setIdChiTietSP(ChiTietSP idChiTietSP) {
         this.idChiTietSP = idChiTietSP;
     }
 
@@ -82,6 +82,5 @@ public class Imei {
     public String toString() {
         return "Imei{" + "id=" + id + ", imei=" + imei + ", idChiTietSP=" + idChiTietSP + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
-    
     
 }

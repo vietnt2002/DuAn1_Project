@@ -39,5 +39,10 @@ public class SanPhamService implements ISanPhamService {
         return reposytory.xoa(ma);
     }
 
+    @Override
+    public String getIdByMa(String ma) {
+        return reposytory.getIdByMa(ma);
+    }
+
 }
 

@@ -12,7 +12,9 @@ import java.sql.Date;
  * @author ADMIN
  */
 public class ChiTietHD {
+    private String id;
     private String idHD;
+    private ChiTietSP idChiTietSP;
     private int soLuong;
     private BigDecimal donGia;
     private BigDecimal thanhTien;
@@ -23,8 +25,10 @@ public class ChiTietHD {
     public ChiTietHD() {
     }
 
-    public ChiTietHD(String idHD, int soLuong, BigDecimal donGia, BigDecimal thanhTien, Date ngayTao, Date ngaySua, int trangThai) {
+    public ChiTietHD(String id, String idHD, ChiTietSP idChiTietSP, int soLuong, BigDecimal donGia, BigDecimal thanhTien, Date ngayTao, Date ngaySua, int trangThai) {
+        this.id = id;
         this.idHD = idHD;
+        this.idChiTietSP = idChiTietSP;
         this.soLuong = soLuong;
         this.donGia = donGia;
         this.thanhTien = thanhTien;
@@ -33,12 +37,28 @@ public class ChiTietHD {
         this.trangThai = trangThai;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getIdHD() {
         return idHD;
     }
 
     public void setIdHD(String idHD) {
         this.idHD = idHD;
+    }
+
+    public ChiTietSP getIdChiTietSP() {
+        return idChiTietSP;
+    }
+
+    public void setIdChiTietSP(ChiTietSP idChiTietSP) {
+        this.idChiTietSP = idChiTietSP;
     }
 
     public int getSoLuong() {
@@ -91,7 +111,7 @@ public class ChiTietHD {
 
     @Override
     public String toString() {
-        return "ChiTietHD{" + "idHD=" + idHD + ", soLuong=" + soLuong + ", donGia=" + donGia + ", thanhTien=" + thanhTien + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+        return "ChiTietHD{" + "id=" + id + ", idHD=" + idHD + ", idChiTietSP=" + idChiTietSP + ", soLuong=" + soLuong + ", donGia=" + donGia + ", thanhTien=" + thanhTien + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
-    
+
 }

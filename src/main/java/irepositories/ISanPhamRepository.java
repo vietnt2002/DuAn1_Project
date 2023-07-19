@@ -17,4 +17,5 @@ public interface ISanPhamRepository {
     Integer them(SanPham sanPham);
     Integer sua(SanPham sanPham);
     Integer xoa(String ma);
+    String getIdByMa(String ma);
 }

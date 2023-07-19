@@ -100,7 +100,7 @@ public class SSD {
 
     @Override
     public String toString() {
-        return "SSD{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+        return ten;
     }
 
 }

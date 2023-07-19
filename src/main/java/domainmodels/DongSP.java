@@ -100,7 +100,7 @@ public class DongSP {
 
     @Override
     public String toString() {
-        return "DongSP{" + "id=" + id + ", ma=" + ma + ", ten=" + ten + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+        return ten;
     }
 
 }

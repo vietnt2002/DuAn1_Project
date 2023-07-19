@@ -18,5 +18,5 @@ public interface IHoaDonRepository {
     Integer them(HoaDon hoaDon);
     Integer sua(HoaDon hoaDon);
     Integer xoa(String ma);
-    HoaDon getIdByTen(String ten);
+    String getIdByMa(String ma);
 }

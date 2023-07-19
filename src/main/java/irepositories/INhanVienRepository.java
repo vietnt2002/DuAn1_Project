@@ -23,7 +23,7 @@ public interface INhanVienRepository {
 
     Integer xoa(String ma);
 
-    NhanVien getIdByTen(String ten);
+    String getIdByTen(String ten);
 
     NhanVien checkTrungMa(String ma);
 

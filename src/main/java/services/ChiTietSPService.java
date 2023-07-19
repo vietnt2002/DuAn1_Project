@@ -21,7 +21,7 @@ import repositories.ChiTietSPRepository;
  */
 public class ChiTietSPService implements IChiTietSPService {
 
-    private final IChiTietSPRepository Repository = new ChiTietSPRepository();
+    private final IChiTietSPRepository Repository = (IChiTietSPRepository) new ChiTietSPRepository();
 
     @Override
     public List<ChiTietSPView> getAll(Map<String, String> TenSp, Map<String, String> NSX, Map<String, String> MauSac, Map<String, String> DongSp, Map<String, String> CPU, Map<String, String> RAM, Map<String, String> SSD, Map<String, String> ManHinh, Map<String, String> BaoHanh) {
@@ -90,6 +90,7 @@ public class ChiTietSPService implements IChiTietSPService {
         }
         for (String a : keyRam) {
             if (sp.getRAM().equalsIgnoreCase(RAM.get(a))) {
+
                 idDongSp = a;
             }
         }
@@ -103,8 +104,9 @@ public class ChiTietSPService implements IChiTietSPService {
                 idDongSp = a;
             }
         }
-        ChiTietSP CtD = new ChiTietSP(idSp, idSSD, idNSX, idMauSac, idDongSp, idCPU, idRAM, idSSD, idMauSac, idBH, sp.getCanNang(), sp.getMoTa(), sp.getSoLuongTon(), sp.getGiaNhap(), sp.getGiaBan(), sp.getNgayTao(), sp.getNgaySua(), sp.getTrangThai());
-        return Repository.them(CtD);
+//        ChiTietSP CtD = new ChiTietSP(idSp, idSSD, idNSX, idMauSac, idDongSp, idCPU, idRAM, idSSD, idMauSac, idBH, sp.getCanNang(), sp.getMoTa(), sp.getSoLuongTon(), sp.getGiaNhap(), sp.getGiaBan(), sp.getNgayTao(), sp.getNgaySua(), sp.getTrangThai());
+//        return Repository.them(CtD);
+        return null;
     }
 
     @Override
@@ -151,7 +153,6 @@ public class ChiTietSPService implements IChiTietSPService {
     public Map<String, String> hashMapSSD() {
         return Repository.hashMapSSD();
     }
-
 
     @Override
     public Map<String, String> hashMapBaoHanh() {
@@ -211,14 +212,45 @@ public class ChiTietSPService implements IChiTietSPService {
                 idDongSp = a;
             }
         }
-        
+
         for (String a : keyBaohanh) {
             if (sp.getBaoHanh().equalsIgnoreCase(BaoHanh.get(a))) {
                 idDongSp = a;
             }
         }
-        ChiTietSP CtD = new ChiTietSP(idSp, idSSD, idNSX, idMauSac, idDongSp, idCPU, idRAM, idSSD, idMauSac, idBH, sp.getCanNang(), sp.getMoTa(), sp.getSoLuongTon(), sp.getGiaNhap(), sp.getGiaBan(), sp.getNgayTao(), sp.getNgaySua(), sp.getTrangThai());
-        return Repository.sua(CtD, id);
+//        ChiTietSP CtD = new ChiTietSP(idSp, idSSD, idNSX, idMauSac, idDongSp, idCPU, idRAM, idSSD, idMauSac, idBH, sp.getCanNang(), sp.getMoTa(), sp.getSoLuongTon(), sp.getGiaNhap(), sp.getGiaBan(), sp.getNgayTao(), sp.getNgaySua(), sp.getTrangThai());
+//        return Repository.sua(CtD, id);
+        return null;
+    }
+
+    @Override
+    public List<ChiTietSP> getAllCTSP() {
+        return Repository.getAll();
+    }
+
+    @Override
+    public List<ChiTietSP> getAllByDongSP(String tenDongSP) {
+        return Repository.getAllByDongSP(tenDongSP);
+    }
+
+    @Override
+    public Integer themCTSP(ChiTietSP chiTietSP) {
+        return Repository.them(chiTietSP);
+    }
+
+    @Override
+    public Integer suaCTSP(ChiTietSP chiTietSP) {
+        return Repository.suaCTSP(chiTietSP);
+    }
+
+    @Override
+    public Integer xoaCTSP(String ma) {
+        return Repository.xoa(ma);
+    }
+
+    @Override
+    public ChiTietSP getIdByMa(String ma) {
+        return Repository.getIdByMa(ma);
     }
 
 }

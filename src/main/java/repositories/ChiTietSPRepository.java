@@ -62,18 +62,213 @@ public class ChiTietSPRepository implements IChiTietSPRepository {
     @Override
     public List<ChiTietSP> getAll() {
         try {
-            List<ChiTietSP> lst = new ArrayList<>();
-            String lenh = "select id,IdSP,IdNsx,IdMauSac,IdDongSP,idCPU,idRam,idSSD,idManHinh,idBH,"
-                    + "canNang,moTa,SoLuongTon,GiaNhap,GiaBan,ngayTao,ngaySua,trangThai from ChiTietSP";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(lenh);
+            List<ChiTietSP> lstChiTietSP = new ArrayList<>();
+            Connection connection = DBConnection.getConnection();
+            String sql = "SELECT CTSP.Id AS 'Id', CTSP.Ma AS 'Ma', SP.Id AS 'IdSP', SP.Ma AS 'MaSP', SP.Ten AS 'TenSP', DSP.Id AS 'IdDongSP', DSP.Ten AS 'TenDongSP', NSX.Id AS 'IdNSX', NSX.Ten AS 'TenNSX', QuocGia AS 'QuocGia', MS.Id AS 'IdMauSac', MS.Ten AS 'MauSac', \n"
+                    + "RAM.Id AS 'IdRAM', RAM.Ten AS 'RAM', SSD.Id AS 'IdSSD', SSD.Ten AS 'SSD', CPU.Id AS 'IdCPU', CPU.Ten AS 'CPU', MH.Id AS 'IdMH', MH.DoPhanGiai AS 'DoPhanGiai', MH.Inch AS 'Inch', CTSP.GiaBan AS 'GiaBan', BH.Id AS 'IdBH', BH.SoThangBH AS 'BaoHanh', CTSP.SoLuongTon AS 'SoLuong', CTSP.TrangThai AS 'TrangThai'\n"
+                    + "FROM dbo.ChiTietSP CTSP JOIN dbo.SanPham SP\n"
+                    + "ON SP.Id = CTSP.IdSP JOIN dbo.RAM \n"
+                    + "ON RAM.Id = CTSP.IdRAM JOIN dbo.SSD\n"
+                    + "ON SSD.Id = CTSP.IdSSD JOIN dbo.MauSac MS\n"
+                    + "ON MS.Id = CTSP.IdMauSac JOIN dbo.CPU\n"
+                    + "ON CPU.Id = CTSP.IdCPU JOIN dbo.ManHinh MH\n"
+                    + "ON MH.Id = CTSP.IdManHinh JOIN dbo.BaoHanh BH\n"
+                    + "ON BH.Id = CTSP.IdBH JOIN dbo.DongSP DSP\n"
+                    + "ON DSP.Id = CTSP.IdDongSP JOIN dbo.NSX\n"
+                    + "ON NSX.Id = CTSP.IdNSX";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                lst.add(new ChiTietSP(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getDouble(11), rs.getString(12), rs.getInt(13), rs.getBigDecimal(14), rs.getBigDecimal(15), rs.getDate(16), rs.getDate(17), rs.getInt(18)));
+                String id = rs.getString("Id");
+                String ma = rs.getString("Ma");
+                String idSP = rs.getString("IdSP");
+                String maSP = rs.getString("MaSP");
+                String tenSP = rs.getString("TenSP");
+                String idDongSP = rs.getString("IdDongSP");
+                String tenDongSP = rs.getString("TenDongSP");
+                String idNSX = rs.getString("IdNSX");
+                String tenNSX = rs.getString("TenNSX");
+                String quocGia = rs.getString("QuocGia");
+                String idMauSac = rs.getString("IdMauSac");
+                String tenMauSac = rs.getString("MauSac");
+                String idRAM = rs.getString("IdRAM");
+                String tenRam = rs.getString("RAM");
+                String idSSD = rs.getString("IdSSD");
+                String tenSsd = rs.getString("SSD");
+                String idCPU = rs.getString("IdCPU");
+                String tenCpu = rs.getString("CPU");
+                String idMH = rs.getString("IdMH");
+                String doPhanGiai = rs.getString("DoPhanGiai");
+                float inch = rs.getFloat("Inch");
+                BigDecimal giaBan = rs.getBigDecimal("GiaBan");
+                String idBH = rs.getString("IdBH");
+                int soThangBH = rs.getInt("BaoHanh");
+                int soLuong = rs.getInt("SoLuong");
+                int trangThai = rs.getInt("TrangThai");
+
+                SanPham sanPham = new SanPham();
+                sanPham.setId(idSP);
+                sanPham.setMa(maSP);
+                sanPham.setTen(tenSP);
+                DongSP dongSP = new DongSP();
+                dongSP.setId(idDongSP);
+                dongSP.setTen(tenDongSP);
+                NSX nsx = new NSX();
+                nsx.setId(idNSX);
+                nsx.setTen(tenNSX);
+                nsx.setQuocGia(quocGia);
+                MauSac mauSac = new MauSac();
+                mauSac.setId(idMauSac);
+                mauSac.setTen(tenMauSac);
+                RAM ram = new RAM();
+                ram.setId(idRAM);
+                ram.setTen(tenRam);
+                SSD ssd = new SSD();
+                ssd.setId(idSSD);
+                ssd.setTen(tenSsd);
+                CPU cpu = new CPU();
+                cpu.setId(idCPU);
+                cpu.setTen(tenCpu);
+                ManHinh manHinh = new ManHinh();
+                manHinh.setId(idMH);
+                manHinh.setDoPhanGiai(doPhanGiai);
+                manHinh.setInch(inch);
+                BaoHanh baoHanh = new BaoHanh();
+                baoHanh.setId(idBH);
+                baoHanh.setSoThangBH(soThangBH);
+
+                ChiTietSP chiTietSP = new ChiTietSP();
+                chiTietSP.setId(id);
+                chiTietSP.setMa(ma);
+                chiTietSP.setIdSP(sanPham + "");
+                chiTietSP.setIdDongSP(dongSP + "");
+                chiTietSP.setIdNSX(nsx + "");
+                chiTietSP.setIdMauSac(mauSac + "");
+                chiTietSP.setIdRam(ram + "");
+                chiTietSP.setIdSSD(ssd + "");
+                chiTietSP.setIdCPU(cpu + "");
+                chiTietSP.setIdManHinh(manHinh + "");
+                chiTietSP.setIdBH(baoHanh + "");
+                chiTietSP.setGiaBan(giaBan);
+                chiTietSP.setSoLuongTon(soLuong);
+                chiTietSP.setTrangThai(trangThai);
+
+                lstChiTietSP.add(chiTietSP);
             }
-            return lst;
+            rs.close();
+            ps.close();
+            connection.close();
+            return lstChiTietSP;
         } catch (Exception e) {
         }
         return null;
+    }
+
+    @Override
+    public List<ChiTietSP> getAllByDongSP(String tenDSP) {
+        try {
+            List<ChiTietSP> lstChiTietSP = new ArrayList<>();
+            Connection connection = DBConnection.getConnection();
+            String sql = "SELECT CTSP.Id AS 'Id', CTSP.Ma AS 'Ma', SP.Id AS 'IdSP', SP.Ma AS 'MaSP', SP.Ten AS 'TenSP', DSP.Id AS 'IdDongSP', DSP.Ten AS 'TenDongSP', NSX.Id AS 'IdNSX', NSX.Ten AS 'TenNSX', QuocGia AS 'QuocGia', MS.Id AS 'IdMauSac', MS.Ten AS 'MauSac', \n"
+                    + "RAM.Id AS 'IdRAM', RAM.Ten AS 'RAM', SSD.Id AS 'IdSSD', SSD.Ten AS 'SSD', CPU.Id AS 'IdCPU', CPU.Ten AS 'CPU', MH.Id AS 'IdMH', MH.DoPhanGiai AS 'DoPhanGiai', MH.Inch AS 'Inch', CTSP.GiaBan AS 'GiaBan', BH.Id AS 'IdBH', BH.SoThangBH AS 'BaoHanh', CTSP.SoLuongTon AS 'SoLuong', CTSP.TrangThai AS 'TrangThai'\n"
+                    + "FROM dbo.ChiTietSP CTSP JOIN dbo.SanPham SP\n"
+                    + "ON SP.Id = CTSP.IdSP JOIN dbo.RAM \n"
+                    + "ON RAM.Id = CTSP.IdRAM JOIN dbo.SSD\n"
+                    + "ON SSD.Id = CTSP.IdSSD JOIN dbo.MauSac MS\n"
+                    + "ON MS.Id = CTSP.IdMauSac JOIN dbo.CPU\n"
+                    + "ON CPU.Id = CTSP.IdCPU JOIN dbo.ManHinh MH\n"
+                    + "ON MH.Id = CTSP.IdManHinh JOIN dbo.BaoHanh BH\n"
+                    + "ON BH.Id = CTSP.IdBH JOIN dbo.DongSP DSP\n"
+                    + "ON DSP.Id = CTSP.IdDongSP JOIN dbo.NSX\n"
+                    + "ON NSX.Id = CTSP.IdNSX\n"
+                    + "WHERE DSP.Ten = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, tenDSP);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String id = rs.getString("Id");
+                String ma = rs.getString("Ma");
+                String idSP = rs.getString("IdSP");
+                String maSP = rs.getString("MaSP");
+                String tenSP = rs.getString("TenSP");
+                String idDongSP = rs.getString("IdDongSP");
+                String tenDongSP = rs.getString("TenDongSP");
+                String idNSX = rs.getString("IdNSX");
+                String tenNSX = rs.getString("TenNSX");
+                String quocGia = rs.getString("QuocGia");
+                String idMauSac = rs.getString("IdMauSac");
+                String tenMauSac = rs.getString("MauSac");
+                String idRAM = rs.getString("IdRAM");
+                String tenRam = rs.getString("RAM");
+                String idSSD = rs.getString("IdSSD");
+                String tenSsd = rs.getString("SSD");
+                String idCPU = rs.getString("IdCPU");
+                String tenCpu = rs.getString("CPU");
+                String idMH = rs.getString("IdMH");
+                String doPhanGiai = rs.getString("DoPhanGiai");
+                float inch = rs.getFloat("Inch");
+                BigDecimal giaBan = rs.getBigDecimal("GiaBan");
+                String idBH = rs.getString("IdBH");
+                int soThangBH = rs.getInt("BaoHanh");
+                int soLuong = rs.getInt("SoLuong");
+                int trangThai = rs.getInt("TrangThai");
+
+                SanPham sanPham = new SanPham();
+                sanPham.setId(idSP);
+                sanPham.setMa(maSP);
+                sanPham.setTen(tenSP);
+                DongSP dongSP = new DongSP();
+                dongSP.setId(idDongSP);
+                dongSP.setTen(tenDongSP);
+                NSX nsx = new NSX();
+                nsx.setId(idNSX);
+                nsx.setTen(tenNSX);
+                nsx.setQuocGia(quocGia);
+                MauSac mauSac = new MauSac();
+                mauSac.setId(idMauSac);
+                mauSac.setTen(tenMauSac);
+                RAM ram = new RAM();
+                ram.setId(idRAM);
+                ram.setTen(tenRam);
+                SSD ssd = new SSD();
+                ssd.setId(idSSD);
+                ssd.setTen(tenSsd);
+                CPU cpu = new CPU();
+                cpu.setId(idCPU);
+                cpu.setTen(tenCpu);
+                ManHinh manHinh = new ManHinh();
+                manHinh.setId(idMH);
+                manHinh.setDoPhanGiai(doPhanGiai);
+                manHinh.setInch(inch);
+                BaoHanh baoHanh = new BaoHanh();
+                baoHanh.setId(idBH);
+                baoHanh.setSoThangBH(soThangBH);
+
+                ChiTietSP chiTietSP = new ChiTietSP();
+                chiTietSP.setId(id);
+                chiTietSP.setMa(ma);
+                chiTietSP.setIdSP(sanPham + "");
+                chiTietSP.setIdDongSP(dongSP + "");
+                chiTietSP.setIdNSX(nsx + "");
+                chiTietSP.setIdMauSac(mauSac + "");
+                chiTietSP.setIdRam(ram + "");
+                chiTietSP.setIdSSD(ssd + "");
+                chiTietSP.setIdCPU(cpu + "");
+                chiTietSP.setIdManHinh(manHinh + "");
+                chiTietSP.setIdBH(baoHanh + "");
+                chiTietSP.setGiaBan(giaBan);
+                chiTietSP.setSoLuongTon(soLuong);
+                chiTietSP.setTrangThai(trangThai);
+
+                lstChiTietSP.add(chiTietSP);
+            }
+            rs.close();
+            ps.close();
+            connection.close();
+            return lstChiTietSP;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override
@@ -317,4 +512,34 @@ public class ChiTietSPRepository implements IChiTietSPRepository {
         return bh;
     }
 
+    @Override
+    public ChiTietSP getIdByMa(String ma) {
+        try {
+            ChiTietSP chiTietSP = new ChiTietSP();
+            Connection connection = DBConnection.getConnection();
+            String sql = "SELECT Id FROM dbo.ChiTietSP WHERE Ma = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, ma);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String id = rs.getString("Id");
+                chiTietSP.setId(id);
+            }
+            return chiTietSP;
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+    
+    @Override
+    public Integer suaCTSP(ChiTietSP chiTietSP){
+        try {
+            Integer result = 0;
+            
+            return result;
+        } catch (Exception e) {
+            return 0;
+        }
+    }
 }
