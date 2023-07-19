@@ -11,10 +11,10 @@ import java.sql.Date;
  * @author ADMIN
  */
 public class BaoHanh {
+
     private String id;
     private String ma;
     private Integer soThangBH;
-    private Date ngayHetHan;
     private Date ngayTao;
     private Date ngaySua;
     private int trangThai;
@@ -22,11 +22,18 @@ public class BaoHanh {
     public BaoHanh() {
     }
 
-    public BaoHanh(String id, String ma, Integer soThangBH, Date ngayHetHan, Date ngayTao, Date ngaySua, int trangThai) {
+    public BaoHanh(String id, String ma, Integer soThangBH, Date ngayTao, Date ngaySua, int trangThai) {
         this.id = id;
         this.ma = ma;
         this.soThangBH = soThangBH;
-        this.ngayHetHan = ngayHetHan;
+        this.ngayTao = ngayTao;
+        this.ngaySua = ngaySua;
+        this.trangThai = trangThai;
+    }
+
+    public BaoHanh(String ma, Integer soThangBH, Date ngayTao, Date ngaySua, int trangThai) {
+        this.ma = ma;
+        this.soThangBH = soThangBH;
         this.ngayTao = ngayTao;
         this.ngaySua = ngaySua;
         this.trangThai = trangThai;
@@ -56,14 +63,6 @@ public class BaoHanh {
         this.soThangBH = soThangBH;
     }
 
-    public Date getNgayHetHan() {
-        return ngayHetHan;
-    }
-
-    public void setNgayHetHan(Date ngayHetHan) {
-        this.ngayHetHan = ngayHetHan;
-    }
-
     public Date getNgayTao() {
         return ngayTao;
     }
@@ -88,9 +87,20 @@ public class BaoHanh {
         this.trangThai = trangThai;
     }
 
+    public String getStatus(int trangThai) {
+        switch (trangThai) {
+            case 0:
+                return "Còn hàng";
+            case 1:
+                return "Hết hàng";
+            default:
+                return "Không rõ";
+        }
+    }
+
     @Override
     public String toString() {
-        return "Baohanh{" + "id=" + id + ", ma=" + ma + ", soThangBH=" + soThangBH + ", ngayHetHan=" + ngayHetHan + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+        return "BaoHanh{" + "id=" + id + ", ma=" + ma + ", soThangBH=" + soThangBH + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
-    
+
 }

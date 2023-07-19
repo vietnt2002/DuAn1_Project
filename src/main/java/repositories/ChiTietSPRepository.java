@@ -20,7 +20,6 @@ import irepositories.IRAMRepository;
 import irepositories.INSXRepository;
 import irepositories.ISSDRepository;
 import irepositories.ISanPhamRepository;
-import irepositories.IChiTietHDRepository;
 import irepositories.IBaoHanhRepository;
 import domainmodels.ChiTietSP;
 import domainmodels.DongSP;
@@ -56,8 +55,7 @@ public class ChiTietSPRepository implements IChiTietSPRepository {
     private final IRAMRepository RepositoryRAM = new RAMRepository();
     private final ISSDRepository RepositorySSD = new SSDRepository();
     private final INSXRepository RepositoryNoiSx = new NSXRepository();
-    private final IChiTietHDRepository RepositoryCTHD = (IChiTietHDRepository) new ChiTietHDRepository();
-    private final IBaoHanhRepository RepositoryBH = (IBaoHanhRepository) new BaoHanhRepository();
+    private final IBaoHanhRepository RepositoryBaoHanh = new BaoHanhRepository();
     private final ISanPhamRepository RepositoryTenSp = new SanPhamRepository();
     private final Connection con = DBConnection.getConnection();
 
@@ -65,12 +63,12 @@ public class ChiTietSPRepository implements IChiTietSPRepository {
     public List<ChiTietSP> getAll() {
         try {
             List<ChiTietSP> lst = new ArrayList<>();
-            String lenh = "select id,IdSP,IdNsx,IdMauSac,IdDongSP,idCPU,idRam,idSSD,idManHinh,idChiTietHD,idBH,"
+            String lenh = "select id,IdSP,IdNsx,IdMauSac,IdDongSP,idCPU,idRam,idSSD,idManHinh,idBH,"
                     + "canNang,moTa,SoLuongTon,GiaNhap,GiaBan,ngayTao,ngaySua,trangThai from ChiTietSP";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(lenh);
             while (rs.next()) {
-                lst.add(new ChiTietSP(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getDouble(12), rs.getString(13), rs.getInt(14), rs.getBigDecimal(15), rs.getBigDecimal(16), rs.getDate(17), rs.getDate(18), rs.getInt(19)));
+                lst.add(new ChiTietSP(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getDouble(11), rs.getString(12), rs.getInt(13), rs.getBigDecimal(14), rs.getBigDecimal(15), rs.getDate(16), rs.getDate(17), rs.getInt(18)));
             }
             return lst;
         } catch (Exception e) {
@@ -81,8 +79,8 @@ public class ChiTietSPRepository implements IChiTietSPRepository {
     @Override
     public Integer them(ChiTietSP sp) {
         try {
-            String lenh = "insert into ChiTietSP(IdSP,IdNsx,IdMauSac,IdDongSP,idCPU,idRam,idSSD,idManHinh,idChiTietHD,idBH,"
-                    + "canNang,moTa,SoLuongTon,GiaNhap,GiaBan,ngayTao,ngaySua,trangThai) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String lenh = "insert into ChiTietSP(IdSP,IdNsx,IdMauSac,IdDongSP,idCPU,idRam,idSSD,idManHinh,idBH,"
+                    + "canNang,moTa,SoLuongTon,GiaNhap,GiaBan,ngayTao,ngaySua,trangThai) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(lenh);
             if (sp.getIdSP().equalsIgnoreCase("null")) {
                 st.setString(1, null);
@@ -124,24 +122,19 @@ public class ChiTietSPRepository implements IChiTietSPRepository {
             } else {
                 st.setString(8, sp.getIdManHinh());
             }
-            if (sp.getIdChiTietHD().equalsIgnoreCase("null")) {
+            if (sp.getIdBH().equalsIgnoreCase("null")) {
                 st.setString(9, null);
             } else {
-                st.setString(9, sp.getIdChiTietHD());
+                st.setString(9, sp.getIdBH());
             }
-            if (sp.getIdBH().equalsIgnoreCase("null")) {
-                st.setString(10, null);
-            } else {
-                st.setString(10, sp.getIdBH());
-            }
-            st.setDouble(11, sp.getCanNang());
-            st.setString(12, sp.getMoTa());
-            st.setInt(13, sp.getSoLuongTon());
-            st.setBigDecimal(14, sp.getGiaNhap());
-            st.setBigDecimal(15, sp.getGiaBan());
-            st.setDate(16, sp.getNgayTao());
-            st.setDate(17, sp.getNgaySua());
-            st.setInt(18, sp.getTrangThai());
+            st.setDouble(10, sp.getCanNang());
+            st.setString(11, sp.getMoTa());
+            st.setInt(12, sp.getSoLuongTon());
+            st.setBigDecimal(13, sp.getGiaNhap());
+            st.setBigDecimal(14, sp.getGiaBan());
+            st.setDate(15, sp.getNgayTao());
+            st.setDate(16, sp.getNgaySua());
+            st.setInt(17, sp.getTrangThai());
 
             return st.executeUpdate();
         } catch (Exception e) {
@@ -154,7 +147,7 @@ public class ChiTietSPRepository implements IChiTietSPRepository {
     public Integer sua(ChiTietSP sp, String id) {
         try {
             java.util.UUID idCt = UUID.fromString(id);
-            String lenh = "update ChiTietSP set IdSP=?,IdNsx=?,IdMauSac=?,IdDongSP=?,idCPU=?,idRam=?,idSSD=?,idManHinh=?,idChiTietHD=?,idBH=?,"
+            String lenh = "update ChiTietSP set IdSP=?,IdNsx=?,IdMauSac=?,IdDongSP=?,idCPU=?,idRam=?,idSSD=?,idManHinh=?,idBH=?,"
                     + "NamBH=?,MoTa=?,SoLuongTon=?,GiaNhap=?,GiaBan=?,ngayTao=?,ngaySua=?,trangThai=? where id=?";
             PreparedStatement st = con.prepareStatement(lenh);
             if (sp.getIdSP().equalsIgnoreCase("null")) {
@@ -197,25 +190,20 @@ public class ChiTietSPRepository implements IChiTietSPRepository {
             } else {
                 st.setString(8, sp.getIdManHinh());
             }
-            if (sp.getIdChiTietHD().equalsIgnoreCase("null")) {
+            if (sp.getIdBH().equalsIgnoreCase("null")) {
                 st.setString(9, null);
             } else {
-                st.setString(9, sp.getIdChiTietHD());
+                st.setString(9, sp.getIdBH());
             }
-            if (sp.getIdBH().equalsIgnoreCase("null")) {
-                st.setString(10, null);
-            } else {
-                st.setString(10, sp.getIdBH());
-            }
-            st.setDouble(11, sp.getCanNang());
-            st.setString(12, sp.getMoTa());
-            st.setInt(13, sp.getSoLuongTon());
-            st.setBigDecimal(14, sp.getGiaNhap());
-            st.setBigDecimal(15, sp.getGiaBan());
-            st.setDate(16, sp.getNgayTao());
-            st.setDate(17, sp.getNgaySua());
-            st.setInt(18, sp.getTrangThai());
-            st.setObject(19, idCt);
+            st.setDouble(10, sp.getCanNang());
+            st.setString(11, sp.getMoTa());
+            st.setInt(12, sp.getSoLuongTon());
+            st.setBigDecimal(13, sp.getGiaNhap());
+            st.setBigDecimal(14, sp.getGiaBan());
+            st.setDate(15, sp.getNgayTao());
+            st.setDate(16, sp.getNgaySua());
+            st.setInt(17, sp.getTrangThai());
+            st.setObject(18, idCt);
 
             return st.executeUpdate();
         } catch (Exception e) {
@@ -320,24 +308,13 @@ public class ChiTietSPRepository implements IChiTietSPRepository {
         return ssd;
     }
 
-    @Override
-    public Map<String, String> hashMapCTHD() {
-        Map<String, String> cthd = new HashMap<>();
-        List<ChiTietHD> lst = RepositoryCTHD.getAll();
-        for (ChiTietHD a : lst) {
-            cthd.put(a.getIdHD(), a.getIdHD());
-        }
-        return cthd;
-    }
-
-    @Override
     public Map<String, String> hashMapBaoHanh() {
-        Map<String, String> baohanh = new HashMap<>();
-        List<BaoHanh> lst = RepositoryBH.getAll();
+        Map<String, String> bh = new HashMap<>();
+        List<BaoHanh> lst = RepositoryBaoHanh.getAll();
         for (BaoHanh a : lst) {
-            baohanh.put(a.getId(), a.getMa());
+            bh.put(a.getId(), a.getMa());
         }
-        return baohanh;
+        return bh;
     }
 
 }

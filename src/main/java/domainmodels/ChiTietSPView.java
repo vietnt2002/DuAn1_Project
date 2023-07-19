@@ -22,7 +22,6 @@ public class ChiTietSPView {
     private String RAM;
     private String SSD;
     private String ManHinh;
-    private String CTHD;
     private String BaoHanh;
     private double canNang;
     private String moTa;
@@ -36,18 +35,17 @@ public class ChiTietSPView {
     public ChiTietSPView() {
     }
 
-    public ChiTietSPView(String id, String idSP, String idNSX, String idMauSac, String idDongSP, String idCPU, String idRam, String idSSD, String idManHinh, String idChiTietHD, String idBH, double canNang, String moTa, int soLuongTon, BigDecimal giaNhap, BigDecimal giaBan, Date ngayTao, Date ngaySua, int trangThai) {
+    public ChiTietSPView(String id, String tenSP, String NSX, String MauSac, String DongSP, String CPU, String RAM, String SSD, String ManHinh, String BaoHanh, double canNang, String moTa, int soLuongTon, BigDecimal giaNhap, BigDecimal giaBan, Date ngayTao, Date ngaySua, int trangThai) {
         this.id = id;
-        this.tenSP = idSP;
-        this.NSX = idNSX;
-        this.MauSac = idMauSac;
-        this.DongSP = idDongSP;
-        this.CPU = idCPU;
-        this.RAM = idRam;
-        this.SSD = idSSD;
-        this.ManHinh = idManHinh;
-        this.CTHD = idChiTietHD;
-        this.BaoHanh = idBH;
+        this.tenSP = tenSP;
+        this.NSX = NSX;
+        this.MauSac = MauSac;
+        this.DongSP = DongSP;
+        this.CPU = CPU;
+        this.RAM = RAM;
+        this.SSD = SSD;
+        this.ManHinh = ManHinh;
+        this.BaoHanh = BaoHanh;
         this.canNang = canNang;
         this.moTa = moTa;
         this.soLuongTon = soLuongTon;
@@ -58,17 +56,16 @@ public class ChiTietSPView {
         this.trangThai = trangThai;
     }
 
-    public ChiTietSPView(String idSP, String idNSX, String idMauSac, String idDongSP, String idCPU, String idRam, String idSSD, String idManHinh, String idChiTietHD, String idBH, double canNang, String moTa, int soLuongTon, BigDecimal giaNhap, BigDecimal giaBan, Date ngayTao, Date ngaySua, int trangThai) {
-        this.tenSP = idSP;
-        this.NSX = idNSX;
-        this.MauSac = idMauSac;
-        this.DongSP = idDongSP;
-        this.CPU = idCPU;
-        this.RAM = idRam;
-        this.SSD = idSSD;
-        this.ManHinh = idManHinh;
-        this.CTHD = idChiTietHD;
-        this.BaoHanh = idBH;
+    public ChiTietSPView(String tenSP, String NSX, String MauSac, String DongSP, String CPU, String RAM, String SSD, String ManHinh, String BaoHanh, double canNang, String moTa, int soLuongTon, BigDecimal giaNhap, BigDecimal giaBan, Date ngayTao, Date ngaySua, int trangThai) {
+        this.tenSP = tenSP;
+        this.NSX = NSX;
+        this.MauSac = MauSac;
+        this.DongSP = DongSP;
+        this.CPU = CPU;
+        this.RAM = RAM;
+        this.SSD = SSD;
+        this.ManHinh = ManHinh;
+        this.BaoHanh = BaoHanh;
         this.canNang = canNang;
         this.moTa = moTa;
         this.soLuongTon = soLuongTon;
@@ -151,14 +148,6 @@ public class ChiTietSPView {
         this.ManHinh = ManHinh;
     }
 
-    public String getCTHD() {
-        return CTHD;
-    }
-
-    public void setCTHD(String CTHD) {
-        this.CTHD = CTHD;
-    }
-
     public String getBaoHanh() {
         return BaoHanh;
     }
@@ -227,13 +216,16 @@ public class ChiTietSPView {
         return trangThai;
     }
 
-    public void setTrangThai(int trangThai) {
-        this.trangThai = trangThai;
+    public String getStatus(int trangThai) {
+        return switch (trangThai) {
+            case 0 -> "Còn hàng";
+            case 1 -> "Hết hàng";
+            default -> "Không rõ";
+        };
     }
 
-    @Override
-    public String toString() {
-        return "ChiTietSP{" + "id=" + id + ", idSP=" + tenSP + ", idNSX=" + NSX + ", idMauSac=" + MauSac + ", idDongSP=" + DongSP + ", idCPU=" + CPU + ", idRam=" + RAM + ", idSSD=" + SSD + ", idManHinh=" + ManHinh + ", idChiTietHD=" + CTHD + ", idBH=" + BaoHanh + ", canNang=" + canNang + ", moTa=" + moTa + ", soLuongTon=" + soLuongTon + ", giaNhap=" + giaNhap + ", giaBan=" + giaBan + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
     }
 
 }

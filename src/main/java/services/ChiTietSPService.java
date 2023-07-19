@@ -24,7 +24,7 @@ public class ChiTietSPService implements IChiTietSPService {
     private final IChiTietSPRepository Repository = new ChiTietSPRepository();
 
     @Override
-    public List<ChiTietSPView> getAll(Map<String, String> TenSp, Map<String, String> NSX, Map<String, String> MauSac, Map<String, String> DongSp, Map<String, String> CPU, Map<String, String> RAM, Map<String, String> SSD, Map<String, String> ManHinh, Map<String, String> CTHD, Map<String, String> BaoHanh) {
+    public List<ChiTietSPView> getAll(Map<String, String> TenSp, Map<String, String> NSX, Map<String, String> MauSac, Map<String, String> DongSp, Map<String, String> CPU, Map<String, String> RAM, Map<String, String> SSD, Map<String, String> ManHinh, Map<String, String> BaoHanh) {
         List<ChiTietSP> lst = Repository.getAll();
         List<ChiTietSPView> lst1 = new ArrayList<>();
         for (ChiTietSP a : lst) {
@@ -32,22 +32,21 @@ public class ChiTietSPService implements IChiTietSPService {
             String noiSx = NSX.get(a.getIdNSX());
             String mauSac = MauSac.get(a.getIdMauSac());
             String dongSp = DongSp.get(a.getIdDongSP());
-            String cpu = DongSp.get(a.getIdCPU());
-            String ram = DongSp.get(a.getIdRam());
-            String ssd = DongSp.get(a.getIdSSD());
-            String cthd = DongSp.get(a.getIdChiTietHD());
-            String manhinh = DongSp.get(a.getIdManHinh());
-            String baohanh = DongSp.get(a.getIdBH());
+            String cpu = CPU.get(a.getIdCPU());
+            String ram = RAM.get(a.getIdRam());
+            String ssd = SSD.get(a.getIdSSD());
+            String manhinh = ManHinh.get(a.getIdManHinh());
+            String baohanh = BaoHanh.get(a.getIdBH());
             lst1.add(new ChiTietSPView(a.getId(), tenSp, noiSx, mauSac,
-                    dongSp, cpu, ram, ssd, manhinh, cthd, baohanh, a.getCanNang(), a.getMoTa(), a.getSoLuongTon(),
-                    a.getGiaNhap(), a.getGiaBan(), a.getNgayTao(), a.getNgaySua(), a.getSoLuongTon()));
+                    dongSp, cpu, ram, ssd, manhinh, baohanh, a.getCanNang(), a.getMoTa(), a.getSoLuongTon(),
+                    a.getGiaNhap(), a.getGiaBan(), a.getNgayTao(), a.getNgaySua(), a.getTrangThai()));
 
         }
         return lst1;
     }
 
     @Override
-    public Integer them(ChiTietSPView sp, Map<String, String> TenSp, Map<String, String> NSX, Map<String, String> MauSac, Map<String, String> DongSp, Map<String, String> CPU, Map<String, String> RAM, Map<String, String> SSD, Map<String, String> ManHinh, Map<String, String> CTHD, Map<String, String> BaoHanh) {
+    public Integer them(ChiTietSPView sp, Map<String, String> TenSp, Map<String, String> NSX, Map<String, String> MauSac, Map<String, String> DongSp, Map<String, String> CPU, Map<String, String> RAM, Map<String, String> SSD, Map<String, String> ManHinh, Map<String, String> BaoHanh) {
         Set<String> keyTenSp = TenSp.keySet();
         Set<String> keyNoiSx = NSX.keySet();
         Set<String> keyMauS = MauSac.keySet();
@@ -55,7 +54,6 @@ public class ChiTietSPService implements IChiTietSPService {
         Set<String> keyCpu = CPU.keySet();
         Set<String> keyRam = RAM.keySet();
         Set<String> keySsd = SSD.keySet();
-        Set<String> keyCthd = CTHD.keySet();
         Set<String> keyBaohanh = BaoHanh.keySet();
         String idSp = "Null";
         String idNSX = "Null";
@@ -64,7 +62,6 @@ public class ChiTietSPService implements IChiTietSPService {
         String idCPU = "Null";
         String idRAM = "Null";
         String idSSD = "Null";
-        String idCTHD = "Null";
         String idBH = "Null";
         for (String a : keyTenSp) {
             if (sp.getTenSP().equalsIgnoreCase(TenSp.get(a))) {
@@ -101,17 +98,12 @@ public class ChiTietSPService implements IChiTietSPService {
                 idDongSp = a;
             }
         }
-        for (String a : keyCthd) {
-            if (sp.getCTHD().equalsIgnoreCase(CTHD.get(a))) {
-                idDongSp = a;
-            }
-        }
         for (String a : keyBaohanh) {
             if (sp.getBaoHanh().equalsIgnoreCase(BaoHanh.get(a))) {
                 idDongSp = a;
             }
         }
-        ChiTietSP CtD = new ChiTietSP(idSp, idSSD, idNSX, idMauSac, idDongSp, idCPU, idRAM, idSSD, idMauSac, idCTHD, idBH, sp.getCanNang(), sp.getMoTa(), sp.getSoLuongTon(), sp.getGiaNhap(), sp.getGiaBan(), sp.getNgayTao(), sp.getNgaySua(), sp.getTrangThai());
+        ChiTietSP CtD = new ChiTietSP(idSp, idSSD, idNSX, idMauSac, idDongSp, idCPU, idRAM, idSSD, idMauSac, idBH, sp.getCanNang(), sp.getMoTa(), sp.getSoLuongTon(), sp.getGiaNhap(), sp.getGiaBan(), sp.getNgayTao(), sp.getNgaySua(), sp.getTrangThai());
         return Repository.them(CtD);
     }
 
@@ -160,10 +152,6 @@ public class ChiTietSPService implements IChiTietSPService {
         return Repository.hashMapSSD();
     }
 
-    @Override
-    public Map<String, String> hashMapCTHD() {
-        return Repository.hashMapCTHD();
-    }
 
     @Override
     public Map<String, String> hashMapBaoHanh() {
@@ -171,7 +159,7 @@ public class ChiTietSPService implements IChiTietSPService {
     }
 
     @Override
-    public Integer sua(ChiTietSPView sp, Map<String, String> TenSp, Map<String, String> NSX, Map<String, String> MauSac, Map<String, String> DongSp, Map<String, String> CPU, Map<String, String> RAM, Map<String, String> SSD, Map<String, String> ManHinh, Map<String, String> CTHD, Map<String, String> BaoHanh, String id) {
+    public Integer sua(ChiTietSPView sp, Map<String, String> TenSp, Map<String, String> NSX, Map<String, String> MauSac, Map<String, String> DongSp, Map<String, String> CPU, Map<String, String> RAM, Map<String, String> SSD, Map<String, String> ManHinh, Map<String, String> BaoHanh, String id) {
         Set<String> keyTenSp = TenSp.keySet();
         Set<String> keyNoiSx = NSX.keySet();
         Set<String> keyMauS = MauSac.keySet();
@@ -179,7 +167,6 @@ public class ChiTietSPService implements IChiTietSPService {
         Set<String> keyCpu = CPU.keySet();
         Set<String> keyRam = RAM.keySet();
         Set<String> keySsd = SSD.keySet();
-        Set<String> keyCthd = CTHD.keySet();
         Set<String> keyBaohanh = BaoHanh.keySet();
         String idSp = "Null";
         String idNSX = "Null";
@@ -188,7 +175,6 @@ public class ChiTietSPService implements IChiTietSPService {
         String idCPU = "Null";
         String idRAM = "Null";
         String idSSD = "Null";
-        String idCTHD = "Null";
         String idBH = "Null";
         for (String a : keyTenSp) {
             if (sp.getTenSP().equalsIgnoreCase(TenSp.get(a))) {
@@ -225,18 +211,14 @@ public class ChiTietSPService implements IChiTietSPService {
                 idDongSp = a;
             }
         }
-        for (String a : keyCthd) {
-            if (sp.getCTHD().equalsIgnoreCase(CTHD.get(a))) {
-                idDongSp = a;
-            }
-        }
+        
         for (String a : keyBaohanh) {
             if (sp.getBaoHanh().equalsIgnoreCase(BaoHanh.get(a))) {
                 idDongSp = a;
             }
         }
-        ChiTietSP CtD = new ChiTietSP(idSp, idSSD, idNSX, idMauSac, idDongSp, idCPU, idRAM, idSSD, idMauSac, idCTHD, idBH, sp.getCanNang(), sp.getMoTa(), sp.getSoLuongTon(), sp.getGiaNhap(), sp.getGiaBan(), sp.getNgayTao(), sp.getNgaySua(), sp.getTrangThai());
-        return Repository.them(CtD);
+        ChiTietSP CtD = new ChiTietSP(idSp, idSSD, idNSX, idMauSac, idDongSp, idCPU, idRAM, idSSD, idMauSac, idBH, sp.getCanNang(), sp.getMoTa(), sp.getSoLuongTon(), sp.getGiaNhap(), sp.getGiaBan(), sp.getNgayTao(), sp.getNgaySua(), sp.getTrangThai());
+        return Repository.sua(CtD, id);
     }
 
 }

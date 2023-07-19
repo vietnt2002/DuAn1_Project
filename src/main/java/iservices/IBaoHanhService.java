@@ -6,7 +6,15 @@ package iservices;
 
 import domainmodels.BaoHanh;
 import irepositories.*;
+import irepositories.ICPURepository;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
+import utilities.DBConnection;
+import utilities.ULHelper;
 
 /**
  *
@@ -17,5 +25,4 @@ public interface IBaoHanhService {
     Integer them(BaoHanh baoHanh);
     Integer sua(BaoHanh baoHanh);
     Integer xoa(String ma);
-    BaoHanh getIdByTen(String ten);
 }

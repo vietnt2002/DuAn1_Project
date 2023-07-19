@@ -17,13 +17,13 @@ import java.util.Map;
 public interface IChiTietSPService {
     List<ChiTietSPView> getAll(Map<String, String> TenSp,
          Map<String, String> NSX, Map<String, String> MauSac ,
-         Map<String, String> DongSp, Map<String, String> CPU, Map<String, String> RAM, Map<String, String> SSD, Map<String, String> ManHinh, Map<String, String> CTHD, Map<String, String> BaoHanh);
+         Map<String, String> DongSp, Map<String, String> CPU, Map<String, String> RAM, Map<String, String> SSD, Map<String, String> ManHinh, Map<String, String> BaoHanh);
     Integer them(ChiTietSPView sp, Map<String, String> TenSp,
          Map<String, String> NSX, Map<String, String> MauSac ,
-         Map<String, String> DongSp, Map<String, String> CPU, Map<String, String> RAM, Map<String, String> SSD, Map<String, String> ManHinh, Map<String, String> CTHD, Map<String, String> BaoHanh);
+         Map<String, String> DongSp, Map<String, String> CPU, Map<String, String> RAM, Map<String, String> SSD, Map<String, String> ManHinh, Map<String, String> BaoHanh);
     Integer sua(ChiTietSPView sp,Map<String, String> TenSp,
          Map<String, String> NSX, Map<String, String> MauSac ,
-         Map<String, String> DongSp, Map<String, String> CPU, Map<String, String> RAM, Map<String, String> SSD, Map<String, String> ManHinh, Map<String, String> CTHD, Map<String, String> BaoHanh, String id);
+         Map<String, String> DongSp, Map<String, String> CPU, Map<String, String> RAM, Map<String, String> SSD, Map<String, String> ManHinh, Map<String, String> BaoHanh, String id);
     Integer xoa(String ma);
     Map<String, String> hashMapTenSp();
     Map<String, String> hashMapNoiSx();
@@ -33,6 +33,5 @@ public interface IChiTietSPService {
     Map<String, String> hashMapCPU();
     Map<String, String> hashMapRAM();
     Map<String, String> hashMapSSD();
-    Map<String, String> hashMapCTHD();
     Map<String, String> hashMapBaoHanh();
 }

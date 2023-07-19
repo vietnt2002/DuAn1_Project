@@ -16,5 +16,4 @@ public interface IBaoHanhRepository {
     Integer them(BaoHanh baoHanh);
     Integer sua(BaoHanh baoHanh);
     Integer xoa(String ma);
-    BaoHanh getIdByTen(String ten);
 }

@@ -26,6 +26,5 @@ public interface IChiTietSPRepository {
     Map<String, String> hashMapCPU();
     Map<String, String> hashMapRAM();
     Map<String, String> hashMapSSD();
-    Map<String, String> hashMapCTHD();
     Map<String, String> hashMapBaoHanh();
 }
