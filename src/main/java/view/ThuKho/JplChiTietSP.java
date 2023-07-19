@@ -705,63 +705,72 @@ public class JplChiTietSP extends javax.swing.JPanel {
 
     private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
         // TODO add your handling code here:
-//        try {
-//            if (ULHelper.checknull(txtMota, "Không được để mã trống!")) {
-//                return;
-//            } else {
-//                int trungMa = CheckTrungService.checkTrung(txtMota.getText(),
-//                        "dongsp", "ma");
-//                if (trungMa != -1) {
-//                    JOptionPane.showMessageDialog(this, "Mã đã tồn tại!");
-//                    return;
-//                }
-//            }
-//
-//            if (ULHelper.checknull(txtTon, "Không được để tên trống!")) {
-//                return;
-//            }
-//            int stt = (radHet1.isSelected() ? 1 : 0);
-//            ChiTietSP dsp = new ChiTietSP(txtMota.getText(), txtTon.getText(), date, date, stt);
-//            int thongBao = Services.them(dsp);
-//            if (thongBao == 1) {
-//                JOptionPane.showMessageDialog(this, "Thêm thành công!");
-//                filltable();
-//                return;
-//            } else {
-//                JOptionPane.showMessageDialog(this, "Thêm thất bại!");
-//                return;
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            if (ULHelper.checknull(txtMota, "Không được để mô tả trống!")) {
+                return;
+            }
+            if (ULHelper.checknull(txtTon, "Không được để tên trống!")) {
+                return;
+            }
+            if (ULHelper.checknull(txtCanNang, "Không được để tên trống!")) {
+                return;
+            }
+            if (ULHelper.checknull(txtNhap, "Không được để tên trống!")) {
+                return;
+            }
+            if (ULHelper.checknull(txtBan, "Không được để tên trống!")) {
+                return;
+            }
+            int stt = (radHet1.isSelected() ? 1 : 0);
+            ChiTietSPView dsp = new ChiTietSPView(null, cboTenSp.getSelectedItem() + "", cboNoiSX.getSelectedItem() + "", cbomauSac.getSelectedItem() + "", cboDongsp.getSelectedItem() + "", cboCPU.getSelectedItem() + "", cboRAM.getSelectedItem() + "", cboSSD.getSelectedItem() + "", cboMH.getSelectedItem() + "", cboBH.getSelectedItem() + "", Integer.parseInt(txtCanNang.getText()), txtMota.getText(), Integer.parseInt(txtCanNang.getText()), BigDecimal.ONE, BigDecimal.TEN, date, date, 1);
+            int thongBao = Services.them(dsp, ten, nsx, mau, dong, cpu, ram, ssd, mau, dong);
+            if (thongBao == 1) {
+                JOptionPane.showMessageDialog(this, "Thêm thành công!");
+                filltable();
+                return;
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm thất bại!");
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnAdd1ActionPerformed
 
     private void btnShow1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShow1ActionPerformed
         // TODO add your handling code here:
-//        try {
-//            filltable();
-//            showdetailDSP(0);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            filltable();
+            showdetailDSP(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnShow1ActionPerformed
 
     private void btnEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit1ActionPerformed
         // TODO add your handling code here:
         try {
-            if (ULHelper.checknull(txtMota, "Không được để mã trống!")) {
+            if (ULHelper.checknull(txtMota, "Không được để mô tả trống!")) {
                 return;
             }
-
             if (ULHelper.checknull(txtTon, "Không được để tên trống!")) {
+                return;
+            }
+            if (ULHelper.checknull(txtCanNang, "Không được để tên trống!")) {
+                return;
+            }
+            if (ULHelper.checknull(txtNhap, "Không được để tên trống!")) {
+                return;
+            }
+            if (ULHelper.checknull(txtBan, "Không được để tên trống!")) {
                 return;
             }
             lstDSP = Services.getAll(ten, nsx, mau, dong, cpu, ram, ssd, mh, bh);
 
             Date tao = lstDSP.get(index).getNgayTao();
             int stt = (radHet1.isSelected() ? 1 : 0);
-            ChiTietSPView dsp = new ChiTietSPView(cboTenSp.getSelectedItem() + "", cboNoiSX.getSelectedItem() + "", cbomauSac.getSelectedItem() + "", cboDongsp.getSelectedItem() + "", cboCPU.getSelectedItem() + "", cboRAM.getSelectedItem() + "", cboSSD.getSelectedItem() + "", cboMH.getSelectedItem() + "", cboBH.getSelectedItem() + "", Integer.parseInt(txtCanNang.getText()), txtMota.getText(), Integer.parseInt(txtCanNang.getText()), BigDecimal.ONE, BigDecimal.TEN, tao, tao, 1);
-            int thongBao = Services.sua(dsp, ten, nsx, mau, dong, cpu, ram, ssd, mau, dong, TOOL_TIP_TEXT_KEY);
+            ChiTietSPView dsp = new ChiTietSPView(null, cboTenSp.getSelectedItem() + "", cboNoiSX.getSelectedItem() + "", cbomauSac.getSelectedItem() + "", cboDongsp.getSelectedItem() + "", cboCPU.getSelectedItem() + "", cboRAM.getSelectedItem() + "", cboSSD.getSelectedItem() + "", cboMH.getSelectedItem() + "", cboBH.getSelectedItem() + "", Integer.parseInt(txtCanNang.getText()), txtMota.getText(), Integer.parseInt(txtCanNang.getText()), BigDecimal.ONE, BigDecimal.TEN, tao, tao, 1);
+            int thongBao = Services.sua(dsp, ten, nsx, mau, dong, cpu, ram, ssd, mau, dong, null);
             if (thongBao == 1) {
                 JOptionPane.showMessageDialog(this, "Sửa thành công!");
                 filltable();

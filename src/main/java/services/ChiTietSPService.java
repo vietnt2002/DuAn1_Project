@@ -104,9 +104,9 @@ public class ChiTietSPService implements IChiTietSPService {
                 idDongSp = a;
             }
         }
-//        ChiTietSP CtD = new ChiTietSP(idSp, idSSD, idNSX, idMauSac, idDongSp, idCPU, idRAM, idSSD, idMauSac, idBH, sp.getCanNang(), sp.getMoTa(), sp.getSoLuongTon(), sp.getGiaNhap(), sp.getGiaBan(), sp.getNgayTao(), sp.getNgaySua(), sp.getTrangThai());
-//        return Repository.them(CtD);
-        return null;
+        ChiTietSP CtD = new ChiTietSP(null, null,idSp, idSSD, idNSX, idMauSac, idDongSp, idCPU, idRAM, idSSD, idMauSac, idBH, sp.getCanNang(), sp.getMoTa(), sp.getSoLuongTon(), sp.getGiaNhap(), sp.getGiaBan(), sp.getNgayTao(), sp.getNgaySua(), sp.getTrangThai());
+       return Repository.them(CtD);
+
     }
 
     @Override
@@ -218,9 +218,8 @@ public class ChiTietSPService implements IChiTietSPService {
                 idDongSp = a;
             }
         }
-//        ChiTietSP CtD = new ChiTietSP(idSp, idSSD, idNSX, idMauSac, idDongSp, idCPU, idRAM, idSSD, idMauSac, idBH, sp.getCanNang(), sp.getMoTa(), sp.getSoLuongTon(), sp.getGiaNhap(), sp.getGiaBan(), sp.getNgayTao(), sp.getNgaySua(), sp.getTrangThai());
-//        return Repository.sua(CtD, id);
-        return null;
+       ChiTietSP CtD = new ChiTietSP(null,null,idSp, idSSD, idNSX, idMauSac, idDongSp, idCPU, idRAM, idSSD, idMauSac, idBH, sp.getCanNang(), sp.getMoTa(), sp.getSoLuongTon(), sp.getGiaNhap(), sp.getGiaBan(), sp.getNgayTao(), sp.getNgaySua(), sp.getTrangThai());
+        return Repository.sua(CtD, id);
     }
 
     @Override
