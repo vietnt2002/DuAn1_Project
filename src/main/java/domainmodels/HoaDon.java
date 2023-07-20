@@ -11,6 +11,7 @@ import java.sql.Date;
  * @author ADMIN
  */
 public class HoaDon {
+
     private String id;
     private String ma;
     private String idKH;
@@ -21,6 +22,14 @@ public class HoaDon {
     private int trangThai;
 
     public HoaDon() {
+    }
+
+    public String getTrangThaiString() {
+        if (trangThai == 0) {
+            return "Chưa hoàn thành";
+        } else {
+            return "Đã hoàn thành";
+        }
     }
 
     public HoaDon(String id, String ma, String idKH, String idNV, Date ngayThanhToan, Date ngayTao, Date ngaySua, int trangThai) {
@@ -103,5 +112,4 @@ public class HoaDon {
         return "HoaDon{" + "id=" + id + ", ma=" + ma + ", idKH=" + idKH + ", idNV=" + idNV + ", ngayThanhToan=" + ngayThanhToan + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
 
-    
 }

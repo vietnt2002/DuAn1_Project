@@ -15,6 +15,10 @@ public interface INhanVienRepository {
 
     List<NhanVien> getAll();
 
+    List<NhanVien> getAllDangLam();
+
+    List<NhanVien> getAllDaNghi();
+
     NhanVien getTaiKhoan(String username);
 
     Integer them(NhanVien nhanVien);
@@ -29,11 +33,21 @@ public interface INhanVienRepository {
 
     List<String> getChucVu();
 
-    List<NhanVien> timTen(String ten);
+    List<NhanVien> timTenNvLam(String ten);
 
-    List<NhanVien> sapXepTenGiam();
+    List<NhanVien> timTenNvNghi(String ten);
 
-    List<NhanVien> sapXepTenTang();
-    
+    List<NhanVien> sapXepTenGiamNVLam();
+
+    List<NhanVien> sapXepTenGiamNVNghi();
+
+    List<NhanVien> sapXepTenTangNVLam();
+
+    List<NhanVien> sapXepTenTangNVNghi();
+
     NhanVien getHoTenByMa(String ma);
+
+    List<NhanVien> locChucVuNVLam(String chucVu1);
+
+    List<NhanVien> locChucVuNVNghi(String chucVu1);
 }

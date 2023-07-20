@@ -78,5 +78,16 @@ public class KhachHangService implements IKhachHangService {
         return ikhachHangRepo.getThongTinBySdtOrEmail(sdtOrEmail);
     }
 
+    @Override
+    public List<Integer> getSoLanMua() {
+      return ikhachHangRepo.getSoLanMua();
+    }
+
+    @Override
+    public List<KhachHang> locSoLanMua(int solan) {
+       return ikhachHangRepo.locSoLanMua(solan);
+               
+    }
+
 }
 

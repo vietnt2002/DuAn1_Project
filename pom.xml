@@ -12,6 +12,7 @@
             <url>file:${project.basedir}/lib</url>
         </repository>
     </repositories>
+    
     <build>
         <plugins>
             <plugin>
@@ -69,7 +70,7 @@
             <artifactId>TimingFramework-0.55</artifactId>
             <version>SNAPSHOT</version>
         </dependency>
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>unknown.binary</groupId>
             <artifactId>AbsoluteLayout</artifactId>
             <version>SNAPSHOT</version>
@@ -90,7 +91,16 @@
             <artifactId>poi-ooxml</artifactId>
             <version>4.1.1</version>
         </dependency>
+        <!--   lich-->
+        <dependency>
+            <groupId>com.toedter</groupId>
+            <artifactId>jcalendar</artifactId>
+            <version>1.4</version>
+        </dependency>
     </dependencies>
+    
+     
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>19</maven.compiler.source>

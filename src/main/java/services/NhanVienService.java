@@ -7,7 +7,6 @@ package services;
 import domainmodels.NhanVien;
 import irepositories.INhanVienRepository;
 import iservices.INhanVienService;
-import java.util.ArrayList;
 import java.util.List;
 import repositories.NhanVienRepository;
 
@@ -60,23 +59,57 @@ public class NhanVienService implements INhanVienService {
     }
 
     @Override
-    public List<NhanVien> timTen(String ten) {
-        return iNhanVienRepo.timTen(ten);
-    }
-
-    @Override
-    public List<NhanVien> sapXepTenGiam() {
-        return iNhanVienRepo.sapXepTenGiam();
-    }
-
-    @Override
-    public List<NhanVien> sapXepTenTang() {
-        return iNhanVienRepo.sapXepTenTang();
-    }
-
-    @Override
     public NhanVien getHoTenByMa(String ma) {
         return iNhanVienRepo.getHoTenByMa(ma);
     }
-    
+
+    @Override
+    public List<NhanVien> getAllDangLam() {
+        return iNhanVienRepo.getAllDangLam();
+    }
+
+    @Override
+    public List<NhanVien> getAllDaNghi() {
+        return iNhanVienRepo.getAllDaNghi();
+    }
+
+    @Override
+    public List<NhanVien> timTenNvLam(String ten) {
+        return iNhanVienRepo.timTenNvLam(ten);
+    }
+
+    @Override
+    public List<NhanVien> timTenNvNghi(String ten) {
+        return iNhanVienRepo.timTenNvNghi(ten);
+    }
+
+    @Override
+    public List<NhanVien> sapXepTenGiamNVLam() {
+        return iNhanVienRepo.sapXepTenGiamNVLam();
+    }
+
+    @Override
+    public List<NhanVien> sapXepTenGiamNVNghi() {
+        return iNhanVienRepo.sapXepTenGiamNVNghi();
+    }
+
+    @Override
+    public List<NhanVien> sapXepTenTangNVLam() {
+        return iNhanVienRepo.sapXepTenTangNVLam();
+    }
+
+    @Override
+    public List<NhanVien> sapXepTenTangNVNghi() {
+           return iNhanVienRepo.sapXepTenTangNVNghi();
+    }
+
+    @Override
+    public List<NhanVien> locChucVuNVLam(String chucVu1) {
+        return iNhanVienRepo.locChucVuNVLam(chucVu1);
+    }
+
+    @Override
+    public List<NhanVien> locChucVuNVNghi(String chucVu1) {
+         return iNhanVienRepo.locChucVuNVNghi(chucVu1);  }
+
 }

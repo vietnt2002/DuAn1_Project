@@ -40,6 +40,7 @@ public class KhachHangRepository implements IKhachHangRepository {
                 khachHang.setSdt(RS.getString("Sdt"));
                 khachHang.setDiaChi(RS.getString("DiaChi"));
                 khachHang.setEmail(RS.getString("Email"));
+                khachHang.setSoLanMuaHang(RS.getInt("SoLanMuaHang"));
                 khachHang.setNgayTao(RS.getDate("NgayTao"));
                 khachHang.setNgaySua(RS.getDate("NgaySua"));
                 listKhachHang.add(khachHang);
@@ -52,7 +53,7 @@ public class KhachHangRepository implements IKhachHangRepository {
     @Override
     public Integer them(KhachHang khachHang) {
         Integer result = 0;
-        String sql = "Insert into KhachHang (Ma,Ten,tenDem,Ho,NgaySinh,Sdt,DiaChi,Email) values (?,?,?,?,?,?,?,?)";
+        String sql = "Insert into KhachHang (Ma,Ten,tenDem,Ho,NgaySinh,Sdt,DiaChi,Email,SoLanMuaHang) values (?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement PS = con.prepareStatement(sql);
             PS.setObject(1, khachHang.getMa());
@@ -63,6 +64,7 @@ public class KhachHangRepository implements IKhachHangRepository {
             PS.setObject(6, khachHang.getSdt());
             PS.setObject(7, khachHang.getDiaChi());
             PS.setObject(8, khachHang.getEmail());
+            PS.setObject(9, khachHang.getSoLanMuaHang());
             result = PS.executeUpdate();
 
             return result;
@@ -74,7 +76,7 @@ public class KhachHangRepository implements IKhachHangRepository {
 
     @Override
     public Integer sua(KhachHang khachHang) {
-        String sql = "Update KhachHang Set Ten = ?,TenDem = ?,Ho=?,NgaySinh=?,Sdt=?,DiaChi=?,Email=?,NgayTao=?,NgaySua=? Where Ma = ?";
+        String sql = "Update KhachHang Set Ten = ?,TenDem = ?,Ho=?,NgaySinh=?,Sdt=?,DiaChi=?,Email=?,SoLanMuaHang =? Where Ma = ?";
         try {
             PreparedStatement PS = con.prepareStatement(sql);
             PS.setObject(1, khachHang.getTen());
@@ -84,9 +86,8 @@ public class KhachHangRepository implements IKhachHangRepository {
             PS.setObject(5, khachHang.getSdt());
             PS.setObject(6, khachHang.getDiaChi());
             PS.setObject(7, khachHang.getEmail());
-            PS.setObject(8, khachHang.getNgayTao());
-            PS.setObject(9, khachHang.getNgaySua());
-            PS.setObject(10, khachHang.getMa());
+            PS.setObject(8, khachHang.getSoLanMuaHang());
+            PS.setObject(9, khachHang.getMa());
             PS.executeUpdate();
         } catch (Exception e) {
         }
@@ -124,7 +125,7 @@ public class KhachHangRepository implements IKhachHangRepository {
             return null;
         }
     }
-    
+
     @Override
     public String getIdByMa(String ma) {
         try {
@@ -229,7 +230,7 @@ public class KhachHangRepository implements IKhachHangRepository {
     @Override
     public List<KhachHang> timTen(String timTen) {
         List<KhachHang> listKhachHang = new ArrayList<>();
-        String sql = "Select * from KhachHang Where ten Like N'%" + timTen + "%'";
+        String sql = "Select * from KhachHang Where ten Like N'%" + timTen + "%' OR sdt Like '%" + timTen + "%'";
         try {
             PreparedStatement PS = con.prepareStatement(sql);
             ResultSet RS = PS.executeQuery();
@@ -253,14 +254,13 @@ public class KhachHangRepository implements IKhachHangRepository {
         return listKhachHang;
     }
 
-    public static void main(String[] args) {
-        KhachHangRepository kh = new KhachHangRepository();
-        List<KhachHang> listkh = kh.timTen("u");
-        for (KhachHang khachHang : listkh) {
-            System.out.println(khachHang.toString());
-        }
-    }
-
+//    public static void main(String[] args) {
+//        KhachHangRepository kh = new KhachHangRepository();
+//        List<KhachHang> listkh = kh.timTen("u");
+//        for (KhachHang khachHang : listkh) {
+//            System.out.println(khachHang.toString());
+//        }
+//    }
     public KhachHang getHoTenByMa(String ma) {
         try {
             KhachHang khachHang = new KhachHang();
@@ -312,6 +312,45 @@ public class KhachHangRepository implements IKhachHangRepository {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    @Override
+    public List<Integer> getSoLanMua() {
+        List<Integer> list = new ArrayList<>();
+        String sql = "Select SoLanMuaHang from KhachHang Group by SoLanMuaHang";
+        try (PreparedStatement PS = con.prepareStatement(sql); ResultSet RS = PS.executeQuery()) {
+            while (RS.next()) {
+                list.add(RS.getInt("SoLanMuaHang"));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    @Override
+    public List<KhachHang> locSoLanMua(int solan) {
+        List<KhachHang> listKhachHang = new ArrayList<>();
+        String sql = "Select * from KhachHang Where solanmuahang =" + solan;
+        try (PreparedStatement PS = con.prepareStatement(sql); ResultSet RS = PS.executeQuery()) {
+            while (RS.next()) {
+                KhachHang khachHang = new KhachHang();
+                khachHang.setId(RS.getString("Id"));
+                khachHang.setMa(RS.getString("Ma"));
+                khachHang.setTen(RS.getString("Ten"));
+                khachHang.setTenDem(RS.getString("TenDem"));
+                khachHang.setHo(RS.getString("Ho"));
+                khachHang.setNgaySinh(RS.getDate("NgaySinh"));
+                khachHang.setSdt(RS.getString("Sdt"));
+                khachHang.setSoLanMuaHang(RS.getInt("SoLanMuaHang"));
+                khachHang.setDiaChi(RS.getString("DiaChi"));
+                khachHang.setEmail(RS.getString("Email"));
+                khachHang.setNgayTao(RS.getDate("NgayTao"));
+                khachHang.setNgaySua(RS.getDate("NgaySua"));
+                listKhachHang.add(khachHang);
+            }
+        } catch (Exception e) {
+        }
+        return listKhachHang;
     }
 
 }

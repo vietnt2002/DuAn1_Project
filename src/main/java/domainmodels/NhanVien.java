@@ -30,7 +30,13 @@ public class NhanVien {
 
     public NhanVien() {
     }
-
+   public String getTrangThaiString() {
+        if (trangThai == 1) {
+            return "Đang làm việc";
+        } else {
+            return "Đã nghỉ";
+        }
+    }
     public NhanVien(String id, String idCV, String ma, String ten, String tenDem, String ho, String gioiTinh, String email, Date ngaySinh, String diaChi, String sdt, String matKhau, Date ngayTao, Date ngaySua, int trangThai) {
         this.id = id;
         this.idCV = idCV;

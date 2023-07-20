@@ -30,11 +30,25 @@ public interface INhanVienService {
 
     List<String> getTenChucVu();
 
-    List<NhanVien> timTen(String ten);
-
-    List<NhanVien> sapXepTenGiam();
-
-    List<NhanVien> sapXepTenTang();
-    
     NhanVien getHoTenByMa(String ma);
+
+    List<NhanVien> getAllDangLam();
+
+    List<NhanVien> getAllDaNghi();
+
+    List<NhanVien> timTenNvLam(String ten);
+
+    List<NhanVien> timTenNvNghi(String ten);
+
+    List<NhanVien> sapXepTenGiamNVLam();
+
+    List<NhanVien> sapXepTenGiamNVNghi();
+
+    List<NhanVien> sapXepTenTangNVLam();
+
+    List<NhanVien> sapXepTenTangNVNghi();
+
+    List<NhanVien> locChucVuNVLam(String chucVu1);
+
+    List<NhanVien> locChucVuNVNghi(String chucVu1);
 }

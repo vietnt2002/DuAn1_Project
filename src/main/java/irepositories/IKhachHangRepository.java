@@ -22,7 +22,7 @@ public interface IKhachHangRepository {
     Integer xoa(String ma);
 
     String getIdBySDT(String sdt);
-    
+
     String getIdByMa(String ma);
 
     KhachHang checkTrungMa(String ma);
@@ -30,10 +30,14 @@ public interface IKhachHangRepository {
     List<KhachHang> sapXepTenGiam();
 
     List<KhachHang> sapXepTenTang();
-    
+
     List<KhachHang> timTen(String timTen);
 
     KhachHang getHoTenByMa(String ma);
-    
+
     KhachHang getThongTinBySdtOrEmail(String sdtOrEmail);
+
+    List<Integer> getSoLanMua();
+
+    List<KhachHang> locSoLanMua(int solan);
 }
