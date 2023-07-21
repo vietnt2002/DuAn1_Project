@@ -32,6 +32,7 @@ import domainmodels.SSD;
 import domainmodels.SanPham;
 import domainmodels.ChiTietHD;
 import domainmodels.BaoHanh;
+import irepositories.IChiTietHDRepository;
 import java.math.BigDecimal;
 import java.util.List;
 import java.sql.*;
@@ -57,6 +58,7 @@ public class ChiTietSPRepository implements IChiTietSPRepository {
     private final INSXRepository RepositoryNoiSx = new NSXRepository();
     private final IBaoHanhRepository RepositoryBaoHanh = new BaoHanhRepository();
     private final ISanPhamRepository RepositoryTenSp = new SanPhamRepository();
+    private final IChiTietHDRepository RepositoryHoaDon = new ChiTietHDRepository();
     private final Connection con = DBConnection.getConnection();
 
     @Override
@@ -274,8 +276,7 @@ public class ChiTietSPRepository implements IChiTietSPRepository {
     @Override
     public Integer them(ChiTietSP sp) {
         try {
-            String lenh = "insert into ChiTietSP(IdSP,IdNsx,IdMauSac,IdDongSP,idCPU,idRam,idSSD,idManHinh,idBH,"
-                    + "canNang,moTa,SoLuongTon,GiaNhap,GiaBan,ngayTao,ngaySua,trangThai) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String lenh = "insert into ChiTietSP(IdSP,IdNsx,IdMauSac,IdDongSP,idCPU,idRam,idSSD,idManHinh,idBH,canNang,moTa,SoLuongTon,GiaNhap,GiaBan,ngayTao,ngaySua,trangThai) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(lenh);
             if (sp.getIdSP().equalsIgnoreCase("null")) {
                 st.setString(1, null);
@@ -343,7 +344,7 @@ public class ChiTietSPRepository implements IChiTietSPRepository {
         try {
             java.util.UUID idCt = UUID.fromString(id);
             String lenh = "update ChiTietSP set IdSP=?,IdNsx=?,IdMauSac=?,IdDongSP=?,idCPU=?,idRam=?,idSSD=?,idManHinh=?,idBH=?,"
-                    + "NamBH=?,MoTa=?,SoLuongTon=?,GiaNhap=?,GiaBan=?,ngayTao=?,ngaySua=?,trangThai=? where id=?";
+                    + "CanNang=?,MoTa=?,SoLuongTon=?,GiaNhap=?,GiaBan=?,ngayTao=?,ngaySua=?,trangThai=? where id=?";
             PreparedStatement st = con.prepareStatement(lenh);
             if (sp.getIdSP().equalsIgnoreCase("null")) {
                 st.setString(1, null);
@@ -512,6 +513,15 @@ public class ChiTietSPRepository implements IChiTietSPRepository {
         return bh;
     }
 
+    public Map<String, String> hashMapHoaDon() {
+        Map<String, String> bh = new HashMap<>();
+        List<ChiTietHD> lst = RepositoryHoaDon.getAll();
+        for (ChiTietHD a : lst) {
+            bh.put(a.getId(), a.getIdHD());
+        }
+        return bh;
+    }
+
     @Override
     public ChiTietSP getIdByMa(String ma) {
         try {
@@ -531,15 +541,55 @@ public class ChiTietSPRepository implements IChiTietSPRepository {
         }
 
     }
-    
+
     @Override
-    public Integer suaCTSP(ChiTietSP chiTietSP){
+    public Integer suaCTSP(ChiTietSP chiTietSP) {
         try {
             Integer result = 0;
-            
+
             return result;
         } catch (Exception e) {
             return 0;
         }
     }
+
+    @Override
+    public List<ChiTietSP> getAllCTSP() {
+        try {
+            Connection con = DBConnection.getConnection();
+            List<ChiTietSP> lst = new ArrayList<>();
+            String lenh = "select id,IdSP,IdNsx,IdMauSac,IdDongSP,idCPU,idRam,idSSD,idManHinh,idBH,CanNang,MoTa,SoLuongTon,GiaNhap,GiaBan,ngayTao,ngaySua,trangThai,numOrder,ma from ChiTietSP";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(lenh);
+            while (rs.next()) {
+                lst.add(new ChiTietSP(rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getDouble(11),
+                        rs.getString(12),
+                        rs.getInt(13),
+                        rs.getBigDecimal(14),
+                        rs.getBigDecimal(15),
+                        rs.getDate(16),
+                        rs.getDate(17),
+                        rs.getInt(18),
+                        rs.getInt(19),
+                        rs.getString(20)));
+            }
+            rs.close();
+            st.close();
+            con.close();
+            return lst;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
 }

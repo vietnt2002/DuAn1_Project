@@ -92,5 +92,16 @@ public class ImeiDaBan {
     public String toString() {
         return "ImeiDaBan{" + "id=" + id + ", imei=" + imei + ", idChiTietHD=" + idChiTietHD + ", ngayBan=" + ngayBan + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
+    
+    public String getStatus(int trangThai) {
+        return switch (trangThai) {
+            case 0 ->
+                "Không tồn tại";
+            case 1 ->
+                "Tồn tại";
+            default ->
+                "Không rõ";
+        };
+    }
 
 }

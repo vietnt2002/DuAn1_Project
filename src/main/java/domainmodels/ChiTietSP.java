@@ -1,4 +1,4 @@
-    /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -14,7 +14,6 @@ import java.sql.Date;
 public class ChiTietSP {
 
     private String id;
-    private String ma;
     private String idSP;
     private String idNSX;
     private String idMauSac;
@@ -32,13 +31,14 @@ public class ChiTietSP {
     private Date ngayTao;
     private Date ngaySua;
     private int trangThai;
+    private int numOrder;
+    private String ma;
 
     public ChiTietSP() {
     }
 
-    public ChiTietSP(String id, String ma, String idSP, String idNSX, String idMauSac, String idDongSP, String idCPU, String idRam, String idSSD, String idManHinh, String idChiTietHD, String idBH, double canNang, String moTa, int soLuongTon, BigDecimal giaNhap, BigDecimal giaBan, Date ngayTao, Date ngaySua, int trangThai) {
+    public ChiTietSP(String id, String idSP, String idNSX, String idMauSac, String idDongSP, String idCPU, String idRam, String idSSD, String idManHinh, String idBH, double canNang, String moTa, int soLuongTon, BigDecimal giaNhap, BigDecimal giaBan, Date ngayTao, Date ngaySua, int trangThai, int numOrder, String ma) {
         this.id = id;
-        this.ma = ma;
         this.idSP = idSP;
         this.idNSX = idNSX;
         this.idMauSac = idMauSac;
@@ -56,6 +56,29 @@ public class ChiTietSP {
         this.ngayTao = ngayTao;
         this.ngaySua = ngaySua;
         this.trangThai = trangThai;
+        this.numOrder = numOrder;
+        this.ma = ma;
+    }
+
+    public ChiTietSP(String idSP, String idNSX, String idMauSac, String idDongSP, String idCPU, String idRam, String idSSD, String idManHinh, String idBH, double canNang, String moTa, int soLuongTon, BigDecimal giaNhap, BigDecimal giaBan, Date ngayTao, Date ngaySua, int trangThai, String ma) {
+        this.idSP = idSP;
+        this.idNSX = idNSX;
+        this.idMauSac = idMauSac;
+        this.idDongSP = idDongSP;
+        this.idCPU = idCPU;
+        this.idRam = idRam;
+        this.idSSD = idSSD;
+        this.idManHinh = idManHinh;
+        this.idBH = idBH;
+        this.canNang = canNang;
+        this.moTa = moTa;
+        this.soLuongTon = soLuongTon;
+        this.giaNhap = giaNhap;
+        this.giaBan = giaBan;
+        this.ngayTao = ngayTao;
+        this.ngaySua = ngaySua;
+        this.trangThai = trangThai;
+        this.ma = ma;
     }
 
     public ChiTietSP(String idSP, String idNSX, String idMauSac, String idDongSP, String idCPU, String idRam, String idSSD, String idManHinh, String idBH, double canNang, String moTa, int soLuongTon, BigDecimal giaNhap, BigDecimal giaBan, Date ngayTao, Date ngaySua, int trangThai) {
@@ -84,14 +107,6 @@ public class ChiTietSP {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getMa() {
-        return ma;
-    }
-
-    public void setMa(String ma) {
-        this.ma = ma;
     }
 
     public String getIdSP() {
@@ -230,17 +245,36 @@ public class ChiTietSP {
         this.trangThai = trangThai;
     }
 
+    public int getNumOrder() {
+        return numOrder;
+    }
+
+    public void setNumOrder(int numOrder) {
+        this.numOrder = numOrder;
+    }
+
+    public String getMa() {
+        return ma;
+    }
+
+    public void setMa(String ma) {
+        this.ma = ma;
+    }
+
+    public String getStatus(int trangThai) {
+        return switch (trangThai) {
+            case 0 ->
+                "Hết hàng";
+            case 1 ->
+                "Còn hàng";
+            default ->
+                "Không rõ";
+        };
+    }
+
     @Override
     public String toString() {
         return id;
-    }
-    
-    public String getStatus(int trangThai) {
-        return switch (trangThai) {
-            case 0 -> "Còn hàng";
-            case 1 -> "Hết hàng";
-            default -> "Không rõ";
-        };
     }
 
 }

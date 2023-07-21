@@ -83,4 +83,15 @@ public class Imei {
         return "Imei{" + "id=" + id + ", imei=" + imei + ", idChiTietSP=" + idChiTietSP + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
     
+    public String getStatus(int trangThai) {
+        return switch (trangThai) {
+            case 0 ->
+                "Hết hàng";
+            case 1 ->
+                "Còn hàng";
+            default ->
+                "Không rõ";
+        };
+    }
+    
 }

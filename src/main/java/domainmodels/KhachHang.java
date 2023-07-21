@@ -143,5 +143,16 @@ public class KhachHang {
     public String toString() {
         return ma;
     }
+    
+    public String getStatus(int trangThai) {
+        return switch (trangThai) {
+            case 0 ->
+                "Không tồn tại";
+            case 1 ->
+                "Tồn tại";
+            default ->
+                "Không rõ";
+        };
+    }
 
 }

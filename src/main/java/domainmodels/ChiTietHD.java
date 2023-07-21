@@ -108,6 +108,17 @@ public class ChiTietHD {
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
+    
+    public String getStatus(int trangThai) {
+        return switch (trangThai) {
+            case 0 ->
+                "Hết hàng";
+            case 1 ->
+                "Còn hàng";
+            default ->
+                "Không rõ";
+        };
+    }
 
     @Override
     public String toString() {

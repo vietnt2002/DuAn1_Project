@@ -77,6 +77,17 @@ public class ChucVu {
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
+    
+    public String getStatus(int trangThai) {
+        return switch (trangThai) {
+            case 0 ->
+                "Không còn";
+            case 1 ->
+                "Còn";
+            default ->
+                "Không rõ";
+        };
+    }
 
     @Override
     public String toString() {

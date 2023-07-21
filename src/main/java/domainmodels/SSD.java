@@ -87,15 +87,15 @@ public class SSD {
         this.trangThai = trangThai;
     }
     
-    public String getStatus(int trangThai){
-        switch (trangThai) {
-            case 0:
-                return "Còn hàng";
-            case 1:
-                return "Hết hàng";
-            default:
-                return "Không rõ";
-        }
+    public String getStatus(int trangThai) {
+        return switch (trangThai) {
+            case 0 ->
+                "Hết hàng";
+            case 1 ->
+                "Còn hàng";
+            default ->
+                "Không rõ";
+        };
     }
 
     @Override

@@ -111,5 +111,16 @@ public class HoaDon {
     public String toString() {
         return "HoaDon{" + "id=" + id + ", ma=" + ma + ", idKH=" + idKH + ", idNV=" + idNV + ", ngayThanhToan=" + ngayThanhToan + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
+    
+    public String getStatus(int trangThai) {
+        return switch (trangThai) {
+            case 0 ->
+                "Hết";
+            case 1 ->
+                "Còn";
+            default ->
+                "Không rõ";
+        };
+    }
 
 }

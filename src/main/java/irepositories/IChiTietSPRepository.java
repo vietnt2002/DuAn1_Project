@@ -20,13 +20,14 @@ public interface IChiTietSPRepository {
     Integer suaCTSP(ChiTietSP chiTietSP);
     Integer xoa(String ma);
     ChiTietSP getIdByMa(String ma);
-    
+    List<ChiTietSP> getAllCTSP();
     Integer sua(ChiTietSP sp,String id);
     Map<String, String> hashMapTenSp();
     Map<String, String> hashMapNoiSx();
     Map<String, String> hashMapMauSac();
     Map<String, String> hashMapDongSp();
     Map<String, String> hashMapManHinh();
+    Map<String, String> hashMapHoaDon();
     Map<String, String> hashMapCPU();
     Map<String, String> hashMapRAM();
     Map<String, String> hashMapSSD();

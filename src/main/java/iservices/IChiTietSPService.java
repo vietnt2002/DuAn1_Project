@@ -42,4 +42,5 @@ public interface IChiTietSPService {
     Map<String, String> hashMapRAM();
     Map<String, String> hashMapSSD();
     Map<String, String> hashMapBaoHanh();
+    Map<String, String> hashMapHoaDon();
 }

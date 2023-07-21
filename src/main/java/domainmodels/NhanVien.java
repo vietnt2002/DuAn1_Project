@@ -179,5 +179,16 @@ public class NhanVien {
     public String toString() {
         return ma;
     }
+    
+    public String getStatus(int trangThai) {
+        return switch (trangThai) {
+            case 0 ->
+                "Nghỉ";
+            case 1 ->
+                "Còn làm";
+            default ->
+                "Không rõ";
+        };
+    }
 
 }
