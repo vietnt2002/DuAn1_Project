@@ -14,8 +14,10 @@ public class Main {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new FrmDangNhap().setVisible(true);
+                //new FrmDangNhap().setVisible(true);
+               new FrmQuanLy().setVisible(true);
 //                new FrmNhanVien().setVisible(true);
+               
             }
         });
     }

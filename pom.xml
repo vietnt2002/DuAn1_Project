@@ -97,6 +97,13 @@
             <artifactId>jcalendar</artifactId>
             <version>1.4</version>
         </dependency>
+        <!--   Bieu do-->
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.0.19</version>
+        </dependency>
+        
     </dependencies>
     
      
